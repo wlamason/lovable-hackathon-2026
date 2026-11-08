@@ -1,0 +1,35 @@
+{
+  "id": "F014",
+  "name": "Tall Fiddle Leaf Plant",
+  "category": "Plant",
+  "style": "Bohemian",
+  "room": "Living Room",
+  "price_usd": 89,
+  "dimensions_in": {
+    "width": 20,
+    "depth": 20,
+    "height": 60
+  },
+  "dimensions_m": {
+    "width": 0.508,
+    "depth": 0.508,
+    "height": 1.524
+  },
+  "bounding_box_m": {
+    "min": {
+      "x": -0.254,
+      "y": -0.254,
+      "z": 0.0
+    },
+    "max": {
+      "x": 0.254,
+      "y": 0.254,
+      "z": 1.524
+    },
+    "width": 0.508,
+    "depth": 0.508,
+    "height": 1.524
+  },
+  "triangle_count": 8144,
+  "seed": 14014
+}
