@@ -1,0 +1,213 @@
+{
+  "id": "glass_garden_room",
+  "name": "Glass Wall Garden Room",
+  "description": "Bright modern living room. The long north wall is floor-to-ceiling glass with thin wood mullions in a four-by-two grid and a low wood bench along its base. Dark-framed sliding glass doors fill the west wall from the northwest corner. The east and south walls are solid white, with a 36 by 80 in entry door on the south wall. Gray-washed wood plank floor and a flat white ceiling. A simple garden plane sits outside the glass.",
+  "units": "meters",
+  "up_axis": "Z",
+  "origin": "interior floor center (0, 0, 0); floor top is Z=0",
+  "interior_m": {
+    "width_x": 6.1,
+    "depth_y": 4.88,
+    "height_z": 2.9
+  },
+  "interior_ft": {
+    "width_x": 20.01,
+    "depth_y": 16.01,
+    "height_z": 9.51
+  },
+  "ceiling_height_m": 2.9,
+  "ceiling_height_ft": 9.51,
+  "wall_thickness_m": 0.12,
+  "walls": {
+    "Window_N": "+Y long wall, floor-to-ceiling wood-mullion glass with bench",
+    "Door_Sliding": "-X wall from the northwest corner, dark-framed sliding glass doors",
+    "Wall_W": "-X solid white wall south of the sliding doors",
+    "Wall_E": "+X solid white wall",
+    "Wall_S": "-Y solid white wall, entry door"
+  },
+  "openings": {
+    "window_north": {
+      "object": "Window_N",
+      "wall": "Window_N",
+      "width_m": 6.1,
+      "height_m": 2.5,
+      "sill_z_m": 0.4,
+      "bays_x": 4,
+      "bays_z": 2,
+      "center_m": [
+        0.0,
+        2.5,
+        1.65
+      ],
+      "note": "Wood mullions. Bottom rail rests on the bench. Glass continues to the ceiling."
+    },
+    "door_sliding": {
+      "object": "Door_Sliding",
+      "wall": "Wall_W",
+      "width_m": 3.66,
+      "height_m": 2.9,
+      "sill_z_m": 0.0,
+      "panels": 3,
+      "center_m": [
+        -3.11,
+        0.61,
+        1.45
+      ],
+      "note": "Three floor-to-ceiling dark-gray framed panels meeting the window wall at the northwest corner."
+    },
+    "door": {
+      "object": "Door",
+      "wall": "Wall_S",
+      "width_in": 36,
+      "height_in": 80,
+      "width_m": 0.9144,
+      "height_m": 2.032,
+      "center_m": [
+        2.1728,
+        -2.5,
+        1.016
+      ]
+    }
+  },
+  "free_floor": {
+    "type": "rect",
+    "description": "Interior floor where furniture can sit. Excludes the north window bench. The south entry door and the west sliders are in the walls and do not reduce the floor.",
+    "min_m": [
+      -3.05,
+      -2.44
+    ],
+    "max_m": [
+      3.05,
+      1.94
+    ]
+  },
+  "bbox_m": {
+    "min": [
+      -8.17,
+      -2.56,
+      -0.06
+    ],
+    "max": [
+      4.67,
+      8.56,
+      3.5
+    ],
+    "size": [
+      12.84,
+      11.12,
+      3.56
+    ]
+  },
+  "shell_bbox_m": {
+    "min": [
+      -3.17,
+      -2.56,
+      -0.04
+    ],
+    "max": [
+      3.17,
+      2.56,
+      2.94
+    ],
+    "size": [
+      6.34,
+      5.12,
+      2.98
+    ]
+  },
+  "empties": {
+    "Sofa_spot": {
+      "position_m": [
+        0.2,
+        -0.9,
+        0.0
+      ],
+      "yaw_deg": 180,
+      "rotation_z_deg": 180,
+      "note": "Sofa facing the garden window. Yaw 180 degrees so its front (local -Y) points +Y."
+    },
+    "TV_wall": {
+      "position_m": [
+        2.89,
+        -0.2,
+        0.0
+      ],
+      "yaw_deg": -90,
+      "rotation_z_deg": -90,
+      "note": "Floor anchor on the solid east wall. Yaw -90 degrees so the screen front faces west into the room. Raise Z to wall-mount."
+    },
+    "Rug_center": {
+      "position_m": [
+        0.2,
+        -0.05,
+        0.0
+      ],
+      "yaw_deg": 0,
+      "rotation_z_deg": 0,
+      "note": "Center of the seating rug between the sofa and the coffee table."
+    },
+    "Coffee_spot": {
+      "position_m": [
+        0.2,
+        0.65,
+        0.0
+      ],
+      "yaw_deg": 0,
+      "rotation_z_deg": 0,
+      "note": "Coffee table in front of the sofa, toward the garden window."
+    },
+    "Plant_corner": {
+      "position_m": [
+        2.5,
+        1.52,
+        0.0
+      ],
+      "yaw_deg": 180,
+      "rotation_z_deg": 180,
+      "note": "Floor plant at the east end of the window bench, against the white wall."
+    },
+    "Lamp_corner": {
+      "position_m": [
+        -2.57,
+        -1.96,
+        0.0
+      ],
+      "yaw_deg": 45,
+      "rotation_z_deg": 45,
+      "note": "Corner lamp in the solid southwest corner, clear of the sliding doors."
+    },
+    "Side_table": {
+      "position_m": [
+        1.7,
+        -0.9,
+        0.0
+      ],
+      "yaw_deg": 0,
+      "rotation_z_deg": 0,
+      "note": "Side table off the east end of the sofa."
+    }
+  },
+  "triangle_count": 1272,
+  "objects": [
+    "Floor",
+    "Wall_E",
+    "Wall_W",
+    "Wall_S",
+    "Ceiling",
+    "Window_N",
+    "Window_N_Glass",
+    "Bench",
+    "Door_Sliding",
+    "Door_Sliding_Glass",
+    "Door",
+    "Baseboard",
+    "Garden",
+    "Sofa_spot",
+    "TV_wall",
+    "Rug_center",
+    "Coffee_spot",
+    "Plant_corner",
+    "Lamp_corner",
+    "Side_table"
+  ]
+}
