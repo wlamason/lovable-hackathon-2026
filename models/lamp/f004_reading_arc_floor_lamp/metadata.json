@@ -1,0 +1,36 @@
+{
+  "id": "F004",
+  "name": "Reading Arc Floor Lamp",
+  "category": "Lamp",
+  "style": "Modern",
+  "room": "Living Room",
+  "price_usd": 119,
+  "dimensions_in": {
+    "width": 18.0,
+    "depth": 18.0,
+    "height": 66.0
+  },
+  "dimensions_m": {
+    "width": 0.4572,
+    "depth": 0.4572,
+    "height": 1.6764
+  },
+  "bounding_box_m": {
+    "min": {
+      "x": -0.2286,
+      "y": -0.2286,
+      "z": 0.0
+    },
+    "max": {
+      "x": 0.2286,
+      "y": 0.2286,
+      "z": 1.6764
+    },
+    "size": {
+      "width": 0.4572,
+      "depth": 0.4572,
+      "height": 1.6764
+    }
+  },
+  "triangle_count": 3600
+}
