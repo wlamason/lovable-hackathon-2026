@@ -1,0 +1,249 @@
+{
+  "id": "bright_loft",
+  "name": "Bright loft with tall windows",
+  "description": "Spacious empty loft with a honey oak strip floor, white walls, thin black baseboards, and a flat white ceiling. Two tall black-framed grid windows sit in deep reveals on the west long wall. The east wall jogs into the room along its south run and opens into a northeast alcove. A 36 by 80 inch door is on the south wall.",
+  "units": "meters",
+  "up_axis": "Z",
+  "origin": "interior floor center (0, 0, 0); floor top is Z=0",
+  "interior_m": {
+    "width_x": 5.7912,
+    "depth_y": 7.62,
+    "height_z": 3.2004
+  },
+  "interior_ft": {
+    "width_x": 19.0,
+    "depth_y": 25.0,
+    "height_z": 10.5
+  },
+  "ceiling_height_m": 3.2004,
+  "ceiling_height_ft": 10.5,
+  "wall_thickness_m": 0.12,
+  "window_wall_thickness_m": 0.34,
+  "main_bay_m": {
+    "width_x": 4.452,
+    "depth_y": 7.62,
+    "note": "Rectangle west of the jog, before the alcove is added."
+  },
+  "walls": {
+    "Wall_N": "+Y short wall, blank TV wall",
+    "Wall_S": "-Y short wall, doorway",
+    "Wall_E": "+X alcove outer wall",
+    "Wall_W": "-X long wall, two tall windows",
+    "Wall_Jog": "east wall jog, interior face at X=JOG_X, from the south wall to the alcove",
+    "Wall_Return": "south side of the northeast alcove"
+  },
+  "jog": {
+    "clear_depth_m": 1.2192,
+    "clear_depth_ft": 4.0,
+    "length_along_y_m": 3.048,
+    "length_along_y_ft": 10.0,
+    "interior_corner_m": [
+      1.5564,
+      0.762
+    ],
+    "note": "The east wall steps west into the room from the south wall up to the return, leaving a 4 ft by 10 ft alcove in the northeast."
+  },
+  "openings": {
+    "windows": [
+      {
+        "object": "Window_Near",
+        "glass": "Window_Near_Glass",
+        "wall": "Wall_W",
+        "width_m": 0.9906,
+        "height_m": 2.4994,
+        "sill_z_m": 0.4572,
+        "grid": "3 columns x 4 rows",
+        "reveal_depth_m": 0.15,
+        "center_m": [
+          -3.0656,
+          -2.3241,
+          1.7069
+        ]
+      },
+      {
+        "object": "Window_Far",
+        "glass": "Window_Far_Glass",
+        "wall": "Wall_W",
+        "width_m": 0.9906,
+        "height_m": 2.4994,
+        "sill_z_m": 0.4572,
+        "grid": "3 columns x 4 rows",
+        "reveal_depth_m": 0.15,
+        "center_m": [
+          -3.0656,
+          -0.2667,
+          1.7069
+        ]
+      }
+    ],
+    "door": {
+      "object": "Door",
+      "wall": "Wall_S",
+      "width_in": 36,
+      "height_in": 80,
+      "width_m": 0.9144,
+      "height_m": 2.032,
+      "center_m": [
+        0.25,
+        -3.87,
+        1.016
+      ]
+    }
+  },
+  "bbox_m": {
+    "min": [
+      -3.2356,
+      -3.93,
+      -0.04
+    ],
+    "max": [
+      3.0156,
+      3.93,
+      3.2404
+    ],
+    "size": [
+      6.2512,
+      7.86,
+      3.2804
+    ]
+  },
+  "free_floor": {
+    "polygon_m": [
+      [
+        -2.8956,
+        -3.81
+      ],
+      [
+        1.5564,
+        -3.81
+      ],
+      [
+        1.5564,
+        0.762
+      ],
+      [
+        1.6764,
+        0.762
+      ],
+      [
+        2.8956,
+        0.762
+      ],
+      [
+        2.8956,
+        3.81
+      ],
+      [
+        -2.8956,
+        3.81
+      ]
+    ],
+    "note": "Walkable floor at Z=0. Vertices in order around the interior footprint. X is east, Y is north. The jog wall (thickness 0.12 m east of JOG_X, south of JOG_Y) is not floor. Primary seating fits in the main bay, clear of the south door.",
+    "seating_rect_m": {
+      "min": [
+        -2.3956,
+        -2.76
+      ],
+      "max": [
+        1.1064,
+        3.41
+      ]
+    }
+  },
+  "empties": {
+    "TV_wall": {
+      "position_m": [
+        -0.6696,
+        3.53,
+        0.0
+      ],
+      "yaw_deg": 0,
+      "rotation_z_deg": 0,
+      "note": "Floor anchor on the blank north wall, centered in the main bay. Yaw 0 so a TV's front (local -Y) faces into the room. Raise Z to wall-mount the screen."
+    },
+    "Sofa_spot": {
+      "position_m": [
+        -0.6696,
+        -0.7,
+        0.0
+      ],
+      "yaw_deg": 180,
+      "rotation_z_deg": 180,
+      "note": "Floor anchor for a sofa in the main bay. Yaw 180 so its front (local -Y) faces TV_wall."
+    },
+    "Rug_center": {
+      "position_m": [
+        -0.6696,
+        0.1,
+        0.0
+      ],
+      "yaw_deg": 0,
+      "rotation_z_deg": 0,
+      "note": "Center of the seating rug between the sofa and the coffee table. Yaw 0 lays an 8x10 carpet with its long side along Y."
+    },
+    "Coffee_spot": {
+      "position_m": [
+        -0.6696,
+        0.85,
+        0.0
+      ],
+      "yaw_deg": 0,
+      "rotation_z_deg": 0,
+      "note": "Floor anchor for a coffee table between the sofa and the north wall. Yaw 0."
+    },
+    "Plant_corner": {
+      "position_m": [
+        -2.2756,
+        3.19,
+        0.0
+      ],
+      "yaw_deg": 0,
+      "rotation_z_deg": 0,
+      "note": "Northwest corner, beside the blank wall and clear of the far window. Yaw 0."
+    },
+    "Lamp_corner": {
+      "position_m": [
+        -2.3456,
+        -3.23,
+        0.0
+      ],
+      "yaw_deg": 0,
+      "rotation_z_deg": 0,
+      "note": "Southwest corner for a floor lamp, west of the door. Yaw 0."
+    },
+    "Alcove_spot": {
+      "position_m": [
+        2.286,
+        2.286,
+        0.0
+      ],
+      "yaw_deg": -90,
+      "rotation_z_deg": -90,
+      "note": "Center of the northeast alcove. Yaw -90 so a chair or lamp front (local -Y) faces west into the main room."
+    }
+  },
+  "triangle_count": 1392,
+  "objects": [
+    "Floor",
+    "Wall_N",
+    "Wall_S",
+    "Wall_E",
+    "Wall_W",
+    "Wall_Jog",
+    "Wall_Return",
+    "Ceiling",
+    "Window_Near",
+    "Window_Near_Glass",
+    "Window_Far",
+    "Window_Far_Glass",
+    "Door",
+    "Baseboard",
+    "TV_wall",
+    "Sofa_spot",
+    "Rug_center",
+    "Coffee_spot",
+    "Plant_corner",
+    "Lamp_corner",
+    "Alcove_spot"
+  ]
+}
