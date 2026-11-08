@@ -1,0 +1,35 @@
+{
+  "id": "F017",
+  "name": "Olive Tree in Pot",
+  "category": "Plant",
+  "style": "Japandi",
+  "room": "Living Room",
+  "price_usd": 129,
+  "dimensions_in": {
+    "width": 22,
+    "depth": 22,
+    "height": 54
+  },
+  "dimensions_m": {
+    "width": 0.5588,
+    "depth": 0.5588,
+    "height": 1.3716
+  },
+  "bounding_box_m": {
+    "min": [
+      -0.2794,
+      -0.2794,
+      0.0
+    ],
+    "max": [
+      0.2794,
+      0.2794,
+      1.3716
+    ],
+    "width": 0.5588,
+    "depth": 0.5588,
+    "height": 1.3716
+  },
+  "triangle_count": 28740,
+  "seed": 17017
+}
