@@ -1,0 +1,34 @@
+{
+  "id": "F008",
+  "name": "Slate Nesting Tables",
+  "category": "Table",
+  "style": "Industrial",
+  "room": "Living Room",
+  "price_usd": 189,
+  "dimensions_in": {
+    "width": 32.0,
+    "depth": 32.0,
+    "height": 18.0
+  },
+  "dimensions_m": {
+    "width": 0.8128,
+    "depth": 0.8128,
+    "height": 0.4572
+  },
+  "bounding_box_m": {
+    "width": 0.8127999901771545,
+    "depth": 0.8127999901771545,
+    "height": 0.45719999074935913,
+    "min": [
+      -0.40639999508857727,
+      -0.40639999508857727,
+      0.0
+    ],
+    "max": [
+      0.40639999508857727,
+      0.40639999508857727,
+      0.45719999074935913
+    ]
+  },
+  "triangle_count": 2232
+}
