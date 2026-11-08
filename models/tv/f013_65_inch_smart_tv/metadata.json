@@ -1,0 +1,40 @@
+{
+  "id": "F013",
+  "name": "65-Inch Smart TV",
+  "category": "TV",
+  "style": "Modern",
+  "room": "Living Room",
+  "price_usd": 699,
+  "dimensions_in": {
+    "width": 57.0,
+    "depth": 3.0,
+    "height": 34.0
+  },
+  "dimensions_m": {
+    "width": 1.4478,
+    "depth": 0.0762,
+    "height": 0.8636
+  },
+  "bounding_box_m": {
+    "min": [
+      -0.7239,
+      -0.0381,
+      0.0
+    ],
+    "max": [
+      0.7239,
+      0.0381,
+      0.8636
+    ],
+    "width": 1.4478,
+    "depth": 0.0762,
+    "height": 0.8636
+  },
+  "triangle_count": 340,
+  "screen_diagonal_in": 65.0,
+  "materials": [
+    "Bezel",
+    "Screen",
+    "Indicator"
+  ]
+}
