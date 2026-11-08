@@ -1,0 +1,262 @@
+{
+  "id": "condo_open_kitchen",
+  "name": "Modern Condo Open Kitchen",
+  "description": "Open-plan condo living room with a walnut and white-gloss kitchen in the southeast corner. Cherry plank floor, white walls, quartz counters, a peninsula with a sink, stainless fridge and range, two pendants, a tray ceiling over the kitchen, a dropped beam, and a glass balcony door plus window on the north wall. The west side of the room is open for seating.",
+  "units": "meters",
+  "up_axis": "Z",
+  "origin": "interior floor center (0, 0, 0); floor top is Z=0",
+  "furniture_front": "local -Y; anchor rotation_z_deg is the yaw to apply",
+  "interior_m": {
+    "width_x": 6.71,
+    "depth_y": 5.49,
+    "height_z": 2.74
+  },
+  "interior_ft": {
+    "width_x": 22.01,
+    "depth_y": 18.01,
+    "height_z": 8.99
+  },
+  "ceiling_height_m": 2.74,
+  "ceiling_height_ft": 8.99,
+  "soffit_bottom_m": 2.42,
+  "wall_thickness_m": 0.12,
+  "walls": {
+    "Wall_N": "+Y wall, balcony door and window",
+    "Wall_S": "-Y wall, entry door",
+    "Wall_E": "+X wall, kitchen run",
+    "Wall_W": "-X wall, TV side"
+  },
+  "openings": {
+    "window": {
+      "object": "Window_N",
+      "wall": "Wall_N",
+      "width_m": 2.57,
+      "height_m": 1.6,
+      "sill_z_m": 0.62,
+      "center_m": [
+        -0.235,
+        2.805,
+        1.42
+      ]
+    },
+    "balcony_door": {
+      "object": "Door_Balcony",
+      "wall": "Wall_N",
+      "width_m": 1.52,
+      "height_m": 2.22,
+      "sill_z_m": 0.0,
+      "center_m": [
+        -2.46,
+        2.805,
+        1.11
+      ],
+      "note": "Sliding glass door, no swing."
+    },
+    "door": {
+      "object": "Door",
+      "wall": "Wall_S",
+      "width_in": 36,
+      "height_in": 80,
+      "width_m": 0.9144,
+      "height_m": 2.032,
+      "center_m": [
+        -1.15,
+        -2.805,
+        1.016
+      ]
+    }
+  },
+  "bbox_m": {
+    "min": [
+      -3.475,
+      -2.865,
+      -0.04
+    ],
+    "max": [
+      3.475,
+      2.865,
+      2.78
+    ],
+    "size": [
+      6.95,
+      5.73,
+      2.82
+    ]
+  },
+  "free_floor": {
+    "note": "Open floor for furniture, excluding the east counter, peninsula (including the bar overhang), fridge, and the radiator under the window. Keep about 0.9 m clear in front of the south entry door. The rect is the primary seating zone inside that polygon.",
+    "rect_m": {
+      "min_xy": [
+        -3.2,
+        -1.8
+      ],
+      "max_xy": [
+        0.85,
+        2.15
+      ]
+    },
+    "polygon_xy_m": [
+      [
+        -3.355,
+        -2.745
+      ],
+      [
+        2.72,
+        -2.745
+      ],
+      [
+        2.72,
+        -1.62
+      ],
+      [
+        1.02,
+        -1.62
+      ],
+      [
+        1.02,
+        -0.48
+      ],
+      [
+        2.72,
+        -0.48
+      ],
+      [
+        2.72,
+        0.15
+      ],
+      [
+        2.595,
+        0.15
+      ],
+      [
+        2.595,
+        1.094
+      ],
+      [
+        3.355,
+        1.094
+      ],
+      [
+        3.355,
+        2.745
+      ],
+      [
+        0.98,
+        2.745
+      ],
+      [
+        0.98,
+        2.445
+      ],
+      [
+        -1.46,
+        2.445
+      ],
+      [
+        -1.46,
+        2.745
+      ],
+      [
+        -3.355,
+        2.745
+      ]
+    ]
+  },
+  "empties": {
+    "TV_wall": {
+      "position_m": [
+        -3.22,
+        0.2,
+        0.0
+      ],
+      "rotation_z_deg": 90,
+      "note": "Floor anchor on the west wall. Yaw 90 so a TV's front (local -Y) faces east into the room. Raise Z to mount the screen."
+    },
+    "Sofa_spot": {
+      "position_m": [
+        -0.85,
+        0.2,
+        0.0
+      ],
+      "rotation_z_deg": -90,
+      "note": "Floor anchor for a sofa. Yaw -90 so its front (local -Y) faces west toward TV_wall."
+    },
+    "Rug_center": {
+      "position_m": [
+        -1.5,
+        0.2,
+        0.0
+      ],
+      "rotation_z_deg": 90,
+      "note": "Center of the seating rug. Yaw 90 so the long side runs east-west under the sofa and coffee table."
+    },
+    "Coffee_spot": {
+      "position_m": [
+        -2.15,
+        0.2,
+        0.0
+      ],
+      "rotation_z_deg": 0,
+      "note": "Floor anchor for a coffee table between the sofa and the TV wall."
+    },
+    "Plant_corner": {
+      "position_m": [
+        -2.85,
+        2.15,
+        0.0
+      ],
+      "rotation_z_deg": 45,
+      "note": "Northwest corner beside the balcony glazing. Yaw 45 faces the plant into the room."
+    },
+    "Lamp_corner": {
+      "position_m": [
+        -2.85,
+        -2.15,
+        0.0
+      ],
+      "rotation_z_deg": 135,
+      "note": "Southwest corner. Yaw 135 faces the lamp northeast toward the seating area."
+    },
+    "Bar_spot": {
+      "position_m": [
+        1.85,
+        -0.05,
+        0.0
+      ],
+      "rotation_z_deg": 0,
+      "note": "North of the peninsula overhang, facing the counter (yaw 0). A second stool can sit about 0.55 m to the side on X."
+    }
+  },
+  "triangle_count": 4664,
+  "objects": [
+    "Floor",
+    "Wall_N",
+    "Wall_S",
+    "Wall_E",
+    "Wall_W",
+    "Ceiling",
+    "Ceiling_Soffit",
+    "Baseboard",
+    "Window_N",
+    "Door_Balcony",
+    "Door",
+    "Radiator",
+    "Kitchen_Base",
+    "Kitchen_Counter",
+    "Kitchen_Sink",
+    "Kitchen_Uppers",
+    "Kitchen_Backsplash",
+    "Kitchen_Fridge",
+    "Kitchen_Range",
+    "Kitchen_Hood",
+    "Kitchen_Pendants",
+    "Recessed_Lights",
+    "TV_wall",
+    "Sofa_spot",
+    "Rug_center",
+    "Coffee_spot",
+    "Plant_corner",
+    "Lamp_corner",
+    "Bar_spot"
+  ]
+}
