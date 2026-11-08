@@ -1,0 +1,337 @@
+{
+  "units": "meters",
+  "inch_to_meter": 0.0254,
+  "axis": {
+    "width": "X",
+    "depth": "Y",
+    "height": "Z",
+    "up": "Z",
+    "front": "-Y"
+  },
+  "origin": "bottom center of the footprint, on the floor at Z=0",
+  "items": [
+    {
+      "id": "F001",
+      "name": "Cloudline 3-Seat Couch",
+      "category": "Couch",
+      "price_usd": 899,
+      "dimensions_in": {
+        "width": 84,
+        "depth": 36,
+        "height": 33
+      },
+      "dimensions_m": {
+        "width": 2.1336,
+        "depth": 0.9144,
+        "height": 0.8382
+      },
+      "style": "Modern",
+      "room": "Living Room",
+      "path": "models/couch/f001_cloudline_3_seat_couch"
+    },
+    {
+      "id": "F002",
+      "name": "Harbor 2-Seat Loveseat",
+      "category": "Couch",
+      "price_usd": 649,
+      "dimensions_in": {
+        "width": 60,
+        "depth": 35,
+        "height": 34
+      },
+      "dimensions_m": {
+        "width": 1.524,
+        "depth": 0.889,
+        "height": 0.8636
+      },
+      "style": "Coastal",
+      "room": "Living Room",
+      "path": "models/couch/f002_harbor_2_seat_loveseat"
+    },
+    {
+      "id": "F003",
+      "name": "Corner Modular Sectional",
+      "category": "Couch",
+      "price_usd": 1299,
+      "dimensions_in": {
+        "width": 104,
+        "depth": 72,
+        "height": 34
+      },
+      "dimensions_m": {
+        "width": 2.6416,
+        "depth": 1.8288,
+        "height": 0.8636
+      },
+      "style": "Modern",
+      "room": "Living Room",
+      "path": "models/couch/f003_corner_modular_sectional"
+    },
+    {
+      "id": "F004",
+      "name": "Reading Arc Floor Lamp",
+      "category": "Lamp",
+      "price_usd": 119,
+      "dimensions_in": {
+        "width": 18,
+        "depth": 18,
+        "height": 66
+      },
+      "dimensions_m": {
+        "width": 0.4572,
+        "depth": 0.4572,
+        "height": 1.6764
+      },
+      "style": "Modern",
+      "room": "Living Room",
+      "path": "models/lamp/f004_reading_arc_floor_lamp"
+    },
+    {
+      "id": "F005",
+      "name": "Soft Glow Table Lamp",
+      "category": "Lamp",
+      "price_usd": 69,
+      "dimensions_in": {
+        "width": 10,
+        "depth": 10,
+        "height": 20
+      },
+      "dimensions_m": {
+        "width": 0.254,
+        "depth": 0.254,
+        "height": 0.508
+      },
+      "style": "Minimal",
+      "room": "Living Room",
+      "path": "models/lamp/f005_soft_glow_table_lamp"
+    },
+    {
+      "id": "F006",
+      "name": "Tripod Corner Lamp",
+      "category": "Lamp",
+      "price_usd": 149,
+      "dimensions_in": {
+        "width": 20,
+        "depth": 20,
+        "height": 60
+      },
+      "dimensions_m": {
+        "width": 0.508,
+        "depth": 0.508,
+        "height": 1.524
+      },
+      "style": "Scandinavian",
+      "room": "Living Room",
+      "path": "models/lamp/f006_tripod_corner_lamp"
+    },
+    {
+      "id": "F007",
+      "name": "Oakline Round Coffee Table",
+      "category": "Table",
+      "price_usd": 219,
+      "dimensions_in": {
+        "width": 36,
+        "depth": 36,
+        "height": 16
+      },
+      "dimensions_m": {
+        "width": 0.9144,
+        "depth": 0.9144,
+        "height": 0.4064
+      },
+      "style": "Japandi",
+      "room": "Living Room",
+      "path": "models/table/f007_oakline_round_coffee_table"
+    },
+    {
+      "id": "F008",
+      "name": "Slate Nesting Tables",
+      "category": "Table",
+      "price_usd": 189,
+      "dimensions_in": {
+        "width": 32,
+        "depth": 32,
+        "height": 18
+      },
+      "dimensions_m": {
+        "width": 0.8128,
+        "depth": 0.8128,
+        "height": 0.4572
+      },
+      "style": "Industrial",
+      "room": "Living Room",
+      "path": "models/table/f008_slate_nesting_tables"
+    },
+    {
+      "id": "F009",
+      "name": "Slim Side Table",
+      "category": "Table",
+      "price_usd": 99,
+      "dimensions_in": {
+        "width": 18,
+        "depth": 18,
+        "height": 22
+      },
+      "dimensions_m": {
+        "width": 0.4572,
+        "depth": 0.4572,
+        "height": 0.5588
+      },
+      "style": "Minimal",
+      "room": "Living Room",
+      "path": "models/table/f009_slim_side_table"
+    },
+    {
+      "id": "F010",
+      "name": "Geometric Area Carpet 8x10",
+      "category": "Carpet",
+      "price_usd": 249,
+      "dimensions_in": {
+        "width": 96,
+        "depth": 120,
+        "height": 0.5
+      },
+      "dimensions_m": {
+        "width": 2.4384,
+        "depth": 3.048,
+        "height": 0.0127
+      },
+      "style": "Modern",
+      "room": "Living Room",
+      "path": "models/carpet/f010_geometric_area_carpet_8x10"
+    },
+    {
+      "id": "F011",
+      "name": "Soft Neutral Carpet 5x7",
+      "category": "Carpet",
+      "price_usd": 159,
+      "dimensions_in": {
+        "width": 60,
+        "depth": 84,
+        "height": 0.5
+      },
+      "dimensions_m": {
+        "width": 1.524,
+        "depth": 2.1336,
+        "height": 0.0127
+      },
+      "style": "Scandinavian",
+      "room": "Living Room",
+      "path": "models/carpet/f011_soft_neutral_carpet_5x7"
+    },
+    {
+      "id": "F012",
+      "name": "48-Inch Smart TV",
+      "category": "TV",
+      "price_usd": 399,
+      "dimensions_in": {
+        "width": 43,
+        "depth": 3,
+        "height": 26
+      },
+      "dimensions_m": {
+        "width": 1.0922,
+        "depth": 0.0762,
+        "height": 0.6604
+      },
+      "style": "Modern",
+      "room": "Living Room",
+      "path": "models/tv/f012_48_inch_smart_tv"
+    },
+    {
+      "id": "F013",
+      "name": "65-Inch Smart TV",
+      "category": "TV",
+      "price_usd": 699,
+      "dimensions_in": {
+        "width": 57,
+        "depth": 3,
+        "height": 34
+      },
+      "dimensions_m": {
+        "width": 1.4478,
+        "depth": 0.0762,
+        "height": 0.8636
+      },
+      "style": "Modern",
+      "room": "Living Room",
+      "path": "models/tv/f013_65_inch_smart_tv"
+    },
+    {
+      "id": "F014",
+      "name": "Tall Fiddle Leaf Plant",
+      "category": "Plant",
+      "price_usd": 89,
+      "dimensions_in": {
+        "width": 20,
+        "depth": 20,
+        "height": 60
+      },
+      "dimensions_m": {
+        "width": 0.508,
+        "depth": 0.508,
+        "height": 1.524
+      },
+      "style": "Bohemian",
+      "room": "Living Room",
+      "path": "models/plant/f014_tall_fiddle_leaf_plant"
+    },
+    {
+      "id": "F015",
+      "name": "Snake Plant",
+      "category": "Plant",
+      "price_usd": 39,
+      "dimensions_in": {
+        "width": 12,
+        "depth": 12,
+        "height": 32
+      },
+      "dimensions_m": {
+        "width": 0.3048,
+        "depth": 0.3048,
+        "height": 0.8128
+      },
+      "style": "Minimal",
+      "room": "Living Room",
+      "path": "models/plant/f015_snake_plant"
+    },
+    {
+      "id": "F016",
+      "name": "Monstera Floor Plant",
+      "category": "Plant",
+      "price_usd": 79,
+      "dimensions_in": {
+        "width": 24,
+        "depth": 24,
+        "height": 48
+      },
+      "dimensions_m": {
+        "width": 0.6096,
+        "depth": 0.6096,
+        "height": 1.2192
+      },
+      "style": "Bohemian",
+      "room": "Living Room",
+      "path": "models/plant/f016_monstera_floor_plant"
+    },
+    {
+      "id": "F017",
+      "name": "Olive Tree in Pot",
+      "category": "Plant",
+      "price_usd": 129,
+      "dimensions_in": {
+        "width": 22,
+        "depth": 22,
+        "height": 54
+      },
+      "dimensions_m": {
+        "width": 0.5588,
+        "depth": 0.5588,
+        "height": 1.3716
+      },
+      "style": "Japandi",
+      "room": "Living Room",
+      "path": "models/plant/f017_olive_tree_in_pot"
+    }
+  ]
+}
