@@ -1,0 +1,207 @@
+{
+  "id": "studio_pass_through",
+  "name": "Studio with Pass-Through Kitchen",
+  "description": "Long narrow rental studio with a light oak floor, white walls, and an 8.5 ft flat ceiling. The open living floor is 12 by 18.5 ft. At the far end a half-wall pass-through opens to a compact kitchen nook (gray cabinets, granite ledge, white fridge, stainless range and microwave). Beside it a short hall leads to the entry door, with a louvered bifold closet facing the living room. The near wall is a wide window wall.",
+  "units": "meters",
+  "up_axis": "Z",
+  "origin": "interior floor center (0, 0, 0); floor top is Z=0",
+  "interior_m": {
+    "width_x": 3.6576,
+    "depth_y": 7.4676,
+    "height_z": 2.5908,
+    "living_depth_y": 5.6388,
+    "service_depth_y": 1.8288
+  },
+  "interior_ft": {
+    "width_x": 12.0,
+    "depth_y": 24.5,
+    "height_z": 8.5,
+    "living_depth_y": 18.5,
+    "service_depth_y": 6.0
+  },
+  "ceiling_height_m": 2.5908,
+  "ceiling_height_ft": 8.5,
+  "wall_thickness_m": 0.12,
+  "walls": {
+    "Wall_N": "+Y end wall, entry door in the hall",
+    "Wall_S": "-Y window wall",
+    "Wall_E": "+X long wall",
+    "Wall_W": "-X long wall",
+    "Wall_Pier": "full-height pier between the kitchen pass-through and the hall",
+    "Halfwall": "36.5 in pony wall under the kitchen pass-through"
+  },
+  "openings": {
+    "window": {
+      "object": "Window_S",
+      "wall": "Wall_S",
+      "width_m": 2.7432,
+      "height_m": 1.4224,
+      "sill_z_m": 0.762,
+      "head_z_m": 2.1844,
+      "center_m": [
+        0.0,
+        -3.7938,
+        1.4732
+      ]
+    },
+    "door": {
+      "object": "Door_Entry",
+      "wall": "Wall_N",
+      "width_in": 36,
+      "height_in": 80,
+      "width_m": 0.9144,
+      "height_m": 2.032,
+      "center_m": [
+        0.4572,
+        3.7938,
+        1.016
+      ]
+    },
+    "closet": {
+      "object": "Closet_Doors",
+      "wall": "south face of the closet, facing the living room",
+      "width_m": 0.809,
+      "height_m": 2.032,
+      "center_m": [
+        1.4123,
+        1.935,
+        1.016
+      ]
+    },
+    "pass_through": {
+      "object": "Halfwall",
+      "width_m": 1.6764,
+      "sill_z_m": 0.9271,
+      "head_z_m": 2.2098,
+      "height_m": 1.2827,
+      "center_m": [
+        -0.9906,
+        1.955,
+        1.5685
+      ]
+    }
+  },
+  "free_floor": {
+    "type": "rect",
+    "x_min": -1.8288,
+    "x_max": 1.8288,
+    "y_min": -3.7338,
+    "y_max": 1.905,
+    "note": "Open living floor south of the pass-through, hall, and closet. Keep the hallway threshold clear: x from the pier to the closet (-0.0254 to 0.9398), y within 0.85 m of Y=1.905. The kitchen nook and entry hall are not furnishing floor."
+  },
+  "bbox_m": {
+    "min": [
+      -1.9488,
+      -3.8538,
+      -0.04
+    ],
+    "max": [
+      1.9488,
+      3.8538,
+      2.6308
+    ],
+    "size": [
+      3.8976,
+      7.7076,
+      2.6708
+    ]
+  },
+  "empties": {
+    "Sofa_spot": {
+      "position_m": [
+        -1.2916,
+        -0.9144,
+        0.0
+      ],
+      "yaw_deg": 90,
+      "note": "Against the west wall for a sofa about 36 in deep. Yaw 90 so the front faces the east TV wall."
+    },
+    "TV_wall": {
+      "position_m": [
+        1.7288,
+        -0.9144,
+        0.0
+      ],
+      "yaw_deg": 270,
+      "note": "Floor anchor on the blank east wall. Yaw 270 so the screen faces -X into the room. Raise Z to wall-mount."
+    },
+    "Rug_center": {
+      "position_m": [
+        -0.1,
+        -0.9144,
+        0.0
+      ],
+      "yaw_deg": 0,
+      "note": "Center of an area rug between the sofa and the TV. Yaw 0 keeps an 8x10 rug's long side along the room."
+    },
+    "Coffee_spot": {
+      "position_m": [
+        0.2,
+        -0.9144,
+        0.0
+      ],
+      "yaw_deg": 0,
+      "note": "Coffee table between the sofa and the TV."
+    },
+    "Plant_corner": {
+      "position_m": [
+        -1.4088,
+        -3.2538,
+        0.0
+      ],
+      "yaw_deg": 0,
+      "note": "Southwest corner, beside the window wall."
+    },
+    "Lamp_corner": {
+      "position_m": [
+        1.4088,
+        -3.2338,
+        0.0
+      ],
+      "yaw_deg": 0,
+      "note": "Southeast corner, beside the window and clear of the TV."
+    },
+    "Bar_spot": {
+      "position_m": [
+        -0.9906,
+        1.425,
+        0.0
+      ],
+      "yaw_deg": 180,
+      "note": "Stool or small table in front of the granite pass-through. Yaw 180 faces the kitchen."
+    }
+  },
+  "triangle_count": 2420,
+  "objects": [
+    "Bar_spot",
+    "Baseboard",
+    "Ceiling",
+    "Ceiling_Soffit",
+    "Closet",
+    "Closet_Doors",
+    "Coffee_spot",
+    "Door_Entry",
+    "Floor",
+    "Halfwall",
+    "Kitchen_Cabinet",
+    "Kitchen_Counter",
+    "Kitchen_Fridge",
+    "Kitchen_Ledge",
+    "Kitchen_Microwave",
+    "Kitchen_Range",
+    "Lamp_corner",
+    "Light_Dome_Hall",
+    "Light_Dome_Living",
+    "Outlets",
+    "Plant_corner",
+    "Rug_center",
+    "Sofa_spot",
+    "TV_wall",
+    "Wall_E",
+    "Wall_N",
+    "Wall_Pier",
+    "Wall_S",
+    "Wall_W",
+    "Window_S"
+  ]
+}
