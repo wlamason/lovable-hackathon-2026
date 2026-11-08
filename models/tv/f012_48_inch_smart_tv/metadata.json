@@ -1,0 +1,35 @@
+{
+  "id": "F012",
+  "name": "48-Inch Smart TV",
+  "category": "TV",
+  "style": "Modern",
+  "room": "Living Room",
+  "price_usd": 399,
+  "dimensions_in": {
+    "width": 43.0,
+    "depth": 3.0,
+    "height": 26.0
+  },
+  "dimensions_m": {
+    "width": 1.0922,
+    "depth": 0.0762,
+    "height": 0.6604
+  },
+  "bounding_box_m": {
+    "width": 1.0922,
+    "depth": 0.0762,
+    "height": 0.6604,
+    "min": [
+      -0.5461,
+      -0.0381,
+      0.0
+    ],
+    "max": [
+      0.5461,
+      0.0381,
+      0.6604
+    ]
+  },
+  "triangle_count": 500,
+  "screen_material": "Screen"
+}
