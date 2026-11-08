@@ -1,0 +1,36 @@
+{
+  "id": "F005",
+  "name": "Soft Glow Table Lamp",
+  "category": "Lamp",
+  "style": "Minimal",
+  "room": "Living Room",
+  "price_usd": 69,
+  "dimensions_in": {
+    "width": 10.0,
+    "depth": 10.0,
+    "height": 20.0
+  },
+  "dimensions_m": {
+    "width": 0.254,
+    "depth": 0.254,
+    "height": 0.508
+  },
+  "bounding_box_m": {
+    "min": {
+      "x": -0.127,
+      "y": -0.127,
+      "z": 0.0
+    },
+    "max": {
+      "x": 0.127,
+      "y": 0.127,
+      "z": 0.508
+    },
+    "size": {
+      "width": 0.254,
+      "depth": 0.254,
+      "height": 0.508
+    }
+  },
+  "triangle_count": 6576
+}
