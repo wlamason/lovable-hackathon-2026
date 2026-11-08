@@ -1,0 +1,3 @@
+Generic living room shell, 4.88 m wide (X) by 6.10 m deep (Y) by 2.74 m high, about 16 by 20 ft with a 9 ft ceiling. The interior floor center is the origin and the floor top is Z=0, so a furniture model whose origin is the bottom center of its footprint sits on the floor. Walls are 0.12 m thick outside that footprint. Wall_E (long, +X) has a window; Wall_S (short, -Y) has a 36 by 80 in doorway. Ceiling is a separate object so a viewer can hide it. Empties TV_wall, Sofa_spot, Rug_center, and Coffee_spot mark floor anchors (yaw the sofa 180° so it faces the TV wall).
+
+Rebuild from this folder with `blender -b --factory-startup --python build.py -- --outdir .`

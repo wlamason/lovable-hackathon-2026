@@ -1,0 +1,119 @@
+{
+  "id": "living_room_generic",
+  "name": "Generic Living Room",
+  "units": "meters",
+  "up_axis": "Z",
+  "origin": "interior floor center (0, 0, 0); floor top is Z=0",
+  "interior_m": {
+    "width_x": 4.88,
+    "depth_y": 6.1,
+    "height_z": 2.74
+  },
+  "interior_ft": {
+    "width_x": 16.01,
+    "depth_y": 20.01,
+    "height_z": 8.99
+  },
+  "wall_thickness_m": 0.12,
+  "walls": {
+    "Wall_N": "+Y short wall",
+    "Wall_S": "-Y short wall, doorway",
+    "Wall_E": "+X long wall, window",
+    "Wall_W": "-X long wall"
+  },
+  "openings": {
+    "window": {
+      "object": "Window",
+      "wall": "Wall_E",
+      "width_m": 1.5,
+      "height_m": 1.2,
+      "sill_z_m": 0.9,
+      "center_m": [
+        2.5,
+        0.0,
+        1.5
+      ]
+    },
+    "door": {
+      "object": "Door",
+      "wall": "Wall_S",
+      "width_in": 36,
+      "height_in": 80,
+      "width_m": 0.9144,
+      "height_m": 2.032,
+      "center_m": [
+        1.4328,
+        -3.11,
+        1.016
+      ]
+    }
+  },
+  "bbox_m": {
+    "min": [
+      -2.56,
+      -3.17,
+      -0.04
+    ],
+    "max": [
+      2.56,
+      3.17,
+      2.78
+    ],
+    "size": [
+      5.12,
+      6.34,
+      2.82
+    ]
+  },
+  "empties": {
+    "TV_wall": {
+      "position_m": [
+        0.0,
+        2.9,
+        0.0
+      ],
+      "note": "Floor anchor centered on the north wall. A floor-origin TV or console sits here; raise Z to mount the screen."
+    },
+    "Sofa_spot": {
+      "position_m": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "rotation_z_deg": 180,
+      "note": "Floor anchor for a sofa. Yaw 180 degrees so its front (local -Y) faces TV_wall."
+    },
+    "Rug_center": {
+      "position_m": [
+        0.0,
+        -0.1,
+        0.0
+      ],
+      "note": "Center of the seating rug, between the sofa and the coffee table."
+    },
+    "Coffee_spot": {
+      "position_m": [
+        0.0,
+        0.2,
+        0.0
+      ],
+      "note": "Floor anchor for a coffee table between the sofa and the TV wall."
+    }
+  },
+  "triangle_count": 372,
+  "objects": [
+    "Floor",
+    "Wall_N",
+    "Wall_S",
+    "Wall_E",
+    "Wall_W",
+    "Ceiling",
+    "Window",
+    "Door",
+    "Baseboard",
+    "TV_wall",
+    "Sofa_spot",
+    "Rug_center",
+    "Coffee_spot"
+  ]
+}
