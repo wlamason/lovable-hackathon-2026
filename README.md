@@ -1,5 +1,7 @@
 # lovable-hackathon-2026
 
+The work from 8 Nov 2026, and how to repeat it, is in [PROJECT.md](PROJECT.md).
+
 Room designer. Catalog furniture and room levels share one coordinate system so a piece dropped into a room sits on the floor and faces the right way.
 
 ## Layout
