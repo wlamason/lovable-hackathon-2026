@@ -1,0 +1,1 @@
+Oakline Round Coffee Table (F007) is a Japandi living-room coffee table with a 36 in round pale-oak top, four gently splayed tapered legs, and a lower round shelf, 16 in tall overall. Rebuild it from this folder with Blender 4.2 LTS: `blender -b --factory-startup --python build.py -- --outdir .` The script writes `model.glb`, `model.blend`, `preview.png`, and `metadata.json`.

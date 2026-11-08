@@ -1,0 +1,33 @@
+{
+  "id": "F007",
+  "name": "Oakline Round Coffee Table",
+  "category": "Table",
+  "style": "Japandi",
+  "room": "Living Room",
+  "price_usd": 219,
+  "dimensions_in": {
+    "width": 36.0,
+    "depth": 36.0,
+    "height": 16.0
+  },
+  "dimensions_m": {
+    "width": 0.9144,
+    "depth": 0.9144,
+    "height": 0.4064
+  },
+  "bounding_box_m": {
+    "min": {
+      "x": -0.4572,
+      "y": -0.4572,
+      "z": 0.0
+    },
+    "max": {
+      "x": 0.4572,
+      "y": 0.4572,
+      "z": 0.4064
+    },
+    "width": 0.9144,
+    "depth": 0.9144,
+    "height": 0.4064
+  }
+}
