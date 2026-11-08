@@ -1,0 +1,1637 @@
+{
+  "version": 1,
+  "generated_at": "2026-11-08T18:07:52Z",
+  "units": {
+    "linear": "meters",
+    "display_dimensions": "inches",
+    "currency": "USD",
+    "inch_to_meter": 0.0254
+  },
+  "conventions": {
+    "axis": {
+      "width": "X",
+      "depth": "Y",
+      "height": "Z",
+      "up": "Z",
+      "front": "-Y"
+    },
+    "origin": "bottom center of the footprint, on the floor at Z=0",
+    "paths": "Repository-relative POSIX paths with no leading slash.",
+    "ids": "Item ids (F001) match the spreadsheet and catalog. category_id and style_id are lowercase slugs. room_id matches rooms[].id.",
+    "measured_bbox_m": "Copied from metadata.json bounding_box_m and rounded to 4 decimal places (0.1 mm). min/max are axis-aligned around the floor-center origin.",
+    "photos": "photo.url is the display image. photo.source_url is the upstream page. photo.credit is the source site when the spreadsheet has no photographer."
+  },
+  "sources": {
+    "spreadsheet": "db/source/objects.xlsx",
+    "sheet": "Furniture Catalog",
+    "catalog": "catalog/furniture.json",
+    "models": "models/<category>/<item_id>_<slug>/",
+    "rooms": "rooms/<room_id>/"
+  },
+  "categories": [
+    {
+      "id": "couch",
+      "name": "Couch",
+      "item_ids": [
+        "F001",
+        "F002",
+        "F003"
+      ]
+    },
+    {
+      "id": "lamp",
+      "name": "Lamp",
+      "item_ids": [
+        "F004",
+        "F005",
+        "F006"
+      ]
+    },
+    {
+      "id": "table",
+      "name": "Table",
+      "item_ids": [
+        "F007",
+        "F008",
+        "F009"
+      ]
+    },
+    {
+      "id": "carpet",
+      "name": "Carpet",
+      "item_ids": [
+        "F010",
+        "F011"
+      ]
+    },
+    {
+      "id": "tv",
+      "name": "TV",
+      "item_ids": [
+        "F012",
+        "F013"
+      ]
+    },
+    {
+      "id": "plant",
+      "name": "Plant",
+      "item_ids": [
+        "F014",
+        "F015",
+        "F016",
+        "F017"
+      ]
+    }
+  ],
+  "styles": [
+    {
+      "id": "modern",
+      "name": "Modern",
+      "item_ids": [
+        "F001",
+        "F003",
+        "F004",
+        "F010",
+        "F012",
+        "F013"
+      ]
+    },
+    {
+      "id": "coastal",
+      "name": "Coastal",
+      "item_ids": [
+        "F002"
+      ]
+    },
+    {
+      "id": "minimal",
+      "name": "Minimal",
+      "item_ids": [
+        "F005",
+        "F009",
+        "F015"
+      ]
+    },
+    {
+      "id": "scandinavian",
+      "name": "Scandinavian",
+      "item_ids": [
+        "F006",
+        "F011"
+      ]
+    },
+    {
+      "id": "japandi",
+      "name": "Japandi",
+      "item_ids": [
+        "F007",
+        "F017"
+      ]
+    },
+    {
+      "id": "industrial",
+      "name": "Industrial",
+      "item_ids": [
+        "F008"
+      ]
+    },
+    {
+      "id": "bohemian",
+      "name": "Bohemian",
+      "item_ids": [
+        "F014",
+        "F016"
+      ]
+    }
+  ],
+  "rooms": [
+    {
+      "id": "living_room_generic",
+      "name": "Generic Living Room",
+      "model": {
+        "glb": "rooms/living_room_generic/model.glb",
+        "blend": "rooms/living_room_generic/model.blend",
+        "preview": "rooms/living_room_generic/preview.png",
+        "metadata": "rooms/living_room_generic/metadata.json",
+        "folder": "rooms/living_room_generic",
+        "available": true
+      },
+      "interior_m": {
+        "width_x": 4.88,
+        "depth_y": 6.1,
+        "height_z": 2.74
+      },
+      "wall_thickness_m": 0.12,
+      "anchors": [
+        {
+          "id": "TV_wall",
+          "position_m": [
+            0.0,
+            2.9,
+            0.0
+          ],
+          "note": "Floor anchor centered on the north wall. A floor-origin TV or console sits here; raise Z to mount the screen."
+        },
+        {
+          "id": "Sofa_spot",
+          "position_m": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "rotation_z_deg": 180,
+          "note": "Floor anchor for a sofa. Yaw 180 degrees so its front (local -Y) faces TV_wall."
+        },
+        {
+          "id": "Rug_center",
+          "position_m": [
+            0.0,
+            -0.1,
+            0.0
+          ],
+          "note": "Center of the seating rug, between the sofa and the coffee table."
+        },
+        {
+          "id": "Coffee_spot",
+          "position_m": [
+            0.0,
+            0.2,
+            0.0
+          ],
+          "note": "Floor anchor for a coffee table between the sofa and the TV wall."
+        }
+      ],
+      "openings": {
+        "window": {
+          "object": "Window",
+          "wall": "Wall_E",
+          "width_m": 1.5,
+          "height_m": 1.2,
+          "sill_z_m": 0.9,
+          "center_m": [
+            2.5,
+            0.0,
+            1.5
+          ]
+        },
+        "door": {
+          "object": "Door",
+          "wall": "Wall_S",
+          "width_in": 36,
+          "height_in": 80,
+          "width_m": 0.9144,
+          "height_m": 2.032,
+          "center_m": [
+            1.4328,
+            -3.11,
+            1.016
+          ]
+        }
+      },
+      "bbox_m": {
+        "min": [
+          -2.56,
+          -3.17,
+          -0.04
+        ],
+        "max": [
+          2.56,
+          3.17,
+          2.78
+        ],
+        "size": {
+          "width": 5.12,
+          "depth": 6.34,
+          "height": 2.82
+        }
+      },
+      "origin": "interior floor center (0, 0, 0); floor top is Z=0",
+      "up_axis": "Z",
+      "source": {
+        "branch": "cursor/living-room-catalog-readme-6a79",
+        "pull_request": 5,
+        "pull_request_state": "MERGED",
+        "on_default_branch": true,
+        "only_open_pr": false
+      },
+      "catalog_room": "Living Room"
+    }
+  ],
+  "items": [
+    {
+      "id": "F001",
+      "name": "Cloudline 3-Seat Couch",
+      "category": "Couch",
+      "category_id": "couch",
+      "style": "Modern",
+      "style_id": "modern",
+      "room": "Living Room",
+      "room_id": "living_room_generic",
+      "price": {
+        "amount": 899,
+        "currency": "USD"
+      },
+      "dimensions": {
+        "inches": {
+          "width": 84,
+          "depth": 36,
+          "height": 33
+        },
+        "meters": {
+          "width": 2.1336,
+          "depth": 0.9144,
+          "height": 0.8382
+        }
+      },
+      "photo": {
+        "url": "https://images.unsplash.com/photo-1772143535046-99a2bb734a3d?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+        "source_url": "https://unsplash.com/photos/living-room-with-couch-coffee-table-and-chairs-w9etxmuavOk",
+        "credit": "Unsplash"
+      },
+      "model": {
+        "glb": "models/couch/f001_cloudline_3_seat_couch/model.glb",
+        "blend": "models/couch/f001_cloudline_3_seat_couch/model.blend",
+        "preview": "models/couch/f001_cloudline_3_seat_couch/preview.png",
+        "metadata": "models/couch/f001_cloudline_3_seat_couch/metadata.json",
+        "folder": "models/couch/f001_cloudline_3_seat_couch",
+        "available": true,
+        "triangle_count": 1984
+      },
+      "measured_bbox_m": {
+        "min": [
+          -1.0668,
+          -0.4572,
+          0.0
+        ],
+        "max": [
+          1.0668,
+          0.4572,
+          0.8382
+        ],
+        "size": {
+          "width": 2.1336,
+          "depth": 0.9144,
+          "height": 0.8382
+        }
+      },
+      "catalog_ref": {
+        "file": "catalog/furniture.json",
+        "id": "F001",
+        "path": "models/couch/f001_cloudline_3_seat_couch"
+      },
+      "tags": [
+        "couch",
+        "modern",
+        "living-room",
+        "seating"
+      ],
+      "source": {
+        "spreadsheet": "db/source/objects.xlsx",
+        "sheet": "Furniture Catalog",
+        "branch": "cursor/f001-cloudline-3-seat-couch-d103",
+        "pull_request": 7,
+        "pull_request_state": "MERGED",
+        "on_default_branch": true,
+        "only_open_pr": false
+      }
+    },
+    {
+      "id": "F002",
+      "name": "Harbor 2-Seat Loveseat",
+      "category": "Couch",
+      "category_id": "couch",
+      "style": "Coastal",
+      "style_id": "coastal",
+      "room": "Living Room",
+      "room_id": "living_room_generic",
+      "price": {
+        "amount": 649,
+        "currency": "USD"
+      },
+      "dimensions": {
+        "inches": {
+          "width": 60,
+          "depth": 35,
+          "height": 34
+        },
+        "meters": {
+          "width": 1.524,
+          "depth": 0.889,
+          "height": 0.8636
+        }
+      },
+      "photo": {
+        "url": "https://images.unsplash.com/photo-1772143535046-99a2bb734a3d?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+        "source_url": "https://unsplash.com/photos/living-room-with-couch-coffee-table-and-chairs-w9etxmuavOk",
+        "credit": "Unsplash"
+      },
+      "model": {
+        "glb": "models/couch/f002_harbor_2_seat_loveseat/model.glb",
+        "blend": "models/couch/f002_harbor_2_seat_loveseat/model.blend",
+        "preview": "models/couch/f002_harbor_2_seat_loveseat/preview.png",
+        "metadata": "models/couch/f002_harbor_2_seat_loveseat/metadata.json",
+        "folder": "models/couch/f002_harbor_2_seat_loveseat",
+        "available": true,
+        "triangle_count": 1028
+      },
+      "measured_bbox_m": {
+        "min": [
+          -0.762,
+          -0.4445,
+          0.0
+        ],
+        "max": [
+          0.762,
+          0.4445,
+          0.8636
+        ],
+        "size": {
+          "width": 1.524,
+          "depth": 0.889,
+          "height": 0.8636
+        }
+      },
+      "catalog_ref": {
+        "file": "catalog/furniture.json",
+        "id": "F002",
+        "path": "models/couch/f002_harbor_2_seat_loveseat"
+      },
+      "tags": [
+        "couch",
+        "coastal",
+        "living-room",
+        "seating"
+      ],
+      "source": {
+        "spreadsheet": "db/source/objects.xlsx",
+        "sheet": "Furniture Catalog",
+        "branch": "cursor/f002-harbor-loveseat-615a",
+        "pull_request": 9,
+        "pull_request_state": "MERGED",
+        "on_default_branch": true,
+        "only_open_pr": false
+      }
+    },
+    {
+      "id": "F003",
+      "name": "Corner Modular Sectional",
+      "category": "Couch",
+      "category_id": "couch",
+      "style": "Modern",
+      "style_id": "modern",
+      "room": "Living Room",
+      "room_id": "living_room_generic",
+      "price": {
+        "amount": 1299,
+        "currency": "USD"
+      },
+      "dimensions": {
+        "inches": {
+          "width": 104,
+          "depth": 72,
+          "height": 34
+        },
+        "meters": {
+          "width": 2.6416,
+          "depth": 1.8288,
+          "height": 0.8636
+        }
+      },
+      "photo": {
+        "url": "https://images.unsplash.com/photo-1721614460546-4cc80d78eda8?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+        "source_url": "https://unsplash.com/photos/a-living-room-with-a-couch-and-a-coffee-table-Xm05JhDvNVk",
+        "credit": "Unsplash"
+      },
+      "model": {
+        "glb": "models/couch/f003_corner_modular_sectional/model.glb",
+        "blend": "models/couch/f003_corner_modular_sectional/model.blend",
+        "preview": "models/couch/f003_corner_modular_sectional/preview.png",
+        "metadata": "models/couch/f003_corner_modular_sectional/metadata.json",
+        "folder": "models/couch/f003_corner_modular_sectional",
+        "available": true,
+        "triangle_count": 1196
+      },
+      "measured_bbox_m": {
+        "min": [
+          -1.3208,
+          -0.9144,
+          0.0
+        ],
+        "max": [
+          1.3208,
+          0.9144,
+          0.8636
+        ],
+        "size": {
+          "width": 2.6416,
+          "depth": 1.8288,
+          "height": 0.8636
+        }
+      },
+      "catalog_ref": {
+        "file": "catalog/furniture.json",
+        "id": "F003",
+        "path": "models/couch/f003_corner_modular_sectional"
+      },
+      "tags": [
+        "couch",
+        "modern",
+        "living-room",
+        "seating"
+      ],
+      "source": {
+        "spreadsheet": "db/source/objects.xlsx",
+        "sheet": "Furniture Catalog",
+        "branch": "cursor/f003-corner-modular-sectional-5e31",
+        "pull_request": 12,
+        "pull_request_state": "MERGED",
+        "on_default_branch": true,
+        "only_open_pr": false
+      }
+    },
+    {
+      "id": "F004",
+      "name": "Reading Arc Floor Lamp",
+      "category": "Lamp",
+      "category_id": "lamp",
+      "style": "Modern",
+      "style_id": "modern",
+      "room": "Living Room",
+      "room_id": "living_room_generic",
+      "price": {
+        "amount": 119,
+        "currency": "USD"
+      },
+      "dimensions": {
+        "inches": {
+          "width": 18,
+          "depth": 18,
+          "height": 66
+        },
+        "meters": {
+          "width": 0.4572,
+          "depth": 0.4572,
+          "height": 1.6764
+        }
+      },
+      "photo": {
+        "url": "https://images.unsplash.com/photo-1765608262875-2b97700ec852?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+        "source_url": "https://unsplash.com/photos/modern-black-floor-lamp-in-a-living-room-setting-pNoNEUGK0ls",
+        "credit": "Unsplash"
+      },
+      "model": {
+        "glb": "models/lamp/f004_reading_arc_floor_lamp/model.glb",
+        "blend": "models/lamp/f004_reading_arc_floor_lamp/model.blend",
+        "preview": "models/lamp/f004_reading_arc_floor_lamp/preview.png",
+        "metadata": "models/lamp/f004_reading_arc_floor_lamp/metadata.json",
+        "folder": "models/lamp/f004_reading_arc_floor_lamp",
+        "available": true,
+        "triangle_count": 3600
+      },
+      "measured_bbox_m": {
+        "min": [
+          -0.2286,
+          -0.2286,
+          0.0
+        ],
+        "max": [
+          0.2286,
+          0.2286,
+          1.6764
+        ],
+        "size": {
+          "width": 0.4572,
+          "depth": 0.4572,
+          "height": 1.6764
+        }
+      },
+      "catalog_ref": {
+        "file": "catalog/furniture.json",
+        "id": "F004",
+        "path": "models/lamp/f004_reading_arc_floor_lamp"
+      },
+      "tags": [
+        "lamp",
+        "modern",
+        "living-room",
+        "lighting"
+      ],
+      "source": {
+        "spreadsheet": "db/source/objects.xlsx",
+        "sheet": "Furniture Catalog",
+        "branch": "cursor/f004-reading-arc-floor-lamp-d396",
+        "pull_request": 11,
+        "pull_request_state": "MERGED",
+        "on_default_branch": true,
+        "only_open_pr": false
+      }
+    },
+    {
+      "id": "F005",
+      "name": "Soft Glow Table Lamp",
+      "category": "Lamp",
+      "category_id": "lamp",
+      "style": "Minimal",
+      "style_id": "minimal",
+      "room": "Living Room",
+      "room_id": "living_room_generic",
+      "price": {
+        "amount": 69,
+        "currency": "USD"
+      },
+      "dimensions": {
+        "inches": {
+          "width": 10,
+          "depth": 10,
+          "height": 20
+        },
+        "meters": {
+          "width": 0.254,
+          "depth": 0.254,
+          "height": 0.508
+        }
+      },
+      "photo": {
+        "url": "https://images.unsplash.com/photo-1773895313967-76d73dcba5dc?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+        "source_url": "https://unsplash.com/photos/modern-living-room-with-sofa-coffee-table-and-lamps-mPCehJEwuL4",
+        "credit": "Unsplash"
+      },
+      "model": {
+        "glb": "models/lamp/f005_soft_glow_table_lamp/model.glb",
+        "blend": "models/lamp/f005_soft_glow_table_lamp/model.blend",
+        "preview": "models/lamp/f005_soft_glow_table_lamp/preview.png",
+        "metadata": "models/lamp/f005_soft_glow_table_lamp/metadata.json",
+        "folder": "models/lamp/f005_soft_glow_table_lamp",
+        "available": true,
+        "triangle_count": 6576
+      },
+      "measured_bbox_m": {
+        "min": [
+          -0.127,
+          -0.127,
+          0.0
+        ],
+        "max": [
+          0.127,
+          0.127,
+          0.508
+        ],
+        "size": {
+          "width": 0.254,
+          "depth": 0.254,
+          "height": 0.508
+        }
+      },
+      "catalog_ref": {
+        "file": "catalog/furniture.json",
+        "id": "F005",
+        "path": "models/lamp/f005_soft_glow_table_lamp"
+      },
+      "tags": [
+        "lamp",
+        "minimal",
+        "living-room",
+        "lighting"
+      ],
+      "source": {
+        "spreadsheet": "db/source/objects.xlsx",
+        "sheet": "Furniture Catalog",
+        "branch": "cursor/f005-soft-glow-table-lamp-a35d",
+        "pull_request": 2,
+        "pull_request_state": "MERGED",
+        "on_default_branch": true,
+        "only_open_pr": false
+      }
+    },
+    {
+      "id": "F006",
+      "name": "Tripod Corner Lamp",
+      "category": "Lamp",
+      "category_id": "lamp",
+      "style": "Scandinavian",
+      "style_id": "scandinavian",
+      "room": "Living Room",
+      "room_id": "living_room_generic",
+      "price": {
+        "amount": 149,
+        "currency": "USD"
+      },
+      "dimensions": {
+        "inches": {
+          "width": 20,
+          "depth": 20,
+          "height": 60
+        },
+        "meters": {
+          "width": 0.508,
+          "depth": 0.508,
+          "height": 1.524
+        }
+      },
+      "photo": {
+        "url": "https://images.unsplash.com/photo-1765608262875-2b97700ec852?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+        "source_url": "https://unsplash.com/photos/modern-black-floor-lamp-in-a-living-room-setting-pNoNEUGK0ls",
+        "credit": "Unsplash"
+      },
+      "model": {
+        "glb": "models/lamp/f006_tripod_corner_lamp/model.glb",
+        "blend": "models/lamp/f006_tripod_corner_lamp/model.blend",
+        "preview": "models/lamp/f006_tripod_corner_lamp/preview.png",
+        "metadata": "models/lamp/f006_tripod_corner_lamp/metadata.json",
+        "folder": "models/lamp/f006_tripod_corner_lamp",
+        "available": true
+      },
+      "measured_bbox_m": {
+        "min": [
+          -0.254,
+          -0.254,
+          0.0
+        ],
+        "max": [
+          0.254,
+          0.254,
+          1.524
+        ],
+        "size": {
+          "width": 0.508,
+          "depth": 0.508,
+          "height": 1.524
+        }
+      },
+      "catalog_ref": {
+        "file": "catalog/furniture.json",
+        "id": "F006",
+        "path": "models/lamp/f006_tripod_corner_lamp"
+      },
+      "tags": [
+        "lamp",
+        "scandinavian",
+        "living-room",
+        "lighting"
+      ],
+      "source": {
+        "spreadsheet": "db/source/objects.xlsx",
+        "sheet": "Furniture Catalog",
+        "branch": "cursor/f006-tripod-corner-lamp-b6b3",
+        "pull_request": 10,
+        "pull_request_state": "MERGED",
+        "on_default_branch": true,
+        "only_open_pr": false
+      }
+    },
+    {
+      "id": "F007",
+      "name": "Oakline Round Coffee Table",
+      "category": "Table",
+      "category_id": "table",
+      "style": "Japandi",
+      "style_id": "japandi",
+      "room": "Living Room",
+      "room_id": "living_room_generic",
+      "price": {
+        "amount": 219,
+        "currency": "USD"
+      },
+      "dimensions": {
+        "inches": {
+          "width": 36,
+          "depth": 36,
+          "height": 16
+        },
+        "meters": {
+          "width": 0.9144,
+          "depth": 0.9144,
+          "height": 0.4064
+        }
+      },
+      "photo": {
+        "url": "https://images.unsplash.com/photo-1721614460546-4cc80d78eda8?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+        "source_url": "https://unsplash.com/photos/a-living-room-with-a-couch-and-a-coffee-table-Xm05JhDvNVk",
+        "credit": "Unsplash"
+      },
+      "model": {
+        "glb": "models/table/f007_oakline_round_coffee_table/model.glb",
+        "blend": "models/table/f007_oakline_round_coffee_table/model.blend",
+        "preview": "models/table/f007_oakline_round_coffee_table/preview.png",
+        "metadata": "models/table/f007_oakline_round_coffee_table/metadata.json",
+        "folder": "models/table/f007_oakline_round_coffee_table",
+        "available": true
+      },
+      "measured_bbox_m": {
+        "min": [
+          -0.4572,
+          -0.4572,
+          0.0
+        ],
+        "max": [
+          0.4572,
+          0.4572,
+          0.4064
+        ],
+        "size": {
+          "width": 0.9144,
+          "depth": 0.9144,
+          "height": 0.4064
+        }
+      },
+      "catalog_ref": {
+        "file": "catalog/furniture.json",
+        "id": "F007",
+        "path": "models/table/f007_oakline_round_coffee_table"
+      },
+      "tags": [
+        "table",
+        "japandi",
+        "living-room"
+      ],
+      "source": {
+        "spreadsheet": "db/source/objects.xlsx",
+        "sheet": "Furniture Catalog",
+        "branch": "cursor/f007-oakline-round-coffee-table-6f50",
+        "pull_request": 6,
+        "pull_request_state": "MERGED",
+        "on_default_branch": true,
+        "only_open_pr": false
+      }
+    },
+    {
+      "id": "F008",
+      "name": "Slate Nesting Tables",
+      "category": "Table",
+      "category_id": "table",
+      "style": "Industrial",
+      "style_id": "industrial",
+      "room": "Living Room",
+      "room_id": "living_room_generic",
+      "price": {
+        "amount": 189,
+        "currency": "USD"
+      },
+      "dimensions": {
+        "inches": {
+          "width": 32,
+          "depth": 32,
+          "height": 18
+        },
+        "meters": {
+          "width": 0.8128,
+          "depth": 0.8128,
+          "height": 0.4572
+        }
+      },
+      "photo": {
+        "url": "https://images.unsplash.com/photo-1773895313967-76d73dcba5dc?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+        "source_url": "https://unsplash.com/photos/modern-living-room-with-sofa-coffee-table-and-lamps-mPCehJEwuL4",
+        "credit": "Unsplash"
+      },
+      "model": {
+        "glb": "models/table/f008_slate_nesting_tables/model.glb",
+        "blend": "models/table/f008_slate_nesting_tables/model.blend",
+        "preview": "models/table/f008_slate_nesting_tables/preview.png",
+        "metadata": "models/table/f008_slate_nesting_tables/metadata.json",
+        "folder": "models/table/f008_slate_nesting_tables",
+        "available": true,
+        "triangle_count": 2232
+      },
+      "measured_bbox_m": {
+        "min": [
+          -0.4064,
+          -0.4064,
+          0.0
+        ],
+        "max": [
+          0.4064,
+          0.4064,
+          0.4572
+        ],
+        "size": {
+          "width": 0.8128,
+          "depth": 0.8128,
+          "height": 0.4572
+        }
+      },
+      "catalog_ref": {
+        "file": "catalog/furniture.json",
+        "id": "F008",
+        "path": "models/table/f008_slate_nesting_tables"
+      },
+      "tags": [
+        "table",
+        "industrial",
+        "living-room"
+      ],
+      "source": {
+        "spreadsheet": "db/source/objects.xlsx",
+        "sheet": "Furniture Catalog",
+        "branch": "cursor/f008-slate-nesting-tables-85b2",
+        "pull_request": 8,
+        "pull_request_state": "MERGED",
+        "on_default_branch": true,
+        "only_open_pr": false
+      }
+    },
+    {
+      "id": "F009",
+      "name": "Slim Side Table",
+      "category": "Table",
+      "category_id": "table",
+      "style": "Minimal",
+      "style_id": "minimal",
+      "room": "Living Room",
+      "room_id": "living_room_generic",
+      "price": {
+        "amount": 99,
+        "currency": "USD"
+      },
+      "dimensions": {
+        "inches": {
+          "width": 18,
+          "depth": 18,
+          "height": 22
+        },
+        "meters": {
+          "width": 0.4572,
+          "depth": 0.4572,
+          "height": 0.5588
+        }
+      },
+      "photo": {
+        "url": "https://images.unsplash.com/photo-1721614460546-4cc80d78eda8?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+        "source_url": "https://unsplash.com/photos/a-living-room-with-a-couch-and-a-coffee-table-Xm05JhDvNVk",
+        "credit": "Unsplash"
+      },
+      "model": {
+        "glb": "models/table/f009_slim_side_table/model.glb",
+        "blend": "models/table/f009_slim_side_table/model.blend",
+        "preview": "models/table/f009_slim_side_table/preview.png",
+        "metadata": "models/table/f009_slim_side_table/metadata.json",
+        "folder": "models/table/f009_slim_side_table",
+        "available": true
+      },
+      "measured_bbox_m": {
+        "min": [
+          -0.2286,
+          -0.2286,
+          0.0
+        ],
+        "max": [
+          0.2286,
+          0.2286,
+          0.5588
+        ],
+        "size": {
+          "width": 0.4572,
+          "depth": 0.4572,
+          "height": 0.5588
+        }
+      },
+      "catalog_ref": {
+        "file": "catalog/furniture.json",
+        "id": "F009",
+        "path": "models/table/f009_slim_side_table"
+      },
+      "tags": [
+        "table",
+        "minimal",
+        "living-room"
+      ],
+      "source": {
+        "spreadsheet": "db/source/objects.xlsx",
+        "sheet": "Furniture Catalog",
+        "branch": "cursor/f009-slim-side-table-6707",
+        "pull_request": 14,
+        "pull_request_state": "MERGED",
+        "on_default_branch": true,
+        "only_open_pr": false
+      }
+    },
+    {
+      "id": "F010",
+      "name": "Geometric Area Carpet 8x10",
+      "category": "Carpet",
+      "category_id": "carpet",
+      "style": "Modern",
+      "style_id": "modern",
+      "room": "Living Room",
+      "room_id": "living_room_generic",
+      "price": {
+        "amount": 249,
+        "currency": "USD"
+      },
+      "dimensions": {
+        "inches": {
+          "width": 96,
+          "depth": 120,
+          "height": 0.5
+        },
+        "meters": {
+          "width": 2.4384,
+          "depth": 3.048,
+          "height": 0.0127
+        }
+      },
+      "photo": {
+        "url": "https://images.unsplash.com/photo-1721614460546-4cc80d78eda8?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+        "source_url": "https://unsplash.com/photos/a-living-room-with-a-couch-and-a-coffee-table-Xm05JhDvNVk",
+        "credit": "Unsplash"
+      },
+      "model": {
+        "glb": "models/carpet/f010_geometric_area_carpet_8x10/model.glb",
+        "blend": "models/carpet/f010_geometric_area_carpet_8x10/model.blend",
+        "preview": "models/carpet/f010_geometric_area_carpet_8x10/preview.png",
+        "metadata": "models/carpet/f010_geometric_area_carpet_8x10/metadata.json",
+        "folder": "models/carpet/f010_geometric_area_carpet_8x10",
+        "available": true,
+        "triangle_count": 24334
+      },
+      "measured_bbox_m": {
+        "min": [
+          -1.2192,
+          -1.524,
+          0.0
+        ],
+        "max": [
+          1.2192,
+          1.524,
+          0.0127
+        ],
+        "size": {
+          "width": 2.4384,
+          "depth": 3.048,
+          "height": 0.0127
+        }
+      },
+      "catalog_ref": {
+        "file": "catalog/furniture.json",
+        "id": "F010",
+        "path": "models/carpet/f010_geometric_area_carpet_8x10"
+      },
+      "tags": [
+        "carpet",
+        "modern",
+        "living-room",
+        "rug"
+      ],
+      "source": {
+        "spreadsheet": "db/source/objects.xlsx",
+        "sheet": "Furniture Catalog",
+        "branch": "cursor/f010-geometric-area-carpet-b848",
+        "pull_request": 4,
+        "pull_request_state": "MERGED",
+        "on_default_branch": true,
+        "only_open_pr": false
+      }
+    },
+    {
+      "id": "F011",
+      "name": "Soft Neutral Carpet 5x7",
+      "category": "Carpet",
+      "category_id": "carpet",
+      "style": "Scandinavian",
+      "style_id": "scandinavian",
+      "room": "Living Room",
+      "room_id": "living_room_generic",
+      "price": {
+        "amount": 159,
+        "currency": "USD"
+      },
+      "dimensions": {
+        "inches": {
+          "width": 60,
+          "depth": 84,
+          "height": 0.5
+        },
+        "meters": {
+          "width": 1.524,
+          "depth": 2.1336,
+          "height": 0.0127
+        }
+      },
+      "photo": {
+        "url": "https://images.unsplash.com/photo-1772143535046-99a2bb734a3d?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+        "source_url": "https://unsplash.com/photos/living-room-with-couch-coffee-table-and-chairs-w9etxmuavOk",
+        "credit": "Unsplash"
+      },
+      "model": {
+        "glb": "models/carpet/f011_soft_neutral_carpet_5x7/model.glb",
+        "blend": "models/carpet/f011_soft_neutral_carpet_5x7/model.blend",
+        "preview": "models/carpet/f011_soft_neutral_carpet_5x7/preview.png",
+        "metadata": "models/carpet/f011_soft_neutral_carpet_5x7/metadata.json",
+        "folder": "models/carpet/f011_soft_neutral_carpet_5x7",
+        "available": true,
+        "triangle_count": 308
+      },
+      "measured_bbox_m": {
+        "min": [
+          -0.762,
+          -1.0668,
+          0.0
+        ],
+        "max": [
+          0.762,
+          1.0668,
+          0.0127
+        ],
+        "size": {
+          "width": 1.524,
+          "depth": 2.1336,
+          "height": 0.0127
+        }
+      },
+      "catalog_ref": {
+        "file": "catalog/furniture.json",
+        "id": "F011",
+        "path": "models/carpet/f011_soft_neutral_carpet_5x7"
+      },
+      "tags": [
+        "carpet",
+        "scandinavian",
+        "living-room",
+        "rug"
+      ],
+      "source": {
+        "spreadsheet": "db/source/objects.xlsx",
+        "sheet": "Furniture Catalog",
+        "branch": "cursor/f011-soft-neutral-carpet-2979",
+        "pull_request": 1,
+        "pull_request_state": "MERGED",
+        "on_default_branch": true,
+        "only_open_pr": false
+      }
+    },
+    {
+      "id": "F012",
+      "name": "48-Inch Smart TV",
+      "category": "TV",
+      "category_id": "tv",
+      "style": "Modern",
+      "style_id": "modern",
+      "room": "Living Room",
+      "room_id": "living_room_generic",
+      "price": {
+        "amount": 399,
+        "currency": "USD"
+      },
+      "dimensions": {
+        "inches": {
+          "width": 43,
+          "depth": 3,
+          "height": 26
+        },
+        "meters": {
+          "width": 1.0922,
+          "depth": 0.0762,
+          "height": 0.6604
+        }
+      },
+      "photo": {
+        "url": "https://images.unsplash.com/photo-1560169897-fc0cdbdfa4d5?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+        "source_url": "https://unsplash.com/photos/turned-on-flat-screen-television-EOQhsfFBhRk",
+        "credit": "Unsplash"
+      },
+      "model": {
+        "glb": "models/tv/f012_48_inch_smart_tv/model.glb",
+        "blend": "models/tv/f012_48_inch_smart_tv/model.blend",
+        "preview": "models/tv/f012_48_inch_smart_tv/preview.png",
+        "metadata": "models/tv/f012_48_inch_smart_tv/metadata.json",
+        "folder": "models/tv/f012_48_inch_smart_tv",
+        "available": true,
+        "triangle_count": 500
+      },
+      "measured_bbox_m": {
+        "min": [
+          -0.5461,
+          -0.0381,
+          0.0
+        ],
+        "max": [
+          0.5461,
+          0.0381,
+          0.6604
+        ],
+        "size": {
+          "width": 1.0922,
+          "depth": 0.0762,
+          "height": 0.6604
+        }
+      },
+      "catalog_ref": {
+        "file": "catalog/furniture.json",
+        "id": "F012",
+        "path": "models/tv/f012_48_inch_smart_tv"
+      },
+      "tags": [
+        "tv",
+        "modern",
+        "living-room",
+        "screen"
+      ],
+      "source": {
+        "spreadsheet": "db/source/objects.xlsx",
+        "sheet": "Furniture Catalog",
+        "branch": "cursor/f012-48-inch-smart-tv-460d",
+        "pull_request": 3,
+        "pull_request_state": "MERGED",
+        "on_default_branch": true,
+        "only_open_pr": false
+      }
+    },
+    {
+      "id": "F013",
+      "name": "65-Inch Smart TV",
+      "category": "TV",
+      "category_id": "tv",
+      "style": "Modern",
+      "style_id": "modern",
+      "room": "Living Room",
+      "room_id": "living_room_generic",
+      "price": {
+        "amount": 699,
+        "currency": "USD"
+      },
+      "dimensions": {
+        "inches": {
+          "width": 57,
+          "depth": 3,
+          "height": 34
+        },
+        "meters": {
+          "width": 1.4478,
+          "depth": 0.0762,
+          "height": 0.8636
+        }
+      },
+      "photo": {
+        "url": "https://images.unsplash.com/photo-1560169897-fc0cdbdfa4d5?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+        "source_url": "https://unsplash.com/photos/turned-on-flat-screen-television-EOQhsfFBhRk",
+        "credit": "Unsplash"
+      },
+      "model": {
+        "glb": "models/tv/f013_65_inch_smart_tv/model.glb",
+        "blend": "models/tv/f013_65_inch_smart_tv/model.blend",
+        "preview": "models/tv/f013_65_inch_smart_tv/preview.png",
+        "metadata": "models/tv/f013_65_inch_smart_tv/metadata.json",
+        "folder": "models/tv/f013_65_inch_smart_tv",
+        "available": true,
+        "triangle_count": 340
+      },
+      "measured_bbox_m": {
+        "min": [
+          -0.7239,
+          -0.0381,
+          0.0
+        ],
+        "max": [
+          0.7239,
+          0.0381,
+          0.8636
+        ],
+        "size": {
+          "width": 1.4478,
+          "depth": 0.0762,
+          "height": 0.8636
+        }
+      },
+      "catalog_ref": {
+        "file": "catalog/furniture.json",
+        "id": "F013",
+        "path": "models/tv/f013_65_inch_smart_tv"
+      },
+      "tags": [
+        "tv",
+        "modern",
+        "living-room",
+        "screen"
+      ],
+      "source": {
+        "spreadsheet": "db/source/objects.xlsx",
+        "sheet": "Furniture Catalog",
+        "branch": "cursor/f013-65-inch-smart-tv-909c",
+        "pull_request": 15,
+        "pull_request_state": "MERGED",
+        "on_default_branch": true,
+        "only_open_pr": false
+      }
+    },
+    {
+      "id": "F014",
+      "name": "Tall Fiddle Leaf Plant",
+      "category": "Plant",
+      "category_id": "plant",
+      "style": "Bohemian",
+      "style_id": "bohemian",
+      "room": "Living Room",
+      "room_id": "living_room_generic",
+      "price": {
+        "amount": 89,
+        "currency": "USD"
+      },
+      "dimensions": {
+        "inches": {
+          "width": 20,
+          "depth": 20,
+          "height": 60
+        },
+        "meters": {
+          "width": 0.508,
+          "depth": 0.508,
+          "height": 1.524
+        }
+      },
+      "photo": {
+        "url": "https://images.unsplash.com/photo-1626965556132-43d76de1004f?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+        "source_url": "https://unsplash.com/photos/green-potted-plant-on-brown-wooden-table-m40vzmdVMR8",
+        "credit": "Unsplash"
+      },
+      "model": {
+        "glb": "models/plant/f014_tall_fiddle_leaf_plant/model.glb",
+        "blend": "models/plant/f014_tall_fiddle_leaf_plant/model.blend",
+        "preview": "models/plant/f014_tall_fiddle_leaf_plant/preview.png",
+        "metadata": "models/plant/f014_tall_fiddle_leaf_plant/metadata.json",
+        "folder": "models/plant/f014_tall_fiddle_leaf_plant",
+        "available": true,
+        "triangle_count": 8144
+      },
+      "measured_bbox_m": {
+        "min": [
+          -0.254,
+          -0.254,
+          0.0
+        ],
+        "max": [
+          0.254,
+          0.254,
+          1.524
+        ],
+        "size": {
+          "width": 0.508,
+          "depth": 0.508,
+          "height": 1.524
+        }
+      },
+      "catalog_ref": {
+        "file": "catalog/furniture.json",
+        "id": "F014",
+        "path": "models/plant/f014_tall_fiddle_leaf_plant"
+      },
+      "tags": [
+        "plant",
+        "bohemian",
+        "living-room",
+        "greenery"
+      ],
+      "source": {
+        "spreadsheet": "db/source/objects.xlsx",
+        "sheet": "Furniture Catalog",
+        "branch": "cursor/f014-tall-fiddle-leaf-plant-ef38",
+        "pull_request": 13,
+        "pull_request_state": "MERGED",
+        "on_default_branch": true,
+        "only_open_pr": false
+      }
+    },
+    {
+      "id": "F015",
+      "name": "Snake Plant",
+      "category": "Plant",
+      "category_id": "plant",
+      "style": "Minimal",
+      "style_id": "minimal",
+      "room": "Living Room",
+      "room_id": "living_room_generic",
+      "price": {
+        "amount": 39,
+        "currency": "USD"
+      },
+      "dimensions": {
+        "inches": {
+          "width": 12,
+          "depth": 12,
+          "height": 32
+        },
+        "meters": {
+          "width": 0.3048,
+          "depth": 0.3048,
+          "height": 0.8128
+        }
+      },
+      "photo": {
+        "url": "https://images.unsplash.com/photo-1792507017949-0f2663a4c9d5?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+        "source_url": "https://unsplash.com/photos/indoor-plants-in-a-planter-2PJsf1V03kg",
+        "credit": "Unsplash"
+      },
+      "model": {
+        "glb": "models/plant/f015_snake_plant/model.glb",
+        "blend": "models/plant/f015_snake_plant/model.blend",
+        "preview": "models/plant/f015_snake_plant/preview.png",
+        "metadata": "models/plant/f015_snake_plant/metadata.json",
+        "folder": "models/plant/f015_snake_plant",
+        "available": true,
+        "triangle_count": 9656
+      },
+      "measured_bbox_m": {
+        "min": [
+          -0.1524,
+          -0.1524,
+          0.0
+        ],
+        "max": [
+          0.1524,
+          0.1524,
+          0.8128
+        ],
+        "size": {
+          "width": 0.3048,
+          "depth": 0.3048,
+          "height": 0.8128
+        }
+      },
+      "catalog_ref": {
+        "file": "catalog/furniture.json",
+        "id": "F015",
+        "path": "models/plant/f015_snake_plant"
+      },
+      "tags": [
+        "plant",
+        "minimal",
+        "living-room",
+        "greenery"
+      ],
+      "source": {
+        "spreadsheet": "db/source/objects.xlsx",
+        "sheet": "Furniture Catalog",
+        "branch": "cursor/f015-snake-plant-f52a",
+        "pull_request": 16,
+        "pull_request_state": "MERGED",
+        "on_default_branch": true,
+        "only_open_pr": false
+      }
+    },
+    {
+      "id": "F016",
+      "name": "Monstera Floor Plant",
+      "category": "Plant",
+      "category_id": "plant",
+      "style": "Bohemian",
+      "style_id": "bohemian",
+      "room": "Living Room",
+      "room_id": "living_room_generic",
+      "price": {
+        "amount": 79,
+        "currency": "USD"
+      },
+      "dimensions": {
+        "inches": {
+          "width": 24,
+          "depth": 24,
+          "height": 48
+        },
+        "meters": {
+          "width": 0.6096,
+          "depth": 0.6096,
+          "height": 1.2192
+        }
+      },
+      "photo": {
+        "url": "https://images.unsplash.com/photo-1792507017949-0f2663a4c9d5?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+        "source_url": "https://unsplash.com/photos/indoor-plants-in-a-planter-2PJsf1V03kg",
+        "credit": "Unsplash"
+      },
+      "model": {
+        "glb": "models/plant/f016_monstera_floor_plant/model.glb",
+        "blend": "models/plant/f016_monstera_floor_plant/model.blend",
+        "preview": "models/plant/f016_monstera_floor_plant/preview.png",
+        "metadata": "models/plant/f016_monstera_floor_plant/metadata.json",
+        "folder": "models/plant/f016_monstera_floor_plant",
+        "available": true,
+        "triangle_count": 14436
+      },
+      "measured_bbox_m": {
+        "min": [
+          -0.3048,
+          -0.3048,
+          0.0
+        ],
+        "max": [
+          0.3048,
+          0.3048,
+          1.2192
+        ],
+        "size": {
+          "width": 0.6096,
+          "depth": 0.6096,
+          "height": 1.2192
+        }
+      },
+      "catalog_ref": {
+        "file": "catalog/furniture.json",
+        "id": "F016",
+        "path": "models/plant/f016_monstera_floor_plant"
+      },
+      "tags": [
+        "plant",
+        "bohemian",
+        "living-room",
+        "greenery"
+      ],
+      "source": {
+        "spreadsheet": "db/source/objects.xlsx",
+        "sheet": "Furniture Catalog",
+        "branch": "cursor/f016-monstera-floor-plant-a2df",
+        "pull_request": 18,
+        "pull_request_state": "MERGED",
+        "on_default_branch": true,
+        "only_open_pr": false
+      }
+    },
+    {
+      "id": "F017",
+      "name": "Olive Tree in Pot",
+      "category": "Plant",
+      "category_id": "plant",
+      "style": "Japandi",
+      "style_id": "japandi",
+      "room": "Living Room",
+      "room_id": "living_room_generic",
+      "price": {
+        "amount": 129,
+        "currency": "USD"
+      },
+      "dimensions": {
+        "inches": {
+          "width": 22,
+          "depth": 22,
+          "height": 54
+        },
+        "meters": {
+          "width": 0.5588,
+          "depth": 0.5588,
+          "height": 1.3716
+        }
+      },
+      "photo": {
+        "url": "https://images.unsplash.com/photo-1626965556132-43d76de1004f?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+        "source_url": "https://unsplash.com/photos/green-potted-plant-on-brown-wooden-table-m40vzmdVMR8",
+        "credit": "Unsplash"
+      },
+      "model": {
+        "glb": "models/plant/f017_olive_tree_in_pot/model.glb",
+        "blend": "models/plant/f017_olive_tree_in_pot/model.blend",
+        "preview": "models/plant/f017_olive_tree_in_pot/preview.png",
+        "metadata": "models/plant/f017_olive_tree_in_pot/metadata.json",
+        "folder": "models/plant/f017_olive_tree_in_pot",
+        "available": true,
+        "triangle_count": 28740
+      },
+      "measured_bbox_m": {
+        "min": [
+          -0.2794,
+          -0.2794,
+          0.0
+        ],
+        "max": [
+          0.2794,
+          0.2794,
+          1.3716
+        ],
+        "size": {
+          "width": 0.5588,
+          "depth": 0.5588,
+          "height": 1.3716
+        }
+      },
+      "catalog_ref": {
+        "file": "catalog/furniture.json",
+        "id": "F017",
+        "path": "models/plant/f017_olive_tree_in_pot"
+      },
+      "tags": [
+        "plant",
+        "japandi",
+        "living-room",
+        "greenery"
+      ],
+      "source": {
+        "spreadsheet": "db/source/objects.xlsx",
+        "sheet": "Furniture Catalog",
+        "branch": "cursor/f017-olive-tree-in-pot-5b85",
+        "pull_request": 17,
+        "pull_request_state": "MERGED",
+        "on_default_branch": true,
+        "only_open_pr": false
+      }
+    }
+  ],
+  "data_gaps": [
+    {
+      "kind": "photo_credit",
+      "detail": "The spreadsheet stores a photo URL and an Unsplash source page, and does not name a photographer. photo.credit is the source site."
+    },
+    {
+      "kind": "shared_photo",
+      "url": "https://images.unsplash.com/photo-1772143535046-99a2bb734a3d?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+      "item_ids": [
+        "F001",
+        "F002",
+        "F011"
+      ],
+      "detail": "These items share one reference photo rather than a unique packshot."
+    },
+    {
+      "kind": "shared_photo",
+      "url": "https://images.unsplash.com/photo-1721614460546-4cc80d78eda8?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+      "item_ids": [
+        "F003",
+        "F007",
+        "F009",
+        "F010"
+      ],
+      "detail": "These items share one reference photo rather than a unique packshot."
+    },
+    {
+      "kind": "shared_photo",
+      "url": "https://images.unsplash.com/photo-1765608262875-2b97700ec852?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+      "item_ids": [
+        "F004",
+        "F006"
+      ],
+      "detail": "These items share one reference photo rather than a unique packshot."
+    },
+    {
+      "kind": "shared_photo",
+      "url": "https://images.unsplash.com/photo-1773895313967-76d73dcba5dc?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+      "item_ids": [
+        "F005",
+        "F008"
+      ],
+      "detail": "These items share one reference photo rather than a unique packshot."
+    },
+    {
+      "kind": "shared_photo",
+      "url": "https://images.unsplash.com/photo-1560169897-fc0cdbdfa4d5?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+      "item_ids": [
+        "F012",
+        "F013"
+      ],
+      "detail": "These items share one reference photo rather than a unique packshot."
+    },
+    {
+      "kind": "shared_photo",
+      "url": "https://images.unsplash.com/photo-1626965556132-43d76de1004f?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+      "item_ids": [
+        "F014",
+        "F017"
+      ],
+      "detail": "These items share one reference photo rather than a unique packshot."
+    },
+    {
+      "kind": "shared_photo",
+      "url": "https://images.unsplash.com/photo-1792507017949-0f2663a4c9d5?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+      "item_ids": [
+        "F015",
+        "F016"
+      ],
+      "detail": "These items share one reference photo rather than a unique packshot."
+    }
+  ]
+}
