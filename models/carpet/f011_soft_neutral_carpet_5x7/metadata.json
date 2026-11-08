@@ -1,0 +1,34 @@
+{
+  "id": "F011",
+  "name": "Soft Neutral Carpet 5x7",
+  "category": "Carpet",
+  "style": "Scandinavian",
+  "room": "Living Room",
+  "price_usd": 159,
+  "dimensions_in": {
+    "width": 60.0,
+    "depth": 84.0,
+    "height": 0.5
+  },
+  "dimensions_m": {
+    "width": 1.524,
+    "depth": 2.1336,
+    "height": 0.0127
+  },
+  "bounding_box_m": {
+    "width": 1.5240000486373901,
+    "depth": 2.1335999965667725,
+    "height": 0.01269999984651804,
+    "min": [
+      -0.7620000243186951,
+      -1.0667999982833862,
+      0.0
+    ],
+    "max": [
+      0.7620000243186951,
+      1.0667999982833862,
+      0.01269999984651804
+    ]
+  },
+  "triangle_count": 308
+}
