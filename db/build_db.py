@@ -2,9 +2,10 @@
 """Rebuild db/db.json from the spreadsheet, enrichment, catalog, and model files.
 
 Reads db/source/objects.xlsx, db/source/enrichment.json, catalog/furniture.json,
-each model's metadata.json and build.py, and every rooms/*/metadata.json on disk
-or on a fetched origin branch. Principled BSDF base colors become swatch hex values.
-Demo merchandising stays in enrichment.json so a rebuild does not drop it.
+each model's metadata.json and build.py, and every rooms/*/metadata.json plus
+that room's build.py and README. Principled BSDF base colors become swatch hex
+values. Demo merchandising stays in enrichment.json, and room tags plus starter
+layouts stay in rooms_enrichment.json, so a rebuild does not drop them.
 
     python3 db/build_db.py
 """
@@ -21,10 +22,13 @@ from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
+import room_build
+
 ROOT = Path(__file__).resolve().parents[1]
 DB_DIR = Path(__file__).resolve().parent
 XLSX_PATH = DB_DIR / "source" / "objects.xlsx"
 ENRICHMENT_PATH = DB_DIR / "source" / "enrichment.json"
+ROOMS_ENRICHMENT_PATH = DB_DIR / "source" / "rooms_enrichment.json"
 OUT_PATH = DB_DIR / "db.json"
 RAW_BASE = "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main"
 STYLE_ORDER = [
@@ -65,7 +69,11 @@ def git_refs() -> list[str]:
         "--format=%(refname:short)",
         "refs/remotes/origin",
     ).splitlines()
-    return [line for line in lines if line and not line.endswith("/HEAD")]
+    return [
+        line
+        for line in lines
+        if line.startswith("origin/") and not line.endswith("/HEAD")
+    ]
 
 
 def tree_paths(ref: str) -> set[str]:
@@ -722,52 +730,45 @@ def build() -> dict:
     gaps: list[dict] = []
     warnings: list[str] = []
 
+    room_enrichment = room_build.load_room_enrichment(ROOMS_ENRICHMENT_PATH)
+    room_extras = room_enrichment.get("rooms", {})
     room_records = []
     for rel in discover_metadata("rooms"):
         meta = json.loads(read_repo_text(rel))
         folder = str(Path(rel).parent.as_posix())
         located = locate_assets(folder, meta.get("id"), pulls)
-        anchors = []
-        for anchor_id, info in meta.get("empties", {}).items():
-            anchor = {"id": anchor_id, "position_m": vec3(info["position_m"])}
-            if "rotation_z_deg" in info:
-                anchor["rotation_z_deg"] = info["rotation_z_deg"]
-            if info.get("note"):
-                anchor["note"] = info["note"]
-            anchors.append(anchor)
-        room_records.append(
-            {
-                "id": meta.get("id") or Path(folder).name,
-                "name": meta.get("name") or Path(folder).name,
-                "model": {
-                    "glb": located["glb"],
-                    "blend": located["blend"],
-                    "preview": located["preview"],
-                    "metadata": located["metadata"],
-                    "folder": folder,
-                    "available": located["available"],
-                },
-                "interior_m": round_tree(meta.get("interior_m")),
-                "wall_thickness_m": r4(meta["wall_thickness_m"])
-                if "wall_thickness_m" in meta
-                else None,
-                "anchors": anchors,
-                "openings": round_tree(meta.get("openings")),
-                "bbox_m": normalize_bbox(meta.get("bbox_m")),
-                "origin": meta.get("origin"),
-                "up_axis": meta.get("up_axis"),
-                "source": source_block(located, spreadsheet=False),
-                "_located": located,
-            }
-        )
+        try:
+            build_text = read_repo_text(f"{folder}/build.py")
+        except FileNotFoundError:
+            build_text = ""
+        try:
+            readme = read_repo_text(f"{folder}/README.md")
+        except FileNotFoundError:
+            readme = ""
+        extra = room_extras.get(meta.get("id") or Path(folder).name, {})
+        record = room_build.shell_room(meta, folder, located, build_text, readme, extra)
+        record["source"] = source_block(located, spreadsheet=False)
+        record["openings"] = round_tree(meta.get("openings"))
+        room_records.append(record)
+    room_records.sort(key=lambda room: (room.get("sort_order") or 0, room["id"]))
 
     def room_for(label: str) -> dict | None:
+        exact = [
+            room
+            for room in room_records
+            if (room.get("catalog_room") or "").lower() == label.lower()
+        ]
+        if len(exact) == 1:
+            return exact[0]
         matches = [
             room
             for room in room_records
             if label.lower() in room["name"].lower()
             or label.lower().replace(" ", "_") in room["id"]
         ]
+        generic = [room for room in matches if room["id"] == "living_room_generic"]
+        if generic and label.lower() == "living room":
+            return generic[0]
         return matches[0] if matches else None
 
     items = []
@@ -1054,8 +1055,8 @@ def build() -> dict:
         return sorted(groups.values(), key=sort_key)
 
     for room in room_records:
-        located = room.pop("_located")
-        if not located["available"]:
+        located = room.pop("_located", None)
+        if located and not located["available"]:
             data_gaps.append(
                 {
                     "id": room["id"],
@@ -1063,16 +1064,21 @@ def build() -> dict:
                     "detail": "Room folder is missing files: " + ", ".join(located["missing"]),
                 }
             )
-        room["catalog_room"] = next(
-            (item["room"] for item in items if item["room_id"] == room["id"]),
-            None,
-        )
-        room["label"] = room["name"]
+        room_build.attach_anchors_and_fit(room, items)
+        mapped = next((item["room"] for item in items if item["room_id"] == room["id"]), None)
+        if mapped:
+            room["catalog_room"] = mapped
+        room["label"] = room["display_name"]
         room["item_count"] = sum(1 for item in items if item["room_id"] == room["id"])
-        room["images"] = {
-            "thumbnail": image_ref(room["model"]["preview"]),
-            "card": image_ref(room["model"]["preview"]),
-        }
+        for missing_file in room["files"].values():
+            if not missing_file["exists"]:
+                data_gaps.append(
+                    {
+                        "id": room["id"],
+                        "kind": "missing_room_file",
+                        "detail": f"{missing_file['path']} is not in the repo.",
+                    }
+                )
 
     for item_id in item_overrides:
         if item_id not in {item["id"] for item in items}:
@@ -1122,14 +1128,26 @@ def build() -> dict:
         for warning in warnings:
             data_gaps.append({"kind": "consistency", "detail": warning})
 
+    style_records = grouped("style", "style_id", STYLE_ORDER)
+    rooms_for_style: dict[str, list[str]] = defaultdict(list)
+    for room in room_records:
+        for style in room["tags"]["styles"]:
+            rooms_for_style[style["id"]].append(room["id"])
+    for style in style_records:
+        style["room_ids"] = rooms_for_style.get(style["id"], [])
+        style["room_count"] = len(style["room_ids"])
+    facets = room_build.room_facets(room_records)
+
     database = {
-        "version": 2,
+        "version": 3,
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "demo_data": True,
         "demo_note": (
             "Brands, SKUs, short descriptions, stock, ship times, and sponsored ranks "
             "are fictional demo merchandising from db/source/enrichment.json. "
-            "Colors, materials, preview images, prices, and dimensions come from the models and the spreadsheet."
+            "Room style tags, light, vibe, and starter layouts are inferred or demo data "
+            "from db/source/rooms_enrichment.json. "
+            "Colors, materials, preview images, prices, dimensions, and room geometry come from the repo files."
         ),
         "units": {
             "linear": "meters",
@@ -1165,14 +1183,19 @@ def build() -> dict:
             "spreadsheet": "db/source/objects.xlsx",
             "sheet": "Furniture Catalog",
             "enrichment": "db/source/enrichment.json",
+            "rooms_enrichment": "db/source/rooms_enrichment.json",
             "catalog": "catalog/furniture.json",
             "models": "models/<category>/<item_id>_<slug>/",
             "rooms": "rooms/<room_id>/",
         },
         "categories": grouped("category", "category_id", CATEGORY_ORDER),
-        "styles": grouped("style", "style_id", STYLE_ORDER),
+        "styles": style_records,
         "colors": colors,
         "brands": brand_records,
+        "room_types": facets["room_types"],
+        "size_classes": facets["size_classes"],
+        "room_features": facets["room_features"],
+        "room_styles": facets["room_styles"],
         "rooms": room_records,
         "items": items,
         "data_gaps": data_gaps,
@@ -1292,6 +1315,106 @@ def validate(database: dict) -> list[str]:
                     problems.append(f"{room['id']} {rel} missing on origin/main")
             if not room["anchors"]:
                 problems.append(f"{room['id']} has no anchors")
+    problems.extend(validate_rooms(database))
+    problems.extend(validate_repo_paths(database))
+    return problems
+
+
+def validate_rooms(database: dict) -> list[str]:
+    problems = []
+    if database.get("version") != 3:
+        problems.append(f"schema version is {database.get('version')}")
+    rooms = database.get("rooms") or []
+    if len(rooms) < 6:
+        problems.append(f"expected at least 6 rooms, found {len(rooms)}")
+    ids = [room["id"] for room in rooms]
+    if ids != sorted(ids, key=lambda room_id: next(room["sort_order"] for room in rooms if room["id"] == room_id)):
+        problems.append("rooms are not in sort_order")
+    item_rooms = {item["id"]: item["room_id"] for item in database["items"]}
+    if item_rooms.get("F001") != "living_room_generic":
+        problems.append(f"F001 room_id is {item_rooms.get('F001')}")
+    required = [
+        "slug",
+        "display_name",
+        "short_description",
+        "long_description",
+        "dimensions",
+        "floor_area",
+        "conventions",
+        "files",
+        "features",
+        "walls",
+        "materials",
+        "palette",
+        "tags",
+        "fit",
+        "anchors",
+    ]
+    for room in rooms:
+        missing = [key for key in required if key not in room]
+        if missing:
+            problems.append(f"{room['id']} missing {missing}")
+        if room["conventions"].get("furniture_front") != "-Y":
+            problems.append(f"{room['id']} furniture front is not -Y")
+        for anchor in room["anchors"]:
+            if "yaw_deg" not in anchor or "yaw_rad" not in anchor:
+                problems.append(f"{room['id']} {anchor.get('id')} missing yaw")
+            if "compatible_item_ids" not in anchor:
+                problems.append(f"{room['id']} {anchor.get('id')} missing compatible items")
+        starter = room.get("fit", {}).get("starter_layout", {})
+        if starter.get("demo") is not True:
+            problems.append(f"{room['id']} starter layout is not flagged demo")
+        for placement in starter.get("placements") or []:
+            if placement["item_id"] not in item_rooms:
+                problems.append(f"{room['id']} starter item {placement['item_id']} is missing")
+            if placement["anchor_id"] not in {anchor["id"] for anchor in room["anchors"]}:
+                problems.append(f"{room['id']} starter anchor {placement['anchor_id']} is missing")
+        if not room["palette"].get("floor") or not room["palette"].get("wall"):
+            problems.append(f"{room['id']} palette is missing floor or wall")
+        for slot in ("thumbnail", "card", "hero"):
+            image = room["images"][slot]
+            if image["path"] != room["model"]["preview"]:
+                problems.append(f"{room['id']} images.{slot} is not the preview")
+    for facet_name in ("room_types", "size_classes", "room_features", "room_styles"):
+        for facet in database.get(facet_name) or []:
+            if facet.get("item_count") != len(facet.get("room_ids") or []):
+                problems.append(f"{facet_name} {facet.get('id')} count mismatch")
+            if "label" not in facet:
+                problems.append(f"{facet_name} {facet.get('id')} missing label")
+    return problems
+
+
+def validate_repo_paths(database: dict) -> list[str]:
+    problems = []
+    raw_prefix = f"{RAW_BASE}/"
+    blob_prefix = "https://github.com/wlamason/lovable-hackathon-2026/blob/main/"
+
+    def check(rel: str, label: str) -> None:
+        if not rel or rel.startswith(("http://", "https://")):
+            return
+        path = ROOT / rel
+        if path.is_file() or path.is_dir():
+            return
+        problems.append(f"{label} missing repo path {rel}")
+
+    def walk(value, label: str) -> None:
+        if isinstance(value, dict):
+            if isinstance(value.get("path"), str):
+                check(value["path"], label)
+            for key in ("glb", "blend", "preview", "metadata", "build_py", "readme", "folder"):
+                if isinstance(value.get(key), str) and not value[key].startswith("http"):
+                    check(value[key], f"{label}.{key}")
+            for key, item in value.items():
+                if isinstance(item, str) and (item.startswith(raw_prefix) or item.startswith(blob_prefix)):
+                    prefix = raw_prefix if item.startswith(raw_prefix) else blob_prefix
+                    check(item[len(prefix):].split("?")[0], f"{label}.{key}")
+                else:
+                    walk(item, f"{label}.{key}")
+        elif isinstance(value, list):
+            for index, item in enumerate(value):
+                walk(item, f"{label}[{index}]")
+
+    walk(database, "db")
     return problems
 
 
