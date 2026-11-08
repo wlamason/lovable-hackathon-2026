@@ -499,6 +499,9 @@ def main():
     export_glb(tv, os.path.join(outdir, "model.glb"))
     blend_path = os.path.join(outdir, "model.blend")
     bpy.ops.wm.save_as_mainfile(filepath=blend_path)
+    backup = blend_path + "1"
+    if os.path.exists(backup):
+        os.remove(backup)
     write_metadata(os.path.join(outdir, "metadata.json"), bbox)
     print(f"Wrote {outdir}")
 
