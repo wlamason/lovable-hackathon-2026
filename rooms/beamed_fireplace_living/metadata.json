@@ -1,0 +1,328 @@
+{
+  "id": "beamed_fireplace_living",
+  "name": "Beamed Living Room with Fireplace",
+  "description": "Suburban family living room with a medium cherry floor, cream walls, wood baseboards, and a white ceiling crossed by four exposed dark wood beams. A white entry door and a three-section picture window share the north wall, glass French doors open on the west wall, and a light-gray tile fireplace angles across the northeast corner on a raised hearth.",
+  "units": "meters",
+  "up_axis": "Z",
+  "origin": "interior floor center (0, 0, 0); floor top is Z=0",
+  "anchor_convention": "Position is the floor center of a furniture footprint. Yaw is degrees about Z applied to a model whose front faces local -Y.",
+  "interior_m": {
+    "width_x": 5.4864,
+    "depth_y": 6.4008,
+    "height_z": 2.5908
+  },
+  "interior_ft": {
+    "width_x": 18.0,
+    "depth_y": 21.0,
+    "height_z": 8.5
+  },
+  "ceiling_height_m": 2.5908,
+  "ceiling_height_ft": 8.5,
+  "wall_thickness_m": 0.12,
+  "walls": {
+    "Wall_N": "+Y far wall, entry door and picture window",
+    "Wall_S": "-Y near wall",
+    "Wall_E": "+X wall, solid, beside the fireplace",
+    "Wall_W": "-X wall, French doors"
+  },
+  "openings": [
+    {
+      "name": "entry_door",
+      "kind": "door",
+      "object": "Door_Entry",
+      "wall": "Wall_N",
+      "width_m": 0.9144,
+      "height_m": 2.032,
+      "width_in": 36,
+      "height_in": 80,
+      "position_m": [
+        -1.806,
+        3.2604,
+        1.016
+      ],
+      "size_m": [
+        0.9144,
+        0.12,
+        2.032
+      ]
+    },
+    {
+      "name": "french_doors",
+      "kind": "door",
+      "object": "Door_French_S",
+      "wall": "Wall_W",
+      "width_m": 1.6256,
+      "height_m": 2.032,
+      "width_in": 64,
+      "height_in": 80,
+      "leaves": 2,
+      "open_degrees": 80.0,
+      "position_m": [
+        -2.8032,
+        -1.0376,
+        1.016
+      ],
+      "size_m": [
+        0.12,
+        1.6256,
+        2.032
+      ]
+    },
+    {
+      "name": "picture_window",
+      "kind": "window",
+      "object": "Window",
+      "wall": "Wall_N",
+      "sections": 3,
+      "width_m": 2.05,
+      "height_m": 1.44,
+      "sill_z_m": 0.78,
+      "head_z_m": 2.22,
+      "position_m": [
+        0.0962,
+        3.2604,
+        1.5
+      ],
+      "size_m": [
+        2.05,
+        0.12,
+        1.44
+      ]
+    }
+  ],
+  "fireplace": {
+    "object": "Fireplace",
+    "hearth_object": "Fireplace_Hearth",
+    "corner": "northeast",
+    "face": "45 degrees across the corner",
+    "surround_top_z_m": 2.18,
+    "hearth_height_m": 0.102,
+    "hearth_polygon_m": [
+      [
+        0.8487,
+        2.7479
+      ],
+      [
+        2.2907,
+        1.3059
+      ],
+      [
+        2.7432,
+        1.7584
+      ],
+      [
+        2.7432,
+        3.2004
+      ],
+      [
+        1.3012,
+        3.2004
+      ]
+    ]
+  },
+  "beams": [
+    {
+      "object": "Beam_1",
+      "axis": "X",
+      "center_y_m": 2.2804,
+      "width_m": 0.18,
+      "drop_m": 0.22
+    },
+    {
+      "object": "Beam_2",
+      "axis": "X",
+      "center_y_m": 0.9368,
+      "width_m": 0.18,
+      "drop_m": 0.22
+    },
+    {
+      "object": "Beam_3",
+      "axis": "X",
+      "center_y_m": -0.4068,
+      "width_m": 0.18,
+      "drop_m": 0.22
+    },
+    {
+      "object": "Beam_4",
+      "axis": "X",
+      "center_y_m": -1.7504,
+      "width_m": 0.18,
+      "drop_m": 0.22
+    }
+  ],
+  "free_floor": {
+    "units": "meters",
+    "note": "Furniture may sit inside this polygon. The raised hearth, including the floor under the corner fireplace, is not free floor.",
+    "polygon_m": [
+      [
+        -2.7432,
+        -3.2004
+      ],
+      [
+        2.7432,
+        -3.2004
+      ],
+      [
+        2.7432,
+        1.7584
+      ],
+      [
+        2.2907,
+        1.3059
+      ],
+      [
+        0.8487,
+        2.7479
+      ],
+      [
+        1.3012,
+        3.2004
+      ],
+      [
+        -2.7432,
+        3.2004
+      ]
+    ],
+    "excluded": [
+      {
+        "name": "hearth",
+        "reason": "Raised tile hearth and the floor under the corner fireplace. Not free floor.",
+        "polygon_m": [
+          [
+            0.8487,
+            2.7479
+          ],
+          [
+            2.2907,
+            1.3059
+          ],
+          [
+            2.7432,
+            1.7584
+          ],
+          [
+            2.7432,
+            3.2004
+          ],
+          [
+            1.3012,
+            3.2004
+          ]
+        ],
+        "height_m": 0.102
+      }
+    ]
+  },
+  "bbox_m": {
+    "min": [
+      -2.8632,
+      -3.3204,
+      -0.04
+    ],
+    "max": [
+      2.8632,
+      3.3204,
+      2.6308
+    ],
+    "size": [
+      5.7264,
+      6.6408,
+      2.6708
+    ]
+  },
+  "empties": {
+    "TV_wall": {
+      "position_m": [
+        2.5932,
+        0.32,
+        0.0
+      ],
+      "rotation_z_deg": -90.0,
+      "note": "East wall, south of the hearth. Yaw -90 so the screen (local -Y) faces the sofa. The fireplace is to the TV's north."
+    },
+    "Sofa_spot": {
+      "position_m": [
+        -0.4,
+        0.32,
+        0.0
+      ],
+      "rotation_z_deg": 90.0,
+      "note": "Faces the east-wall TV (yaw 90, front toward +X). The corner fireplace is ahead and to the right."
+    },
+    "Rug_center": {
+      "position_m": [
+        0.22,
+        0.32,
+        0.0
+      ],
+      "rotation_z_deg": 0.0,
+      "note": "Seating rug. Yaw 0 keeps a 10 ft local-Y carpet running with the sofa."
+    },
+    "Coffee_spot": {
+      "position_m": [
+        0.9,
+        0.32,
+        0.0
+      ],
+      "rotation_z_deg": 0.0,
+      "note": "Coffee table between the sofa and the TV, clear of the hearth."
+    },
+    "Plant_corner": {
+      "position_m": [
+        -2.46,
+        2.48,
+        0.0
+      ],
+      "rotation_z_deg": 45.0,
+      "note": "Northwest corner, beside the entry door. Yaw 45 faces the plant into the room."
+    },
+    "Lamp_corner": {
+      "position_m": [
+        -2.32,
+        -2.85,
+        0.0
+      ],
+      "rotation_z_deg": 135.0,
+      "note": "Southwest corner. Yaw 135 faces a floor lamp toward the seating and the fireplace."
+    },
+    "Side_table": {
+      "position_m": [
+        -0.4,
+        1.7,
+        0.0
+      ],
+      "rotation_z_deg": 0.0,
+      "note": "North end of the sofa, on the way toward the fireplace."
+    }
+  },
+  "triangle_count": 1472,
+  "objects": [
+    "Floor",
+    "Wall_N",
+    "Wall_S",
+    "Wall_W",
+    "Wall_E",
+    "Ceiling",
+    "Beam_1",
+    "Beam_2",
+    "Beam_3",
+    "Beam_4",
+    "Baseboard",
+    "Door_Entry",
+    "Door_French_Frame",
+    "Door_French_S",
+    "Door_French_N",
+    "Window",
+    "Fireplace",
+    "Fireplace_Hearth",
+    "Fireplace_Firebox",
+    "Entry_Rug",
+    "TV_wall",
+    "Sofa_spot",
+    "Rug_center",
+    "Coffee_spot",
+    "Plant_corner",
+    "Lamp_corner",
+    "Side_table"
+  ]
+}
