@@ -1,0 +1,35 @@
+{
+  "id": "F015",
+  "name": "Snake Plant",
+  "category": "Plant",
+  "style": "Minimal",
+  "room": "Living Room",
+  "price_usd": 39,
+  "dimensions_in": {
+    "width": 12.0,
+    "depth": 12.0,
+    "height": 32.0
+  },
+  "dimensions_m": {
+    "width": 0.3048,
+    "depth": 0.3048,
+    "height": 0.8128
+  },
+  "bounding_box_m": {
+    "min": {
+      "x": -0.1524,
+      "y": -0.1524,
+      "z": 0.0
+    },
+    "max": {
+      "x": 0.1524,
+      "y": 0.1524,
+      "z": 0.8128
+    },
+    "width": 0.3048,
+    "depth": 0.3048,
+    "height": 0.8128
+  },
+  "triangle_count": 9656,
+  "seed": 15015
+}
