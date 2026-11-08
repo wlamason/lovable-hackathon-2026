@@ -1,0 +1,33 @@
+{
+  "id": "F009",
+  "name": "Slim Side Table",
+  "category": "Table",
+  "style": "Minimal",
+  "room": "Living Room",
+  "price_usd": 99,
+  "dimensions_in": {
+    "width": 18,
+    "depth": 18,
+    "height": 22
+  },
+  "dimensions_m": {
+    "width": 0.4572,
+    "depth": 0.4572,
+    "height": 0.5588
+  },
+  "bounding_box_m": {
+    "min": {
+      "x": -0.2286,
+      "y": -0.2286,
+      "z": 0.0
+    },
+    "max": {
+      "x": 0.2286,
+      "y": 0.2286,
+      "z": 0.5588
+    },
+    "width": 0.4572,
+    "depth": 0.4572,
+    "height": 0.5588
+  }
+}
