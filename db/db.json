@@ -1,6 +1,8 @@
 {
-  "version": 1,
-  "generated_at": "2026-11-08T18:07:52Z",
+  "version": 2,
+  "generated_at": "2026-11-08T18:34:52Z",
+  "demo_data": true,
+  "demo_note": "Brands, SKUs, short descriptions, stock, ship times, and sponsored ranks are fictional demo merchandising from db/source/enrichment.json. Colors, materials, preview images, prices, and dimensions come from the models and the spreadsheet.",
   "units": {
     "linear": "meters",
     "display_dimensions": "inches",
@@ -19,11 +21,13 @@
     "paths": "Repository-relative POSIX paths with no leading slash.",
     "ids": "Item ids (F001) match the spreadsheet and catalog. category_id and style_id are lowercase slugs. room_id matches rooms[].id.",
     "measured_bbox_m": "Copied from metadata.json bounding_box_m and rounded to 4 decimal places (0.1 mm). min/max are axis-aligned around the floor-center origin.",
-    "photos": "photo.url is the display image. photo.source_url is the upstream page. photo.credit is the source site when the spreadsheet has no photographer."
+    "photos": "images.thumbnail and images.card are the model preview.png. images.lifestyle is the Unsplash photo. shared_with lists other item ids that use that same photo. photo is the same lifestyle image, kept for older readers.",
+    "colors": "color.hex and materials[].hex are display sRGB. When build.py passes a color through srgb_to_linear or linear_rgb, the authored number is already sRGB. When it writes the Principled Base Color socket directly, the socket value is linear and the hex is the sRGB transfer of that value."
   },
   "sources": {
     "spreadsheet": "db/source/objects.xlsx",
     "sheet": "Furniture Catalog",
+    "enrichment": "db/source/enrichment.json",
     "catalog": "catalog/furniture.json",
     "models": "models/<category>/<item_id>_<slug>/",
     "rooms": "rooms/<room_id>/"
@@ -31,61 +35,74 @@
   "categories": [
     {
       "id": "couch",
+      "label": "Couch",
       "name": "Couch",
       "item_ids": [
         "F001",
         "F002",
         "F003"
-      ]
+      ],
+      "item_count": 3
     },
     {
       "id": "lamp",
+      "label": "Lamp",
       "name": "Lamp",
       "item_ids": [
         "F004",
         "F005",
         "F006"
-      ]
+      ],
+      "item_count": 3
     },
     {
       "id": "table",
+      "label": "Table",
       "name": "Table",
       "item_ids": [
         "F007",
         "F008",
         "F009"
-      ]
+      ],
+      "item_count": 3
     },
     {
       "id": "carpet",
+      "label": "Carpet",
       "name": "Carpet",
       "item_ids": [
         "F010",
         "F011"
-      ]
+      ],
+      "item_count": 2
     },
     {
       "id": "tv",
+      "label": "TV",
       "name": "TV",
       "item_ids": [
         "F012",
         "F013"
-      ]
+      ],
+      "item_count": 2
     },
     {
       "id": "plant",
+      "label": "Plant",
       "name": "Plant",
       "item_ids": [
         "F014",
         "F015",
         "F016",
         "F017"
-      ]
+      ],
+      "item_count": 4
     }
   ],
   "styles": [
     {
       "id": "modern",
+      "label": "Modern",
       "name": "Modern",
       "item_ids": [
         "F001",
@@ -94,53 +111,320 @@
         "F010",
         "F012",
         "F013"
-      ]
+      ],
+      "item_count": 6
     },
     {
       "id": "coastal",
+      "label": "Coastal",
       "name": "Coastal",
       "item_ids": [
         "F002"
-      ]
+      ],
+      "item_count": 1
     },
     {
       "id": "minimal",
+      "label": "Minimal",
       "name": "Minimal",
       "item_ids": [
         "F005",
         "F009",
         "F015"
-      ]
+      ],
+      "item_count": 3
     },
     {
       "id": "scandinavian",
+      "label": "Scandinavian",
       "name": "Scandinavian",
       "item_ids": [
         "F006",
         "F011"
-      ]
+      ],
+      "item_count": 2
     },
     {
       "id": "japandi",
+      "label": "Japandi",
       "name": "Japandi",
       "item_ids": [
         "F007",
         "F017"
-      ]
+      ],
+      "item_count": 2
     },
     {
       "id": "industrial",
+      "label": "Industrial",
       "name": "Industrial",
       "item_ids": [
         "F008"
-      ]
+      ],
+      "item_count": 1
     },
     {
       "id": "bohemian",
+      "label": "Bohemian",
       "name": "Bohemian",
       "item_ids": [
         "F014",
         "F016"
+      ],
+      "item_count": 2
+    }
+  ],
+  "colors": [
+    {
+      "id": "oatmeal",
+      "label": "Oatmeal",
+      "name": "Oatmeal",
+      "hex": "#BFB5A8",
+      "item_ids": [
+        "F001"
+      ],
+      "item_count": 1
+    },
+    {
+      "id": "coastal-linen",
+      "label": "Coastal linen",
+      "name": "Coastal linen",
+      "hex": "#C8BAA4",
+      "item_ids": [
+        "F002"
+      ],
+      "item_count": 1
+    },
+    {
+      "id": "charcoal",
+      "label": "Charcoal",
+      "name": "Charcoal",
+      "hex": "#38383B",
+      "item_ids": [
+        "F003"
+      ],
+      "item_count": 1
+    },
+    {
+      "id": "satin-black",
+      "label": "Satin black",
+      "name": "Satin black",
+      "hex": "#1D1D1E",
+      "item_ids": [
+        "F004"
+      ],
+      "item_count": 1
+    },
+    {
+      "id": "brass",
+      "label": "Brass",
+      "name": "Brass",
+      "hex": "#D4BC8B",
+      "item_ids": [
+        "F005"
+      ],
+      "item_count": 1
+    },
+    {
+      "id": "honey-oak",
+      "label": "Honey oak",
+      "name": "Honey oak",
+      "hex": "#B8956C",
+      "item_ids": [
+        "F006"
+      ],
+      "item_count": 1
+    },
+    {
+      "id": "pale-oak",
+      "label": "Pale oak",
+      "name": "Pale oak",
+      "hex": "#D4AD7D",
+      "item_ids": [
+        "F007"
+      ],
+      "item_count": 1
+    },
+    {
+      "id": "slate",
+      "label": "Slate",
+      "name": "Slate",
+      "hex": "#3A434A",
+      "item_ids": [
+        "F008"
+      ],
+      "item_count": 1
+    },
+    {
+      "id": "birch",
+      "label": "Birch",
+      "name": "Birch",
+      "hex": "#D4BFA2",
+      "item_ids": [
+        "F009"
+      ],
+      "item_count": 1
+    },
+    {
+      "id": "ivory",
+      "label": "Ivory",
+      "name": "Ivory",
+      "hex": "#E6E0D4",
+      "item_ids": [
+        "F010"
+      ],
+      "item_count": 1
+    },
+    {
+      "id": "soft-sand",
+      "label": "Soft sand",
+      "name": "Soft sand",
+      "hex": "#E8DCCB",
+      "item_ids": [
+        "F011"
+      ],
+      "item_count": 1
+    },
+    {
+      "id": "black",
+      "label": "Black",
+      "name": "Black",
+      "hex": "#1D1D1E",
+      "item_ids": [
+        "F012"
+      ],
+      "item_count": 1
+    },
+    {
+      "id": "graphite",
+      "label": "Graphite",
+      "name": "Graphite",
+      "hex": "#161618",
+      "item_ids": [
+        "F013"
+      ],
+      "item_count": 1
+    },
+    {
+      "id": "fiddle-green",
+      "label": "Fiddle green",
+      "name": "Fiddle green",
+      "hex": "#356F3C",
+      "item_ids": [
+        "F014"
+      ],
+      "item_count": 1
+    },
+    {
+      "id": "snake-green",
+      "label": "Snake green",
+      "name": "Snake green",
+      "hex": "#427752",
+      "item_ids": [
+        "F015"
+      ],
+      "item_count": 1
+    },
+    {
+      "id": "monstera-green",
+      "label": "Monstera green",
+      "name": "Monstera green",
+      "hex": "#4B9959",
+      "item_ids": [
+        "F016"
+      ],
+      "item_count": 1
+    },
+    {
+      "id": "olive",
+      "label": "Olive",
+      "name": "Olive",
+      "hex": "#758A54",
+      "item_ids": [
+        "F017"
+      ],
+      "item_count": 1
+    }
+  ],
+  "brands": [
+    {
+      "id": "cloudline-home",
+      "name": "Cloudline Home",
+      "ships_from": "High Point, North Carolina",
+      "blurb": "Modern upholstered seating. The Cloudline sofa and the charcoal modular sectional come from this house.",
+      "item_count": 2,
+      "item_ids": [
+        "F001",
+        "F003"
+      ]
+    },
+    {
+      "id": "harbor-house",
+      "name": "Harbor House",
+      "ships_from": "Charleston, South Carolina",
+      "blurb": "Coastal seating in washed linen with driftwood legs. The Harbor loveseat is the house sofa.",
+      "item_count": 1,
+      "item_ids": [
+        "F002"
+      ]
+    },
+    {
+      "id": "lumen-works",
+      "name": "Lumen Works",
+      "ships_from": "Portland, Oregon",
+      "blurb": "Floor and table lamps, from the satin reading arc to the brass soft-glow shade.",
+      "item_count": 3,
+      "item_ids": [
+        "F004",
+        "F005",
+        "F006"
+      ]
+    },
+    {
+      "id": "oakline-studio",
+      "name": "Oakline Studio",
+      "ships_from": "Grand Rapids, Michigan",
+      "blurb": "Wood and slate tables, including the Oakline round coffee table and the slim birch side table.",
+      "item_count": 3,
+      "item_ids": [
+        "F007",
+        "F008",
+        "F009"
+      ]
+    },
+    {
+      "id": "loom-and-field",
+      "name": "Loom & Field",
+      "ships_from": "Dalton, Georgia",
+      "blurb": "Living-room rugs: a geometric 8x10 and a soft neutral 5x7.",
+      "item_count": 2,
+      "item_ids": [
+        "F010",
+        "F011"
+      ]
+    },
+    {
+      "id": "northglass",
+      "name": "Northglass",
+      "ships_from": "Austin, Texas",
+      "blurb": "Slim smart TVs with a dark bezel and a Screen material the viewer can swap.",
+      "item_count": 2,
+      "item_ids": [
+        "F012",
+        "F013"
+      ]
+    },
+    {
+      "id": "verdure",
+      "name": "Verdure",
+      "ships_from": "Los Angeles, California",
+      "blurb": "Floor plants in ceramic and terracotta, from fiddle leaf and monstera to olive.",
+      "item_count": 4,
+      "item_ids": [
+        "F014",
+        "F015",
+        "F016",
+        "F017"
       ]
     }
   ],
@@ -254,23 +538,44 @@
         "on_default_branch": true,
         "only_open_pr": false
       },
-      "catalog_room": "Living Room"
+      "catalog_room": "Living Room",
+      "label": "Generic Living Room",
+      "item_count": 17,
+      "images": {
+        "thumbnail": {
+          "path": "rooms/living_room_generic/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/rooms/living_room_generic/preview.png"
+        },
+        "card": {
+          "path": "rooms/living_room_generic/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/rooms/living_room_generic/preview.png"
+        }
+      }
     }
   ],
   "items": [
     {
       "id": "F001",
+      "sku": "CLH-F001",
+      "slug": "cloudline-3-seat-couch",
       "name": "Cloudline 3-Seat Couch",
+      "short_description": "Low modern sofa in oatmeal linen with a slim dark leg, built to anchor a living room.",
       "category": "Couch",
       "category_id": "couch",
       "style": "Modern",
       "style_id": "modern",
       "room": "Living Room",
       "room_id": "living_room_generic",
+      "brand_id": "cloudline-home",
       "price": {
         "amount": 899,
         "currency": "USD"
       },
+      "currency": "USD",
+      "in_stock": true,
+      "ships_in_days": 12,
+      "sponsored": true,
+      "featured_rank": 1,
       "dimensions": {
         "inches": {
           "width": 84,
@@ -283,10 +588,107 @@
           "height": 0.8382
         }
       },
+      "color": {
+        "name": "Oatmeal",
+        "hex": "#BFB5A8",
+        "material": "F001_Fabric",
+        "source": "models/couch/f001_cloudline_3_seat_couch/build.py"
+      },
+      "materials": [
+        {
+          "name": "F001_Fabric",
+          "role": "textile",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.52,
+            0.46,
+            0.39
+          ],
+          "hex": "#BFB5A8",
+          "roughness": 0.92,
+          "metallic": 0.0,
+          "source": "models/couch/f001_cloudline_3_seat_couch/build.py"
+        },
+        {
+          "name": "F001_Cushion",
+          "role": "textile",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.64,
+            0.57,
+            0.48
+          ],
+          "hex": "#D1C7B8",
+          "roughness": 0.9,
+          "metallic": 0.0,
+          "source": "models/couch/f001_cloudline_3_seat_couch/build.py"
+        },
+        {
+          "name": "F001_Leg",
+          "role": "finish",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.09,
+            0.075,
+            0.06
+          ],
+          "hex": "#554D45",
+          "roughness": 0.42,
+          "metallic": 0.15,
+          "source": "models/couch/f001_cloudline_3_seat_couch/build.py"
+        },
+        {
+          "name": "F001_Pillow_Slate",
+          "role": "textile",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.3,
+            0.38,
+            0.46
+          ],
+          "hex": "#95A6B5",
+          "roughness": 0.88,
+          "metallic": 0.0,
+          "source": "models/couch/f001_cloudline_3_seat_couch/build.py"
+        },
+        {
+          "name": "F001_Pillow_Cream",
+          "role": "textile",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.66,
+            0.55,
+            0.42
+          ],
+          "hex": "#D4C4AD",
+          "roughness": 0.9,
+          "metallic": 0.0,
+          "source": "models/couch/f001_cloudline_3_seat_couch/build.py"
+        }
+      ],
       "photo": {
         "url": "https://images.unsplash.com/photo-1772143535046-99a2bb734a3d?auto=format&fit=crop&fm=jpg&q=80&w=1200",
         "source_url": "https://unsplash.com/photos/living-room-with-couch-coffee-table-and-chairs-w9etxmuavOk",
         "credit": "Unsplash"
+      },
+      "images": {
+        "thumbnail": {
+          "path": "models/couch/f001_cloudline_3_seat_couch/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/couch/f001_cloudline_3_seat_couch/preview.png"
+        },
+        "card": {
+          "path": "models/couch/f001_cloudline_3_seat_couch/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/couch/f001_cloudline_3_seat_couch/preview.png"
+        },
+        "lifestyle": {
+          "url": "https://images.unsplash.com/photo-1772143535046-99a2bb734a3d?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+          "source_url": "https://unsplash.com/photos/living-room-with-couch-coffee-table-and-chairs-w9etxmuavOk",
+          "credit": "Unsplash",
+          "shared_with": [
+            "F002",
+            "F011"
+          ]
+        }
       },
       "model": {
         "glb": "models/couch/f001_cloudline_3_seat_couch/model.glb",
@@ -337,17 +739,26 @@
     },
     {
       "id": "F002",
+      "sku": "HRH-F002",
+      "slug": "harbor-2-seat-loveseat",
       "name": "Harbor 2-Seat Loveseat",
+      "short_description": "Two-seat coastal loveseat in washed linen with driftwood legs and a navy pillow.",
       "category": "Couch",
       "category_id": "couch",
       "style": "Coastal",
       "style_id": "coastal",
       "room": "Living Room",
       "room_id": "living_room_generic",
+      "brand_id": "harbor-house",
       "price": {
         "amount": 649,
         "currency": "USD"
       },
+      "currency": "USD",
+      "in_stock": true,
+      "ships_in_days": 10,
+      "sponsored": false,
+      "featured_rank": null,
       "dimensions": {
         "inches": {
           "width": 60,
@@ -360,10 +771,135 @@
           "height": 0.8636
         }
       },
+      "color": {
+        "name": "Coastal linen",
+        "hex": "#C8BAA4",
+        "material": "F002_Linen",
+        "source": "models/couch/f002_harbor_2_seat_loveseat/build.py"
+      },
+      "materials": [
+        {
+          "name": "F002_Linen",
+          "role": "textile",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.58,
+            0.49,
+            0.37
+          ],
+          "hex": "#C8BAA4",
+          "roughness": 0.9,
+          "metallic": 0.0,
+          "source": "models/couch/f002_harbor_2_seat_loveseat/build.py"
+        },
+        {
+          "name": "F002_Cushion",
+          "role": "textile",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.7,
+            0.61,
+            0.47
+          ],
+          "hex": "#DACDB6",
+          "roughness": 0.86,
+          "metallic": 0.0,
+          "source": "models/couch/f002_harbor_2_seat_loveseat/build.py"
+        },
+        {
+          "name": "F002_Shadow",
+          "role": "finish",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.32,
+            0.26,
+            0.19
+          ],
+          "hex": "#998B79",
+          "roughness": 0.95,
+          "metallic": 0.0,
+          "source": "models/couch/f002_harbor_2_seat_loveseat/build.py"
+        },
+        {
+          "name": "F002_Driftwood",
+          "role": "wood",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.36,
+            0.22,
+            0.11
+          ],
+          "hex": "#A2815D",
+          "roughness": 0.5,
+          "metallic": 0.0,
+          "source": "models/couch/f002_harbor_2_seat_loveseat/build.py"
+        },
+        {
+          "name": "F002_Navy",
+          "role": "finish",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.1,
+            0.18,
+            0.3
+          ],
+          "hex": "#597695",
+          "roughness": 0.72,
+          "metallic": 0.0,
+          "source": "models/couch/f002_harbor_2_seat_loveseat/build.py"
+        },
+        {
+          "name": "F002_Cream",
+          "role": "finish",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.78,
+            0.71,
+            0.58
+          ],
+          "hex": "#E5DBC8",
+          "roughness": 0.84,
+          "metallic": 0.0,
+          "source": "models/couch/f002_harbor_2_seat_loveseat/build.py"
+        },
+        {
+          "name": "F002_SeaGlass",
+          "role": "finish",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.28,
+            0.44,
+            0.43
+          ],
+          "hex": "#90B1AF",
+          "roughness": 0.8,
+          "metallic": 0.0,
+          "source": "models/couch/f002_harbor_2_seat_loveseat/build.py"
+        }
+      ],
       "photo": {
         "url": "https://images.unsplash.com/photo-1772143535046-99a2bb734a3d?auto=format&fit=crop&fm=jpg&q=80&w=1200",
         "source_url": "https://unsplash.com/photos/living-room-with-couch-coffee-table-and-chairs-w9etxmuavOk",
         "credit": "Unsplash"
+      },
+      "images": {
+        "thumbnail": {
+          "path": "models/couch/f002_harbor_2_seat_loveseat/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/couch/f002_harbor_2_seat_loveseat/preview.png"
+        },
+        "card": {
+          "path": "models/couch/f002_harbor_2_seat_loveseat/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/couch/f002_harbor_2_seat_loveseat/preview.png"
+        },
+        "lifestyle": {
+          "url": "https://images.unsplash.com/photo-1772143535046-99a2bb734a3d?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+          "source_url": "https://unsplash.com/photos/living-room-with-couch-coffee-table-and-chairs-w9etxmuavOk",
+          "credit": "Unsplash",
+          "shared_with": [
+            "F001",
+            "F011"
+          ]
+        }
       },
       "model": {
         "glb": "models/couch/f002_harbor_2_seat_loveseat/model.glb",
@@ -414,17 +950,26 @@
     },
     {
       "id": "F003",
+      "sku": "CLH-F003",
+      "slug": "corner-modular-sectional",
       "name": "Corner Modular Sectional",
+      "short_description": "Deep modular sectional in charcoal cloth with oatmeal and stone throw pillows.",
       "category": "Couch",
       "category_id": "couch",
       "style": "Modern",
       "style_id": "modern",
       "room": "Living Room",
       "room_id": "living_room_generic",
+      "brand_id": "cloudline-home",
       "price": {
         "amount": 1299,
         "currency": "USD"
       },
+      "currency": "USD",
+      "in_stock": true,
+      "ships_in_days": 14,
+      "sponsored": false,
+      "featured_rank": null,
       "dimensions": {
         "inches": {
           "width": 104,
@@ -437,10 +982,122 @@
           "height": 0.8636
         }
       },
+      "color": {
+        "name": "Charcoal",
+        "hex": "#38383B",
+        "material": "F003_Seat",
+        "source": "models/couch/f003_corner_modular_sectional/build.py"
+      },
+      "materials": [
+        {
+          "name": "F003_Frame",
+          "role": "finish",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.145,
+            0.145,
+            0.155
+          ],
+          "hex": "#252528",
+          "roughness": 0.91,
+          "metallic": 0.0,
+          "source": "models/couch/f003_corner_modular_sectional/build.py"
+        },
+        {
+          "name": "F003_Seat",
+          "role": "textile",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.22,
+            0.22,
+            0.23
+          ],
+          "hex": "#38383B",
+          "roughness": 0.76,
+          "metallic": 0.0,
+          "source": "models/couch/f003_corner_modular_sectional/build.py"
+        },
+        {
+          "name": "F003_BackCushion",
+          "role": "textile",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.185,
+            0.185,
+            0.195
+          ],
+          "hex": "#2F2F32",
+          "roughness": 0.8,
+          "metallic": 0.0,
+          "source": "models/couch/f003_corner_modular_sectional/build.py"
+        },
+        {
+          "name": "F003_Plinth",
+          "role": "finish",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.04,
+            0.04,
+            0.045
+          ],
+          "hex": "#0A0A0B",
+          "roughness": 0.5,
+          "metallic": 0.0,
+          "source": "models/couch/f003_corner_modular_sectional/build.py"
+        },
+        {
+          "name": "F003_PillowOatmeal",
+          "role": "textile",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.62,
+            0.56,
+            0.48
+          ],
+          "hex": "#9E8F7A",
+          "roughness": 0.86,
+          "metallic": 0.0,
+          "source": "models/couch/f003_corner_modular_sectional/build.py"
+        },
+        {
+          "name": "F003_PillowStone",
+          "role": "textile",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.46,
+            0.45,
+            0.43
+          ],
+          "hex": "#75736E",
+          "roughness": 0.86,
+          "metallic": 0.0,
+          "source": "models/couch/f003_corner_modular_sectional/build.py"
+        }
+      ],
       "photo": {
         "url": "https://images.unsplash.com/photo-1721614460546-4cc80d78eda8?auto=format&fit=crop&fm=jpg&q=80&w=1200",
         "source_url": "https://unsplash.com/photos/a-living-room-with-a-couch-and-a-coffee-table-Xm05JhDvNVk",
         "credit": "Unsplash"
+      },
+      "images": {
+        "thumbnail": {
+          "path": "models/couch/f003_corner_modular_sectional/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/couch/f003_corner_modular_sectional/preview.png"
+        },
+        "card": {
+          "path": "models/couch/f003_corner_modular_sectional/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/couch/f003_corner_modular_sectional/preview.png"
+        },
+        "lifestyle": {
+          "url": "https://images.unsplash.com/photo-1721614460546-4cc80d78eda8?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+          "source_url": "https://unsplash.com/photos/a-living-room-with-a-couch-and-a-coffee-table-Xm05JhDvNVk",
+          "credit": "Unsplash",
+          "shared_with": [
+            "F007",
+            "F009",
+            "F010"
+          ]
+        }
       },
       "model": {
         "glb": "models/couch/f003_corner_modular_sectional/model.glb",
@@ -491,17 +1148,26 @@
     },
     {
       "id": "F004",
+      "sku": "LMW-F004",
+      "slug": "reading-arc-floor-lamp",
       "name": "Reading Arc Floor Lamp",
+      "short_description": "Satin-black arc floor lamp with a warm diffuser, sized to swing over a reading chair.",
       "category": "Lamp",
       "category_id": "lamp",
       "style": "Modern",
       "style_id": "modern",
       "room": "Living Room",
       "room_id": "living_room_generic",
+      "brand_id": "lumen-works",
       "price": {
         "amount": 119,
         "currency": "USD"
       },
+      "currency": "USD",
+      "in_stock": true,
+      "ships_in_days": 4,
+      "sponsored": true,
+      "featured_rank": 2,
       "dimensions": {
         "inches": {
           "width": 18,
@@ -514,10 +1180,65 @@
           "height": 1.6764
         }
       },
+      "color": {
+        "name": "Satin black",
+        "hex": "#1D1D1E",
+        "material": "SatinBlack",
+        "source": "models/lamp/f004_reading_arc_floor_lamp/build.py"
+      },
+      "materials": [
+        {
+          "name": "SatinBlack",
+          "role": "finish",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.012,
+            0.012,
+            0.013
+          ],
+          "hex": "#1D1D1E",
+          "roughness": 0.52,
+          "metallic": 0.18,
+          "source": "models/lamp/f004_reading_arc_floor_lamp/build.py"
+        },
+        {
+          "name": "WarmDiffuser",
+          "role": "light",
+          "color_space": "linear",
+          "base_color_rgb": [
+            1.0,
+            0.84,
+            0.62
+          ],
+          "hex": "#FFECCE",
+          "roughness": 0.4,
+          "metallic": 0.0,
+          "source": "models/lamp/f004_reading_arc_floor_lamp/build.py",
+          "emission_strength": 8.0
+        }
+      ],
       "photo": {
         "url": "https://images.unsplash.com/photo-1765608262875-2b97700ec852?auto=format&fit=crop&fm=jpg&q=80&w=1200",
         "source_url": "https://unsplash.com/photos/modern-black-floor-lamp-in-a-living-room-setting-pNoNEUGK0ls",
         "credit": "Unsplash"
+      },
+      "images": {
+        "thumbnail": {
+          "path": "models/lamp/f004_reading_arc_floor_lamp/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/lamp/f004_reading_arc_floor_lamp/preview.png"
+        },
+        "card": {
+          "path": "models/lamp/f004_reading_arc_floor_lamp/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/lamp/f004_reading_arc_floor_lamp/preview.png"
+        },
+        "lifestyle": {
+          "url": "https://images.unsplash.com/photo-1765608262875-2b97700ec852?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+          "source_url": "https://unsplash.com/photos/modern-black-floor-lamp-in-a-living-room-setting-pNoNEUGK0ls",
+          "credit": "Unsplash",
+          "shared_with": [
+            "F006"
+          ]
+        }
       },
       "model": {
         "glb": "models/lamp/f004_reading_arc_floor_lamp/model.glb",
@@ -568,17 +1289,26 @@
     },
     {
       "id": "F005",
+      "sku": "LMW-F005",
+      "slug": "soft-glow-table-lamp",
       "name": "Soft Glow Table Lamp",
+      "short_description": "Brass table lamp with a cream shade and a soft glowing bulb.",
       "category": "Lamp",
       "category_id": "lamp",
       "style": "Minimal",
       "style_id": "minimal",
       "room": "Living Room",
       "room_id": "living_room_generic",
+      "brand_id": "lumen-works",
       "price": {
         "amount": 69,
         "currency": "USD"
       },
+      "currency": "USD",
+      "in_stock": true,
+      "ships_in_days": 4,
+      "sponsored": false,
+      "featured_rank": null,
       "dimensions": {
         "inches": {
           "width": 10,
@@ -591,10 +1321,80 @@
           "height": 0.508
         }
       },
+      "color": {
+        "name": "Brass",
+        "hex": "#D4BC8B",
+        "material": "Brass",
+        "source": "models/lamp/f005_soft_glow_table_lamp/build.py"
+      },
+      "materials": [
+        {
+          "name": "Brass",
+          "role": "metal",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.66,
+            0.5,
+            0.26
+          ],
+          "hex": "#D4BC8B",
+          "roughness": 0.3,
+          "metallic": 1.0,
+          "source": "models/lamp/f005_soft_glow_table_lamp/build.py"
+        },
+        {
+          "name": "SoftShade",
+          "role": "textile",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.96,
+            0.94,
+            0.9
+          ],
+          "hex": "#FAF8F3",
+          "roughness": 0.28,
+          "metallic": 0.0,
+          "source": "models/lamp/f005_soft_glow_table_lamp/build.py",
+          "emission_strength": 0.45
+        },
+        {
+          "name": "Bulb",
+          "role": "light",
+          "color_space": "linear",
+          "base_color_rgb": [
+            1.0,
+            0.86,
+            0.62
+          ],
+          "hex": "#FFEFCE",
+          "roughness": 0.15,
+          "metallic": 0.0,
+          "source": "models/lamp/f005_soft_glow_table_lamp/build.py",
+          "emission_strength": 6.0
+        }
+      ],
       "photo": {
         "url": "https://images.unsplash.com/photo-1773895313967-76d73dcba5dc?auto=format&fit=crop&fm=jpg&q=80&w=1200",
         "source_url": "https://unsplash.com/photos/modern-living-room-with-sofa-coffee-table-and-lamps-mPCehJEwuL4",
         "credit": "Unsplash"
+      },
+      "images": {
+        "thumbnail": {
+          "path": "models/lamp/f005_soft_glow_table_lamp/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/lamp/f005_soft_glow_table_lamp/preview.png"
+        },
+        "card": {
+          "path": "models/lamp/f005_soft_glow_table_lamp/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/lamp/f005_soft_glow_table_lamp/preview.png"
+        },
+        "lifestyle": {
+          "url": "https://images.unsplash.com/photo-1773895313967-76d73dcba5dc?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+          "source_url": "https://unsplash.com/photos/modern-living-room-with-sofa-coffee-table-and-lamps-mPCehJEwuL4",
+          "credit": "Unsplash",
+          "shared_with": [
+            "F008"
+          ]
+        }
       },
       "model": {
         "glb": "models/lamp/f005_soft_glow_table_lamp/model.glb",
@@ -645,17 +1445,26 @@
     },
     {
       "id": "F006",
+      "sku": "LMW-F006",
+      "slug": "tripod-corner-lamp",
       "name": "Tripod Corner Lamp",
+      "short_description": "Tripod floor lamp in honey oak and brass with a linen drum shade.",
       "category": "Lamp",
       "category_id": "lamp",
       "style": "Scandinavian",
       "style_id": "scandinavian",
       "room": "Living Room",
       "room_id": "living_room_generic",
+      "brand_id": "lumen-works",
       "price": {
         "amount": 149,
         "currency": "USD"
       },
+      "currency": "USD",
+      "in_stock": true,
+      "ships_in_days": 5,
+      "sponsored": false,
+      "featured_rank": null,
       "dimensions": {
         "inches": {
           "width": 20,
@@ -668,10 +1477,108 @@
           "height": 1.524
         }
       },
+      "color": {
+        "name": "Honey oak",
+        "hex": "#B8956C",
+        "material": "F006_Oak",
+        "source": "models/lamp/f006_tripod_corner_lamp/build.py"
+      },
+      "materials": [
+        {
+          "name": "F006_Oak",
+          "role": "wood",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.48,
+            0.3,
+            0.15
+          ],
+          "hex": "#B8956C",
+          "roughness": 0.46,
+          "metallic": 0.0,
+          "source": "models/lamp/f006_tripod_corner_lamp/build.py"
+        },
+        {
+          "name": "F006_Brass",
+          "role": "metal",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.78,
+            0.54,
+            0.24
+          ],
+          "hex": "#E5C286",
+          "roughness": 0.28,
+          "metallic": 1.0,
+          "source": "models/lamp/f006_tripod_corner_lamp/build.py"
+        },
+        {
+          "name": "F006_Linen",
+          "role": "textile",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.8,
+            0.7,
+            0.54
+          ],
+          "hex": "#E7DAC2",
+          "roughness": 0.82,
+          "metallic": 0.0,
+          "source": "models/lamp/f006_tripod_corner_lamp/build.py",
+          "emission_strength": 0.45
+        },
+        {
+          "name": "F006_LinenTrim",
+          "role": "textile",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.55,
+            0.42,
+            0.28
+          ],
+          "hex": "#C4AD90",
+          "roughness": 0.72,
+          "metallic": 0.0,
+          "source": "models/lamp/f006_tripod_corner_lamp/build.py"
+        },
+        {
+          "name": "F006_Bulb",
+          "role": "light",
+          "color_space": "linear",
+          "base_color_rgb": [
+            1.0,
+            0.86,
+            0.62
+          ],
+          "hex": "#FFEFCE",
+          "roughness": 0.35,
+          "metallic": 0.0,
+          "source": "models/lamp/f006_tripod_corner_lamp/build.py",
+          "emission_strength": 4.5
+        }
+      ],
       "photo": {
         "url": "https://images.unsplash.com/photo-1765608262875-2b97700ec852?auto=format&fit=crop&fm=jpg&q=80&w=1200",
         "source_url": "https://unsplash.com/photos/modern-black-floor-lamp-in-a-living-room-setting-pNoNEUGK0ls",
         "credit": "Unsplash"
+      },
+      "images": {
+        "thumbnail": {
+          "path": "models/lamp/f006_tripod_corner_lamp/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/lamp/f006_tripod_corner_lamp/preview.png"
+        },
+        "card": {
+          "path": "models/lamp/f006_tripod_corner_lamp/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/lamp/f006_tripod_corner_lamp/preview.png"
+        },
+        "lifestyle": {
+          "url": "https://images.unsplash.com/photo-1765608262875-2b97700ec852?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+          "source_url": "https://unsplash.com/photos/modern-black-floor-lamp-in-a-living-room-setting-pNoNEUGK0ls",
+          "credit": "Unsplash",
+          "shared_with": [
+            "F004"
+          ]
+        }
       },
       "model": {
         "glb": "models/lamp/f006_tripod_corner_lamp/model.glb",
@@ -721,17 +1628,26 @@
     },
     {
       "id": "F007",
+      "sku": "OAK-F007",
+      "slug": "oakline-round-coffee-table",
       "name": "Oakline Round Coffee Table",
+      "short_description": "Round whitewashed-oak coffee table, low enough to sit in front of a sofa.",
       "category": "Table",
       "category_id": "table",
       "style": "Japandi",
       "style_id": "japandi",
       "room": "Living Room",
       "room_id": "living_room_generic",
+      "brand_id": "oakline-studio",
       "price": {
         "amount": 219,
         "currency": "USD"
       },
+      "currency": "USD",
+      "in_stock": true,
+      "ships_in_days": 8,
+      "sponsored": false,
+      "featured_rank": null,
       "dimensions": {
         "inches": {
           "width": 36,
@@ -744,10 +1660,66 @@
           "height": 0.4064
         }
       },
+      "color": {
+        "name": "Pale oak",
+        "hex": "#D4AD7D",
+        "material": "F007_OakTop",
+        "source": "models/table/f007_oakline_round_coffee_table/build.py"
+      },
+      "materials": [
+        {
+          "name": "F007_OakTop",
+          "role": "wood",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.83,
+            0.68,
+            0.49
+          ],
+          "hex": "#D4AD7D",
+          "roughness": 0.46,
+          "metallic": 0.0,
+          "source": "models/table/f007_oakline_round_coffee_table/build.py"
+        },
+        {
+          "name": "F007_OakBase",
+          "role": "wood",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.72,
+            0.56,
+            0.38
+          ],
+          "hex": "#B88F61",
+          "roughness": 0.55,
+          "metallic": 0.0,
+          "source": "models/table/f007_oakline_round_coffee_table/build.py"
+        }
+      ],
       "photo": {
         "url": "https://images.unsplash.com/photo-1721614460546-4cc80d78eda8?auto=format&fit=crop&fm=jpg&q=80&w=1200",
         "source_url": "https://unsplash.com/photos/a-living-room-with-a-couch-and-a-coffee-table-Xm05JhDvNVk",
         "credit": "Unsplash"
+      },
+      "images": {
+        "thumbnail": {
+          "path": "models/table/f007_oakline_round_coffee_table/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/table/f007_oakline_round_coffee_table/preview.png"
+        },
+        "card": {
+          "path": "models/table/f007_oakline_round_coffee_table/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/table/f007_oakline_round_coffee_table/preview.png"
+        },
+        "lifestyle": {
+          "url": "https://images.unsplash.com/photo-1721614460546-4cc80d78eda8?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+          "source_url": "https://unsplash.com/photos/a-living-room-with-a-couch-and-a-coffee-table-Xm05JhDvNVk",
+          "credit": "Unsplash",
+          "shared_with": [
+            "F003",
+            "F009",
+            "F010"
+          ]
+        }
       },
       "model": {
         "glb": "models/table/f007_oakline_round_coffee_table/model.glb",
@@ -796,17 +1768,26 @@
     },
     {
       "id": "F008",
+      "sku": "OAK-F008",
+      "slug": "slate-nesting-tables",
       "name": "Slate Nesting Tables",
+      "short_description": "Nesting tables with slate tops and black metal frames.",
       "category": "Table",
       "category_id": "table",
       "style": "Industrial",
       "style_id": "industrial",
       "room": "Living Room",
       "room_id": "living_room_generic",
+      "brand_id": "oakline-studio",
       "price": {
         "amount": 189,
         "currency": "USD"
       },
+      "currency": "USD",
+      "in_stock": true,
+      "ships_in_days": 8,
+      "sponsored": false,
+      "featured_rank": null,
       "dimensions": {
         "inches": {
           "width": 32,
@@ -819,10 +1800,64 @@
           "height": 0.4572
         }
       },
+      "color": {
+        "name": "Slate",
+        "hex": "#3A434A",
+        "material": "Slate",
+        "source": "models/table/f008_slate_nesting_tables/build.py"
+      },
+      "materials": [
+        {
+          "name": "Slate",
+          "role": "surface",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.2275,
+            0.2627,
+            0.2902
+          ],
+          "hex": "#3A434A",
+          "roughness": 0.72,
+          "metallic": 0.0,
+          "source": "models/table/f008_slate_nesting_tables/build.py"
+        },
+        {
+          "name": "Black Metal",
+          "role": "metal",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.0784,
+            0.0824,
+            0.0941
+          ],
+          "hex": "#141518",
+          "roughness": 0.38,
+          "metallic": 1.0,
+          "source": "models/table/f008_slate_nesting_tables/build.py"
+        }
+      ],
       "photo": {
         "url": "https://images.unsplash.com/photo-1773895313967-76d73dcba5dc?auto=format&fit=crop&fm=jpg&q=80&w=1200",
         "source_url": "https://unsplash.com/photos/modern-living-room-with-sofa-coffee-table-and-lamps-mPCehJEwuL4",
         "credit": "Unsplash"
+      },
+      "images": {
+        "thumbnail": {
+          "path": "models/table/f008_slate_nesting_tables/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/table/f008_slate_nesting_tables/preview.png"
+        },
+        "card": {
+          "path": "models/table/f008_slate_nesting_tables/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/table/f008_slate_nesting_tables/preview.png"
+        },
+        "lifestyle": {
+          "url": "https://images.unsplash.com/photo-1773895313967-76d73dcba5dc?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+          "source_url": "https://unsplash.com/photos/modern-living-room-with-sofa-coffee-table-and-lamps-mPCehJEwuL4",
+          "credit": "Unsplash",
+          "shared_with": [
+            "F005"
+          ]
+        }
       },
       "model": {
         "glb": "models/table/f008_slate_nesting_tables/model.glb",
@@ -872,17 +1907,26 @@
     },
     {
       "id": "F009",
+      "sku": "OAK-F009",
+      "slug": "slim-side-table",
       "name": "Slim Side Table",
+      "short_description": "Narrow birch side table with a recessed tray top.",
       "category": "Table",
       "category_id": "table",
       "style": "Minimal",
       "style_id": "minimal",
       "room": "Living Room",
       "room_id": "living_room_generic",
+      "brand_id": "oakline-studio",
       "price": {
         "amount": 99,
         "currency": "USD"
       },
+      "currency": "USD",
+      "in_stock": true,
+      "ships_in_days": 7,
+      "sponsored": false,
+      "featured_rank": null,
       "dimensions": {
         "inches": {
           "width": 18,
@@ -895,10 +1939,66 @@
           "height": 0.5588
         }
       },
+      "color": {
+        "name": "Birch",
+        "hex": "#D4BFA2",
+        "material": "F009_Birch",
+        "source": "models/table/f009_slim_side_table/build.py"
+      },
+      "materials": [
+        {
+          "name": "F009_Birch",
+          "role": "wood",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.66,
+            0.52,
+            0.36
+          ],
+          "hex": "#D4BFA2",
+          "roughness": 0.48,
+          "metallic": 0.0,
+          "source": "models/table/f009_slim_side_table/build.py"
+        },
+        {
+          "name": "F009_BirchDeck",
+          "role": "wood",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.55,
+            0.42,
+            0.28
+          ],
+          "hex": "#C4AD90",
+          "roughness": 0.55,
+          "metallic": 0.0,
+          "source": "models/table/f009_slim_side_table/build.py"
+        }
+      ],
       "photo": {
         "url": "https://images.unsplash.com/photo-1721614460546-4cc80d78eda8?auto=format&fit=crop&fm=jpg&q=80&w=1200",
         "source_url": "https://unsplash.com/photos/a-living-room-with-a-couch-and-a-coffee-table-Xm05JhDvNVk",
         "credit": "Unsplash"
+      },
+      "images": {
+        "thumbnail": {
+          "path": "models/table/f009_slim_side_table/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/table/f009_slim_side_table/preview.png"
+        },
+        "card": {
+          "path": "models/table/f009_slim_side_table/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/table/f009_slim_side_table/preview.png"
+        },
+        "lifestyle": {
+          "url": "https://images.unsplash.com/photo-1721614460546-4cc80d78eda8?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+          "source_url": "https://unsplash.com/photos/a-living-room-with-a-couch-and-a-coffee-table-Xm05JhDvNVk",
+          "credit": "Unsplash",
+          "shared_with": [
+            "F003",
+            "F007",
+            "F010"
+          ]
+        }
       },
       "model": {
         "glb": "models/table/f009_slim_side_table/model.glb",
@@ -947,17 +2047,26 @@
     },
     {
       "id": "F010",
+      "sku": "LNF-F010",
+      "slug": "geometric-area-carpet-8x10",
       "name": "Geometric Area Carpet 8x10",
+      "short_description": "Eight-by-ten geometric rug in ivory, teal, and rust.",
       "category": "Carpet",
       "category_id": "carpet",
       "style": "Modern",
       "style_id": "modern",
       "room": "Living Room",
       "room_id": "living_room_generic",
+      "brand_id": "loom-and-field",
       "price": {
         "amount": 249,
         "currency": "USD"
       },
+      "currency": "USD",
+      "in_stock": true,
+      "ships_in_days": 6,
+      "sponsored": false,
+      "featured_rank": null,
       "dimensions": {
         "inches": {
           "width": 96,
@@ -970,10 +2079,164 @@
           "height": 0.0127
         }
       },
+      "color": {
+        "name": "Ivory",
+        "hex": "#E6E0D4",
+        "material": "F010_Field",
+        "source": "models/carpet/f010_geometric_area_carpet_8x10/build.py"
+      },
+      "materials": [
+        {
+          "name": "F010_Field",
+          "role": "finish",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.902,
+            0.878,
+            0.831
+          ],
+          "hex": "#E6E0D4",
+          "roughness": 0.92,
+          "metallic": 0.0,
+          "source": "models/carpet/f010_geometric_area_carpet_8x10/build.py"
+        },
+        {
+          "name": "F010_Border",
+          "role": "finish",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.165,
+            0.161,
+            0.149
+          ],
+          "hex": "#2A2926",
+          "roughness": 0.88,
+          "metallic": 0.0,
+          "source": "models/carpet/f010_geometric_area_carpet_8x10/build.py"
+        },
+        {
+          "name": "F010_Accent",
+          "role": "finish",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.69,
+            0.537,
+            0.345
+          ],
+          "hex": "#B08958",
+          "roughness": 0.84,
+          "metallic": 0.0,
+          "source": "models/carpet/f010_geometric_area_carpet_8x10/build.py"
+        },
+        {
+          "name": "F010_Outline",
+          "role": "finish",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.204,
+            0.196,
+            0.18
+          ],
+          "hex": "#34322E",
+          "roughness": 0.9,
+          "metallic": 0.0,
+          "source": "models/carpet/f010_geometric_area_carpet_8x10/build.py"
+        },
+        {
+          "name": "F010_TealCore",
+          "role": "finish",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.11,
+            0.298,
+            0.29
+          ],
+          "hex": "#1C4C4A",
+          "roughness": 0.9,
+          "metallic": 0.0,
+          "source": "models/carpet/f010_geometric_area_carpet_8x10/build.py"
+        },
+        {
+          "name": "F010_TealMid",
+          "role": "finish",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.478,
+            0.62,
+            0.588
+          ],
+          "hex": "#7A9E96",
+          "roughness": 0.9,
+          "metallic": 0.0,
+          "source": "models/carpet/f010_geometric_area_carpet_8x10/build.py"
+        },
+        {
+          "name": "F010_RustCore",
+          "role": "finish",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.549,
+            0.243,
+            0.184
+          ],
+          "hex": "#8C3E2F",
+          "roughness": 0.9,
+          "metallic": 0.0,
+          "source": "models/carpet/f010_geometric_area_carpet_8x10/build.py"
+        },
+        {
+          "name": "F010_RustMid",
+          "role": "finish",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.769,
+            0.541,
+            0.416
+          ],
+          "hex": "#C48A6A",
+          "roughness": 0.9,
+          "metallic": 0.0,
+          "source": "models/carpet/f010_geometric_area_carpet_8x10/build.py"
+        },
+        {
+          "name": "F010_Backing",
+          "role": "finish",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.227,
+            0.204,
+            0.173
+          ],
+          "hex": "#3A342C",
+          "roughness": 0.95,
+          "metallic": 0.0,
+          "source": "models/carpet/f010_geometric_area_carpet_8x10/build.py"
+        }
+      ],
       "photo": {
         "url": "https://images.unsplash.com/photo-1721614460546-4cc80d78eda8?auto=format&fit=crop&fm=jpg&q=80&w=1200",
         "source_url": "https://unsplash.com/photos/a-living-room-with-a-couch-and-a-coffee-table-Xm05JhDvNVk",
         "credit": "Unsplash"
+      },
+      "images": {
+        "thumbnail": {
+          "path": "models/carpet/f010_geometric_area_carpet_8x10/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/carpet/f010_geometric_area_carpet_8x10/preview.png"
+        },
+        "card": {
+          "path": "models/carpet/f010_geometric_area_carpet_8x10/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/carpet/f010_geometric_area_carpet_8x10/preview.png"
+        },
+        "lifestyle": {
+          "url": "https://images.unsplash.com/photo-1721614460546-4cc80d78eda8?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+          "source_url": "https://unsplash.com/photos/a-living-room-with-a-couch-and-a-coffee-table-Xm05JhDvNVk",
+          "credit": "Unsplash",
+          "shared_with": [
+            "F003",
+            "F007",
+            "F009"
+          ]
+        }
       },
       "model": {
         "glb": "models/carpet/f010_geometric_area_carpet_8x10/model.glb",
@@ -1024,17 +2287,26 @@
     },
     {
       "id": "F011",
+      "sku": "LNF-F011",
+      "slug": "soft-neutral-carpet-5x7",
       "name": "Soft Neutral Carpet 5x7",
+      "short_description": "Five-by-seven neutral rug with a soft sand field and a deeper border.",
       "category": "Carpet",
       "category_id": "carpet",
       "style": "Scandinavian",
       "style_id": "scandinavian",
       "room": "Living Room",
       "room_id": "living_room_generic",
+      "brand_id": "loom-and-field",
       "price": {
         "amount": 159,
         "currency": "USD"
       },
+      "currency": "USD",
+      "in_stock": true,
+      "ships_in_days": 6,
+      "sponsored": false,
+      "featured_rank": null,
       "dimensions": {
         "inches": {
           "width": 60,
@@ -1047,10 +2319,79 @@
           "height": 0.0127
         }
       },
+      "color": {
+        "name": "Soft sand",
+        "hex": "#E8DCCB",
+        "material": "F011_Field",
+        "source": "models/carpet/f011_soft_neutral_carpet_5x7/build.py"
+      },
+      "materials": [
+        {
+          "name": "F011_Field",
+          "role": "finish",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.91,
+            0.863,
+            0.796
+          ],
+          "hex": "#E8DCCB",
+          "roughness": 0.93,
+          "metallic": 0.0,
+          "source": "models/carpet/f011_soft_neutral_carpet_5x7/build.py"
+        },
+        {
+          "name": "F011_Border",
+          "role": "finish",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.71,
+            0.655,
+            0.58
+          ],
+          "hex": "#B5A794",
+          "roughness": 0.94,
+          "metallic": 0.0,
+          "source": "models/carpet/f011_soft_neutral_carpet_5x7/build.py"
+        },
+        {
+          "name": "F011_Backing",
+          "role": "finish",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.545,
+            0.49,
+            0.42
+          ],
+          "hex": "#8B7D6B",
+          "roughness": 0.97,
+          "metallic": 0.0,
+          "source": "models/carpet/f011_soft_neutral_carpet_5x7/build.py"
+        }
+      ],
       "photo": {
         "url": "https://images.unsplash.com/photo-1772143535046-99a2bb734a3d?auto=format&fit=crop&fm=jpg&q=80&w=1200",
         "source_url": "https://unsplash.com/photos/living-room-with-couch-coffee-table-and-chairs-w9etxmuavOk",
         "credit": "Unsplash"
+      },
+      "images": {
+        "thumbnail": {
+          "path": "models/carpet/f011_soft_neutral_carpet_5x7/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/carpet/f011_soft_neutral_carpet_5x7/preview.png"
+        },
+        "card": {
+          "path": "models/carpet/f011_soft_neutral_carpet_5x7/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/carpet/f011_soft_neutral_carpet_5x7/preview.png"
+        },
+        "lifestyle": {
+          "url": "https://images.unsplash.com/photo-1772143535046-99a2bb734a3d?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+          "source_url": "https://unsplash.com/photos/living-room-with-couch-coffee-table-and-chairs-w9etxmuavOk",
+          "credit": "Unsplash",
+          "shared_with": [
+            "F001",
+            "F002"
+          ]
+        }
       },
       "model": {
         "glb": "models/carpet/f011_soft_neutral_carpet_5x7/model.glb",
@@ -1101,17 +2442,26 @@
     },
     {
       "id": "F012",
+      "sku": "NGL-F012",
+      "slug": "48-inch-smart-tv",
       "name": "48-Inch Smart TV",
+      "short_description": "48-inch smart TV with a thin black bezel and a dark glass screen.",
       "category": "TV",
       "category_id": "tv",
       "style": "Modern",
       "style_id": "modern",
       "room": "Living Room",
       "room_id": "living_room_generic",
+      "brand_id": "northglass",
       "price": {
         "amount": 399,
         "currency": "USD"
       },
+      "currency": "USD",
+      "in_stock": true,
+      "ships_in_days": 5,
+      "sponsored": false,
+      "featured_rank": null,
       "dimensions": {
         "inches": {
           "width": 43,
@@ -1124,10 +2474,93 @@
           "height": 0.6604
         }
       },
+      "color": {
+        "name": "Black",
+        "hex": "#1D1D1E",
+        "material": "Bezel",
+        "source": "models/tv/f012_48_inch_smart_tv/build.py"
+      },
+      "materials": [
+        {
+          "name": "Bezel",
+          "role": "surface",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.012,
+            0.012,
+            0.013
+          ],
+          "hex": "#1D1D1E",
+          "roughness": 0.42,
+          "metallic": 0.0,
+          "source": "models/tv/f012_48_inch_smart_tv/build.py"
+        },
+        {
+          "name": "Rear",
+          "role": "finish",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.028,
+            0.028,
+            0.03
+          ],
+          "hex": "#2F2F30",
+          "roughness": 0.58,
+          "metallic": 0.0,
+          "source": "models/tv/f012_48_inch_smart_tv/build.py"
+        },
+        {
+          "name": "Screen",
+          "role": "surface",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.02,
+            0.023,
+            0.03
+          ],
+          "hex": "#272A30",
+          "roughness": 0.04,
+          "metallic": 0.0,
+          "source": "models/tv/f012_48_inch_smart_tv/build.py"
+        },
+        {
+          "name": "PowerLED",
+          "role": "light",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.85,
+            0.9,
+            0.95
+          ],
+          "hex": "#EDF3F9",
+          "roughness": 0.25,
+          "metallic": 0.0,
+          "source": "models/tv/f012_48_inch_smart_tv/build.py",
+          "emission_strength": 4.0
+        }
+      ],
       "photo": {
         "url": "https://images.unsplash.com/photo-1560169897-fc0cdbdfa4d5?auto=format&fit=crop&fm=jpg&q=80&w=1200",
         "source_url": "https://unsplash.com/photos/turned-on-flat-screen-television-EOQhsfFBhRk",
         "credit": "Unsplash"
+      },
+      "images": {
+        "thumbnail": {
+          "path": "models/tv/f012_48_inch_smart_tv/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/tv/f012_48_inch_smart_tv/preview.png"
+        },
+        "card": {
+          "path": "models/tv/f012_48_inch_smart_tv/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/tv/f012_48_inch_smart_tv/preview.png"
+        },
+        "lifestyle": {
+          "url": "https://images.unsplash.com/photo-1560169897-fc0cdbdfa4d5?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+          "source_url": "https://unsplash.com/photos/turned-on-flat-screen-television-EOQhsfFBhRk",
+          "credit": "Unsplash",
+          "shared_with": [
+            "F013"
+          ]
+        }
       },
       "model": {
         "glb": "models/tv/f012_48_inch_smart_tv/model.glb",
@@ -1178,17 +2611,26 @@
     },
     {
       "id": "F013",
+      "sku": "NGL-F013",
+      "slug": "65-inch-smart-tv",
       "name": "65-Inch Smart TV",
+      "short_description": "65-inch smart TV in a graphite bezel, the larger of the two Northglass panels.",
       "category": "TV",
       "category_id": "tv",
       "style": "Modern",
       "style_id": "modern",
       "room": "Living Room",
       "room_id": "living_room_generic",
+      "brand_id": "northglass",
       "price": {
         "amount": 699,
         "currency": "USD"
       },
+      "currency": "USD",
+      "in_stock": true,
+      "ships_in_days": 5,
+      "sponsored": false,
+      "featured_rank": null,
       "dimensions": {
         "inches": {
           "width": 57,
@@ -1201,10 +2643,80 @@
           "height": 0.8636
         }
       },
+      "color": {
+        "name": "Graphite",
+        "hex": "#161618",
+        "material": "Bezel",
+        "source": "models/tv/f013_65_inch_smart_tv/build.py"
+      },
+      "materials": [
+        {
+          "name": "Bezel",
+          "role": "surface",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.008,
+            0.008,
+            0.009
+          ],
+          "hex": "#161618",
+          "roughness": 0.48,
+          "metallic": 0.04,
+          "source": "models/tv/f013_65_inch_smart_tv/build.py"
+        },
+        {
+          "name": "Screen",
+          "role": "surface",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.012,
+            0.016,
+            0.024
+          ],
+          "hex": "#1D222B",
+          "roughness": 0.22,
+          "metallic": 0.0,
+          "source": "models/tv/f013_65_inch_smart_tv/build.py",
+          "emission_strength": 0.9
+        },
+        {
+          "name": "Indicator",
+          "role": "light",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.75,
+            0.88,
+            1.0
+          ],
+          "hex": "#E1F1FF",
+          "roughness": 0.2,
+          "metallic": 0.0,
+          "source": "models/tv/f013_65_inch_smart_tv/build.py",
+          "emission_strength": 18.0
+        }
+      ],
       "photo": {
         "url": "https://images.unsplash.com/photo-1560169897-fc0cdbdfa4d5?auto=format&fit=crop&fm=jpg&q=80&w=1200",
         "source_url": "https://unsplash.com/photos/turned-on-flat-screen-television-EOQhsfFBhRk",
         "credit": "Unsplash"
+      },
+      "images": {
+        "thumbnail": {
+          "path": "models/tv/f013_65_inch_smart_tv/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/tv/f013_65_inch_smart_tv/preview.png"
+        },
+        "card": {
+          "path": "models/tv/f013_65_inch_smart_tv/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/tv/f013_65_inch_smart_tv/preview.png"
+        },
+        "lifestyle": {
+          "url": "https://images.unsplash.com/photo-1560169897-fc0cdbdfa4d5?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+          "source_url": "https://unsplash.com/photos/turned-on-flat-screen-television-EOQhsfFBhRk",
+          "credit": "Unsplash",
+          "shared_with": [
+            "F012"
+          ]
+        }
       },
       "model": {
         "glb": "models/tv/f013_65_inch_smart_tv/model.glb",
@@ -1255,17 +2767,26 @@
     },
     {
       "id": "F014",
+      "sku": "VRD-F014",
+      "slug": "tall-fiddle-leaf-plant",
       "name": "Tall Fiddle Leaf Plant",
+      "short_description": "Tall fiddle-leaf plant in a terracotta pot with a cream slip band.",
       "category": "Plant",
       "category_id": "plant",
       "style": "Bohemian",
       "style_id": "bohemian",
       "room": "Living Room",
       "room_id": "living_room_generic",
+      "brand_id": "verdure",
       "price": {
         "amount": 89,
         "currency": "USD"
       },
+      "currency": "USD",
+      "in_stock": true,
+      "ships_in_days": 4,
+      "sponsored": false,
+      "featured_rank": null,
       "dimensions": {
         "inches": {
           "width": 20,
@@ -1278,10 +2799,148 @@
           "height": 1.524
         }
       },
+      "color": {
+        "name": "Fiddle green",
+        "hex": "#356F3C",
+        "material": "F014_Leaf",
+        "source": "models/plant/f014_tall_fiddle_leaf_plant/build.py"
+      },
+      "materials": [
+        {
+          "name": "F014_Terracotta",
+          "role": "planter",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.62,
+            0.28,
+            0.15
+          ],
+          "hex": "#CE906C",
+          "roughness": 0.68,
+          "metallic": 0.0,
+          "source": "models/plant/f014_tall_fiddle_leaf_plant/build.py"
+        },
+        {
+          "name": "F014_CreamSlip",
+          "role": "planter",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.8,
+            0.68,
+            0.48
+          ],
+          "hex": "#E7D7B8",
+          "roughness": 0.62,
+          "metallic": 0.0,
+          "source": "models/plant/f014_tall_fiddle_leaf_plant/build.py"
+        },
+        {
+          "name": "F014_Soil",
+          "role": "planter",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.11,
+            0.075,
+            0.04
+          ],
+          "hex": "#5D4D38",
+          "roughness": 0.96,
+          "metallic": 0.0,
+          "source": "models/plant/f014_tall_fiddle_leaf_plant/build.py"
+        },
+        {
+          "name": "F014_Bark",
+          "role": "foliage",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.28,
+            0.18,
+            0.1
+          ],
+          "hex": "#907659",
+          "roughness": 0.8,
+          "metallic": 0.0,
+          "source": "models/plant/f014_tall_fiddle_leaf_plant/build.py"
+        },
+        {
+          "name": "F014_Petiole",
+          "role": "foliage",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.2,
+            0.26,
+            0.08
+          ],
+          "hex": "#7C8B50",
+          "roughness": 0.55,
+          "metallic": 0.0,
+          "source": "models/plant/f014_tall_fiddle_leaf_plant/build.py"
+        },
+        {
+          "name": "F014_Leaf",
+          "role": "foliage",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.035,
+            0.16,
+            0.045
+          ],
+          "hex": "#356F3C",
+          "roughness": 0.3,
+          "metallic": 0.0,
+          "source": "models/plant/f014_tall_fiddle_leaf_plant/build.py"
+        },
+        {
+          "name": "F014_Vein",
+          "role": "foliage",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.18,
+            0.32,
+            0.1
+          ],
+          "hex": "#769959",
+          "roughness": 0.38,
+          "metallic": 0.0,
+          "source": "models/plant/f014_tall_fiddle_leaf_plant/build.py"
+        },
+        {
+          "name": "F014_NewLeaf",
+          "role": "foliage",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.4,
+            0.5,
+            0.15
+          ],
+          "hex": "#AABC6C",
+          "roughness": 0.36,
+          "metallic": 0.0,
+          "source": "models/plant/f014_tall_fiddle_leaf_plant/build.py"
+        }
+      ],
       "photo": {
         "url": "https://images.unsplash.com/photo-1626965556132-43d76de1004f?auto=format&fit=crop&fm=jpg&q=80&w=1200",
         "source_url": "https://unsplash.com/photos/green-potted-plant-on-brown-wooden-table-m40vzmdVMR8",
         "credit": "Unsplash"
+      },
+      "images": {
+        "thumbnail": {
+          "path": "models/plant/f014_tall_fiddle_leaf_plant/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/plant/f014_tall_fiddle_leaf_plant/preview.png"
+        },
+        "card": {
+          "path": "models/plant/f014_tall_fiddle_leaf_plant/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/plant/f014_tall_fiddle_leaf_plant/preview.png"
+        },
+        "lifestyle": {
+          "url": "https://images.unsplash.com/photo-1626965556132-43d76de1004f?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+          "source_url": "https://unsplash.com/photos/green-potted-plant-on-brown-wooden-table-m40vzmdVMR8",
+          "credit": "Unsplash",
+          "shared_with": [
+            "F017"
+          ]
+        }
       },
       "model": {
         "glb": "models/plant/f014_tall_fiddle_leaf_plant/model.glb",
@@ -1332,17 +2991,26 @@
     },
     {
       "id": "F015",
+      "sku": "VRD-F015",
+      "slug": "snake-plant",
       "name": "Snake Plant",
+      "short_description": "Upright snake plant in a pale ceramic pot, with yellow-edged green blades.",
       "category": "Plant",
       "category_id": "plant",
       "style": "Minimal",
       "style_id": "minimal",
       "room": "Living Room",
       "room_id": "living_room_generic",
+      "brand_id": "verdure",
       "price": {
         "amount": 39,
         "currency": "USD"
       },
+      "currency": "USD",
+      "in_stock": true,
+      "ships_in_days": 4,
+      "sponsored": false,
+      "featured_rank": null,
       "dimensions": {
         "inches": {
           "width": 12,
@@ -1355,10 +3023,136 @@
           "height": 0.8128
         }
       },
+      "color": {
+        "name": "Snake green",
+        "hex": "#427752",
+        "material": "F015_LeafMid",
+        "source": "models/plant/f015_snake_plant/build.py"
+      },
+      "materials": [
+        {
+          "name": "F015_Ceramic",
+          "role": "planter",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.86,
+            0.82,
+            0.75
+          ],
+          "hex": "#EFEAE1",
+          "roughness": 0.58,
+          "metallic": 0.0,
+          "source": "models/plant/f015_snake_plant/build.py"
+        },
+        {
+          "name": "F015_Soil",
+          "role": "planter",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.18,
+            0.13,
+            0.08
+          ],
+          "hex": "#766550",
+          "roughness": 0.94,
+          "metallic": 0.0,
+          "source": "models/plant/f015_snake_plant/build.py"
+        },
+        {
+          "name": "F015_Leaf",
+          "role": "foliage",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.07,
+            0.22,
+            0.1
+          ],
+          "hex": "#4B8159",
+          "roughness": 0.4,
+          "metallic": 0.0,
+          "source": "models/plant/f015_snake_plant/build.py",
+          "vertex_colors": true,
+          "note": "Principled Base Color is driven by vertex colors. F015_LeafMid is the blade body."
+        },
+        {
+          "name": "F015_LeafDark",
+          "role": "foliage",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.028,
+            0.105,
+            0.052
+          ],
+          "hex": "#2F5B40",
+          "roughness": null,
+          "metallic": 0.0,
+          "source": "models/plant/f015_snake_plant/build.py"
+        },
+        {
+          "name": "F015_LeafMid",
+          "role": "foliage",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.055,
+            0.185,
+            0.085
+          ],
+          "hex": "#427752",
+          "roughness": null,
+          "metallic": 0.0,
+          "source": "models/plant/f015_snake_plant/build.py"
+        },
+        {
+          "name": "F015_LeafPale",
+          "role": "foliage",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.4,
+            0.48,
+            0.28
+          ],
+          "hex": "#AAB890",
+          "roughness": null,
+          "metallic": 0.0,
+          "source": "models/plant/f015_snake_plant/build.py"
+        },
+        {
+          "name": "F015_LeafEdge",
+          "role": "foliage",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.64,
+            0.52,
+            0.1
+          ],
+          "hex": "#D1BF59",
+          "roughness": null,
+          "metallic": 0.0,
+          "source": "models/plant/f015_snake_plant/build.py"
+        }
+      ],
       "photo": {
         "url": "https://images.unsplash.com/photo-1792507017949-0f2663a4c9d5?auto=format&fit=crop&fm=jpg&q=80&w=1200",
         "source_url": "https://unsplash.com/photos/indoor-plants-in-a-planter-2PJsf1V03kg",
         "credit": "Unsplash"
+      },
+      "images": {
+        "thumbnail": {
+          "path": "models/plant/f015_snake_plant/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/plant/f015_snake_plant/preview.png"
+        },
+        "card": {
+          "path": "models/plant/f015_snake_plant/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/plant/f015_snake_plant/preview.png"
+        },
+        "lifestyle": {
+          "url": "https://images.unsplash.com/photo-1792507017949-0f2663a4c9d5?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+          "source_url": "https://unsplash.com/photos/indoor-plants-in-a-planter-2PJsf1V03kg",
+          "credit": "Unsplash",
+          "shared_with": [
+            "F016"
+          ]
+        }
       },
       "model": {
         "glb": "models/plant/f015_snake_plant/model.glb",
@@ -1409,17 +3203,26 @@
     },
     {
       "id": "F016",
+      "sku": "VRD-F016",
+      "slug": "monstera-floor-plant",
       "name": "Monstera Floor Plant",
+      "short_description": "Floor monstera in a banded terracotta pot, with split deep-green leaves.",
       "category": "Plant",
       "category_id": "plant",
       "style": "Bohemian",
       "style_id": "bohemian",
       "room": "Living Room",
       "room_id": "living_room_generic",
+      "brand_id": "verdure",
       "price": {
         "amount": 79,
         "currency": "USD"
       },
+      "currency": "USD",
+      "in_stock": true,
+      "ships_in_days": 4,
+      "sponsored": false,
+      "featured_rank": null,
       "dimensions": {
         "inches": {
           "width": 24,
@@ -1432,10 +3235,162 @@
           "height": 1.2192
         }
       },
+      "color": {
+        "name": "Monstera green",
+        "hex": "#4B9959",
+        "material": "F016_LeafMid",
+        "source": "models/plant/f016_monstera_floor_plant/build.py"
+      },
+      "materials": [
+        {
+          "name": "F016_Terracotta",
+          "role": "planter",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.68,
+            0.34,
+            0.2
+          ],
+          "hex": "#D79E7C",
+          "roughness": 0.78,
+          "metallic": 0.0,
+          "source": "models/plant/f016_monstera_floor_plant/build.py"
+        },
+        {
+          "name": "F016_Saucer",
+          "role": "planter",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.55,
+            0.26,
+            0.15
+          ],
+          "hex": "#C48B6C",
+          "roughness": 0.84,
+          "metallic": 0.0,
+          "source": "models/plant/f016_monstera_floor_plant/build.py"
+        },
+        {
+          "name": "F016_CreamBand",
+          "role": "finish",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.86,
+            0.76,
+            0.58
+          ],
+          "hex": "#EFE2C8",
+          "roughness": 0.62,
+          "metallic": 0.0,
+          "source": "models/plant/f016_monstera_floor_plant/build.py"
+        },
+        {
+          "name": "F016_DarkBand",
+          "role": "finish",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.22,
+            0.09,
+            0.06
+          ],
+          "hex": "#815545",
+          "roughness": 0.55,
+          "metallic": 0.0,
+          "source": "models/plant/f016_monstera_floor_plant/build.py"
+        },
+        {
+          "name": "F016_Soil",
+          "role": "planter",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.11,
+            0.07,
+            0.045
+          ],
+          "hex": "#5D4B3C",
+          "roughness": 0.95,
+          "metallic": 0.0,
+          "source": "models/plant/f016_monstera_floor_plant/build.py"
+        },
+        {
+          "name": "F016_Petiole",
+          "role": "foliage",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.3,
+            0.46,
+            0.16
+          ],
+          "hex": "#95B56F",
+          "roughness": 0.5,
+          "metallic": 0.0,
+          "source": "models/plant/f016_monstera_floor_plant/build.py"
+        },
+        {
+          "name": "F016_LeafDeep",
+          "role": "foliage",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.045,
+            0.24,
+            0.08
+          ],
+          "hex": "#3C8650",
+          "roughness": 0.36,
+          "metallic": 0.0,
+          "source": "models/plant/f016_monstera_floor_plant/build.py"
+        },
+        {
+          "name": "F016_LeafMid",
+          "role": "foliage",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.07,
+            0.32,
+            0.1
+          ],
+          "hex": "#4B9959",
+          "roughness": 0.34,
+          "metallic": 0.0,
+          "source": "models/plant/f016_monstera_floor_plant/build.py"
+        },
+        {
+          "name": "F016_LeafLight",
+          "role": "foliage",
+          "color_space": "linear",
+          "base_color_rgb": [
+            0.12,
+            0.4,
+            0.12
+          ],
+          "hex": "#61AA61",
+          "roughness": 0.36,
+          "metallic": 0.0,
+          "source": "models/plant/f016_monstera_floor_plant/build.py"
+        }
+      ],
       "photo": {
         "url": "https://images.unsplash.com/photo-1792507017949-0f2663a4c9d5?auto=format&fit=crop&fm=jpg&q=80&w=1200",
         "source_url": "https://unsplash.com/photos/indoor-plants-in-a-planter-2PJsf1V03kg",
         "credit": "Unsplash"
+      },
+      "images": {
+        "thumbnail": {
+          "path": "models/plant/f016_monstera_floor_plant/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/plant/f016_monstera_floor_plant/preview.png"
+        },
+        "card": {
+          "path": "models/plant/f016_monstera_floor_plant/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/plant/f016_monstera_floor_plant/preview.png"
+        },
+        "lifestyle": {
+          "url": "https://images.unsplash.com/photo-1792507017949-0f2663a4c9d5?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+          "source_url": "https://unsplash.com/photos/indoor-plants-in-a-planter-2PJsf1V03kg",
+          "credit": "Unsplash",
+          "shared_with": [
+            "F015"
+          ]
+        }
       },
       "model": {
         "glb": "models/plant/f016_monstera_floor_plant/model.glb",
@@ -1486,17 +3441,26 @@
     },
     {
       "id": "F017",
+      "sku": "VRD-F017",
+      "slug": "olive-tree-in-pot",
       "name": "Olive Tree in Pot",
+      "short_description": "Potted olive tree with silvery leaves in a warm clay planter.",
       "category": "Plant",
       "category_id": "plant",
       "style": "Japandi",
       "style_id": "japandi",
       "room": "Living Room",
       "room_id": "living_room_generic",
+      "brand_id": "verdure",
       "price": {
         "amount": 129,
         "currency": "USD"
       },
+      "currency": "USD",
+      "in_stock": true,
+      "ships_in_days": 4,
+      "sponsored": false,
+      "featured_rank": null,
       "dimensions": {
         "inches": {
           "width": 22,
@@ -1509,10 +3473,162 @@
           "height": 1.3716
         }
       },
+      "color": {
+        "name": "Olive",
+        "hex": "#758A54",
+        "material": "LeafOlive",
+        "source": "models/plant/f017_olive_tree_in_pot/build.py"
+      },
+      "materials": [
+        {
+          "name": "Pot",
+          "role": "planter",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.77,
+            0.69,
+            0.58
+          ],
+          "hex": "#C4B094",
+          "roughness": 0.78,
+          "metallic": 0.0,
+          "source": "models/plant/f017_olive_tree_in_pot/build.py"
+        },
+        {
+          "name": "PotRim",
+          "role": "planter",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.84,
+            0.77,
+            0.68
+          ],
+          "hex": "#D6C4AD",
+          "roughness": 0.58,
+          "metallic": 0.0,
+          "source": "models/plant/f017_olive_tree_in_pot/build.py"
+        },
+        {
+          "name": "Soil",
+          "role": "planter",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.23,
+            0.18,
+            0.13
+          ],
+          "hex": "#3B2E21",
+          "roughness": 0.98,
+          "metallic": 0.0,
+          "source": "models/plant/f017_olive_tree_in_pot/build.py"
+        },
+        {
+          "name": "Bark",
+          "role": "foliage",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.4,
+            0.34,
+            0.28
+          ],
+          "hex": "#665747",
+          "roughness": 0.9,
+          "metallic": 0.0,
+          "source": "models/plant/f017_olive_tree_in_pot/build.py"
+        },
+        {
+          "name": "LeafSilver",
+          "role": "foliage",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.63,
+            0.68,
+            0.48
+          ],
+          "hex": "#A1AD7A",
+          "roughness": 0.58,
+          "metallic": 0.0,
+          "source": "models/plant/f017_olive_tree_in_pot/build.py"
+        },
+        {
+          "name": "LeafOlive",
+          "role": "foliage",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.46,
+            0.54,
+            0.33
+          ],
+          "hex": "#758A54",
+          "roughness": 0.56,
+          "metallic": 0.0,
+          "source": "models/plant/f017_olive_tree_in_pot/build.py"
+        },
+        {
+          "name": "LeafDeep",
+          "role": "foliage",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.31,
+            0.38,
+            0.23
+          ],
+          "hex": "#4F613B",
+          "roughness": 0.62,
+          "metallic": 0.0,
+          "source": "models/plant/f017_olive_tree_in_pot/build.py"
+        },
+        {
+          "name": "LeafPale",
+          "role": "foliage",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.72,
+            0.75,
+            0.58
+          ],
+          "hex": "#B8BF94",
+          "roughness": 0.52,
+          "metallic": 0.0,
+          "source": "models/plant/f017_olive_tree_in_pot/build.py"
+        },
+        {
+          "name": "OliveFruit",
+          "role": "foliage",
+          "color_space": "srgb",
+          "base_color_rgb": [
+            0.16,
+            0.18,
+            0.09
+          ],
+          "hex": "#292E17",
+          "roughness": 0.38,
+          "metallic": 0.0,
+          "source": "models/plant/f017_olive_tree_in_pot/build.py"
+        }
+      ],
       "photo": {
         "url": "https://images.unsplash.com/photo-1626965556132-43d76de1004f?auto=format&fit=crop&fm=jpg&q=80&w=1200",
         "source_url": "https://unsplash.com/photos/green-potted-plant-on-brown-wooden-table-m40vzmdVMR8",
         "credit": "Unsplash"
+      },
+      "images": {
+        "thumbnail": {
+          "path": "models/plant/f017_olive_tree_in_pot/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/plant/f017_olive_tree_in_pot/preview.png"
+        },
+        "card": {
+          "path": "models/plant/f017_olive_tree_in_pot/preview.png",
+          "url": "https://raw.githubusercontent.com/wlamason/lovable-hackathon-2026/main/models/plant/f017_olive_tree_in_pot/preview.png"
+        },
+        "lifestyle": {
+          "url": "https://images.unsplash.com/photo-1626965556132-43d76de1004f?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+          "source_url": "https://unsplash.com/photos/green-potted-plant-on-brown-wooden-table-m40vzmdVMR8",
+          "credit": "Unsplash",
+          "shared_with": [
+            "F014"
+          ]
+        }
       },
       "model": {
         "glb": "models/plant/f017_olive_tree_in_pot/model.glb",

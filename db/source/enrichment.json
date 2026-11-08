@@ -1,0 +1,222 @@
+{
+  "demo_data": true,
+  "note": "Hand-edited demo merchandising. python3 db/build_db.py merges this onto the spreadsheet, catalog, and measured model data. Edit this file to change brands, copy, stock, shipping, sponsored ranks, and swatch names. Hex values are computed from each model's build.py.",
+  "brands": [
+    {
+      "id": "cloudline-home",
+      "name": "Cloudline Home",
+      "ships_from": "High Point, North Carolina",
+      "blurb": "Modern upholstered seating. The Cloudline sofa and the charcoal modular sectional come from this house."
+    },
+    {
+      "id": "harbor-house",
+      "name": "Harbor House",
+      "ships_from": "Charleston, South Carolina",
+      "blurb": "Coastal seating in washed linen with driftwood legs. The Harbor loveseat is the house sofa."
+    },
+    {
+      "id": "lumen-works",
+      "name": "Lumen Works",
+      "ships_from": "Portland, Oregon",
+      "blurb": "Floor and table lamps, from the satin reading arc to the brass soft-glow shade."
+    },
+    {
+      "id": "oakline-studio",
+      "name": "Oakline Studio",
+      "ships_from": "Grand Rapids, Michigan",
+      "blurb": "Wood and slate tables, including the Oakline round coffee table and the slim birch side table."
+    },
+    {
+      "id": "loom-and-field",
+      "name": "Loom & Field",
+      "ships_from": "Dalton, Georgia",
+      "blurb": "Living-room rugs: a geometric 8x10 and a soft neutral 5x7."
+    },
+    {
+      "id": "northglass",
+      "name": "Northglass",
+      "ships_from": "Austin, Texas",
+      "blurb": "Slim smart TVs with a dark bezel and a Screen material the viewer can swap."
+    },
+    {
+      "id": "verdure",
+      "name": "Verdure",
+      "ships_from": "Los Angeles, California",
+      "blurb": "Floor plants in ceramic and terracotta, from fiddle leaf and monstera to olive."
+    }
+  ],
+  "items": {
+    "F001": {
+      "brand_id": "cloudline-home",
+      "sku": "CLH-F001",
+      "short_description": "Low modern sofa in oatmeal linen with a slim dark leg, built to anchor a living room.",
+      "in_stock": true,
+      "ships_in_days": 12,
+      "sponsored": true,
+      "featured_rank": 1,
+      "primary_material": "F001_Fabric",
+      "color_name": "Oatmeal"
+    },
+    "F002": {
+      "brand_id": "harbor-house",
+      "sku": "HRH-F002",
+      "short_description": "Two-seat coastal loveseat in washed linen with driftwood legs and a navy pillow.",
+      "in_stock": true,
+      "ships_in_days": 10,
+      "sponsored": false,
+      "primary_material": "F002_Linen",
+      "color_name": "Coastal linen"
+    },
+    "F003": {
+      "brand_id": "cloudline-home",
+      "sku": "CLH-F003",
+      "short_description": "Deep modular sectional in charcoal cloth with oatmeal and stone throw pillows.",
+      "in_stock": true,
+      "ships_in_days": 14,
+      "sponsored": false,
+      "primary_material": "F003_Seat",
+      "color_name": "Charcoal"
+    },
+    "F004": {
+      "brand_id": "lumen-works",
+      "sku": "LMW-F004",
+      "short_description": "Satin-black arc floor lamp with a warm diffuser, sized to swing over a reading chair.",
+      "in_stock": true,
+      "ships_in_days": 4,
+      "sponsored": true,
+      "featured_rank": 2,
+      "primary_material": "SatinBlack",
+      "color_name": "Satin black"
+    },
+    "F005": {
+      "brand_id": "lumen-works",
+      "sku": "LMW-F005",
+      "short_description": "Brass table lamp with a cream shade and a soft glowing bulb.",
+      "in_stock": true,
+      "ships_in_days": 4,
+      "sponsored": false,
+      "primary_material": "Brass",
+      "color_name": "Brass"
+    },
+    "F006": {
+      "brand_id": "lumen-works",
+      "sku": "LMW-F006",
+      "short_description": "Tripod floor lamp in honey oak and brass with a linen drum shade.",
+      "in_stock": true,
+      "ships_in_days": 5,
+      "sponsored": false,
+      "primary_material": "F006_Oak",
+      "color_name": "Honey oak"
+    },
+    "F007": {
+      "brand_id": "oakline-studio",
+      "sku": "OAK-F007",
+      "short_description": "Round whitewashed-oak coffee table, low enough to sit in front of a sofa.",
+      "in_stock": true,
+      "ships_in_days": 8,
+      "sponsored": false,
+      "primary_material": "F007_OakTop",
+      "color_name": "Pale oak"
+    },
+    "F008": {
+      "brand_id": "oakline-studio",
+      "sku": "OAK-F008",
+      "short_description": "Nesting tables with slate tops and black metal frames.",
+      "in_stock": true,
+      "ships_in_days": 8,
+      "sponsored": false,
+      "primary_material": "Slate",
+      "color_name": "Slate"
+    },
+    "F009": {
+      "brand_id": "oakline-studio",
+      "sku": "OAK-F009",
+      "short_description": "Narrow birch side table with a recessed tray top.",
+      "in_stock": true,
+      "ships_in_days": 7,
+      "sponsored": false,
+      "primary_material": "F009_Birch",
+      "color_name": "Birch"
+    },
+    "F010": {
+      "brand_id": "loom-and-field",
+      "sku": "LNF-F010",
+      "short_description": "Eight-by-ten geometric rug in ivory, teal, and rust.",
+      "in_stock": true,
+      "ships_in_days": 6,
+      "sponsored": false,
+      "primary_material": "F010_Field",
+      "color_name": "Ivory"
+    },
+    "F011": {
+      "brand_id": "loom-and-field",
+      "sku": "LNF-F011",
+      "short_description": "Five-by-seven neutral rug with a soft sand field and a deeper border.",
+      "in_stock": true,
+      "ships_in_days": 6,
+      "sponsored": false,
+      "primary_material": "F011_Field",
+      "color_name": "Soft sand"
+    },
+    "F012": {
+      "brand_id": "northglass",
+      "sku": "NGL-F012",
+      "short_description": "48-inch smart TV with a thin black bezel and a dark glass screen.",
+      "in_stock": true,
+      "ships_in_days": 5,
+      "sponsored": false,
+      "primary_material": "Bezel",
+      "color_name": "Black"
+    },
+    "F013": {
+      "brand_id": "northglass",
+      "sku": "NGL-F013",
+      "short_description": "65-inch smart TV in a graphite bezel, the larger of the two Northglass panels.",
+      "in_stock": true,
+      "ships_in_days": 5,
+      "sponsored": false,
+      "primary_material": "Bezel",
+      "color_name": "Graphite"
+    },
+    "F014": {
+      "brand_id": "verdure",
+      "sku": "VRD-F014",
+      "short_description": "Tall fiddle-leaf plant in a terracotta pot with a cream slip band.",
+      "in_stock": true,
+      "ships_in_days": 4,
+      "sponsored": false,
+      "primary_material": "F014_Leaf",
+      "color_name": "Fiddle green"
+    },
+    "F015": {
+      "brand_id": "verdure",
+      "sku": "VRD-F015",
+      "short_description": "Upright snake plant in a pale ceramic pot, with yellow-edged green blades.",
+      "in_stock": true,
+      "ships_in_days": 4,
+      "sponsored": false,
+      "primary_material": "F015_LeafMid",
+      "color_name": "Snake green"
+    },
+    "F016": {
+      "brand_id": "verdure",
+      "sku": "VRD-F016",
+      "short_description": "Floor monstera in a banded terracotta pot, with split deep-green leaves.",
+      "in_stock": true,
+      "ships_in_days": 4,
+      "sponsored": false,
+      "primary_material": "F016_LeafMid",
+      "color_name": "Monstera green"
+    },
+    "F017": {
+      "brand_id": "verdure",
+      "sku": "VRD-F017",
+      "short_description": "Potted olive tree with silvery leaves in a warm clay planter.",
+      "in_stock": true,
+      "ships_in_days": 4,
+      "sponsored": false,
+      "primary_material": "LeafOlive",
+      "color_name": "Olive"
+    }
+  }
+}
