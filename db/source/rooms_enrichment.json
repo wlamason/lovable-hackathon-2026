@@ -1,0 +1,154 @@
+{
+  "demo_data": true,
+  "note": "Hand-curated room fields that are not stored on the room files: style mapping, vibe, light, room type, starter layouts, and a few inferred no-go rectangles. build_db.py still reads dimensions, anchors, openings, materials, and README prose from rooms/*.",
+  "rooms": {
+    "living_room_generic": {
+      "sort_order": 1,
+      "display_name": "Generic Living Room",
+      "catalog_room": "Living Room",
+      "room_type": "living",
+      "style_ids": ["modern", "minimal"],
+      "vibe": ["neutral", "empty-shell"],
+      "light_level": "medium",
+      "inspiration": [
+        {
+          "description": "The README describes the shell and does not name a reference photo.",
+          "url": null,
+          "known": false,
+          "inferred": true
+        }
+      ],
+      "starter_layout": {
+        "Sofa_spot": "F001",
+        "TV_wall": "F013",
+        "Rug_center": "F010",
+        "Coffee_spot": "F007"
+      }
+    },
+    "condo_open_kitchen": {
+      "sort_order": 2,
+      "display_name": "Modern Condo Open Kitchen",
+      "room_type": "open-plan-kitchen",
+      "style_ids": ["modern"],
+      "vibe": ["urban", "open-plan"],
+      "light_level": "bright",
+      "blocked": [
+        {
+          "id": "entry_clearance",
+          "label": "South entry door clearance",
+          "reason": "README and free_floor note ask for about 0.9 m clear in front of the south door. The rectangle is inferred from the door center.",
+          "inferred": true,
+          "polygon_xy_m": [
+            [-1.607, -2.745],
+            [-0.693, -2.745],
+            [-0.693, -1.845],
+            [-1.607, -1.845]
+          ]
+        }
+      ],
+      "starter_layout": {
+        "Sofa_spot": "F001",
+        "TV_wall": "F013",
+        "Rug_center": "F011",
+        "Coffee_spot": "F007",
+        "Plant_corner": "F016",
+        "Lamp_corner": "F004"
+      }
+    },
+    "glass_garden_room": {
+      "sort_order": 3,
+      "display_name": "Glass Wall Garden Room",
+      "room_type": "living",
+      "style_ids": ["modern", "minimal"],
+      "vibe": ["bright", "indoor-outdoor"],
+      "light_level": "bright",
+      "blocked": [
+        {
+          "id": "window_bench",
+          "label": "North window bench",
+          "reason": "free_floor excludes the bench. The strip is the interior floor north of the free rectangle, along the garden window.",
+          "inferred": true,
+          "polygon_xy_m": [
+            [-3.05, 1.94],
+            [3.05, 1.94],
+            [3.05, 2.44],
+            [-3.05, 2.44]
+          ]
+        }
+      ],
+      "starter_layout": {
+        "Sofa_spot": "F001",
+        "TV_wall": "F012",
+        "Rug_center": "F010",
+        "Coffee_spot": "F007",
+        "Plant_corner": "F014",
+        "Lamp_corner": "F006",
+        "Side_table": "F009"
+      }
+    },
+    "bright_loft": {
+      "sort_order": 4,
+      "display_name": "Bright Loft",
+      "room_type": "loft",
+      "style_ids": ["scandinavian", "minimal", "modern"],
+      "vibe": ["bright", "spacious"],
+      "light_level": "bright",
+      "starter_layout": {
+        "Sofa_spot": "F003",
+        "TV_wall": "F013",
+        "Rug_center": "F010",
+        "Coffee_spot": "F008",
+        "Plant_corner": "F017",
+        "Lamp_corner": "F004",
+        "Alcove_spot": "F015"
+      }
+    },
+    "beamed_fireplace_living": {
+      "sort_order": 5,
+      "display_name": "Beamed Fireplace Living Room",
+      "room_type": "living",
+      "style_ids": [],
+      "vibe": ["traditional", "family", "warm"],
+      "light_level": "bright",
+      "starter_layout": {
+        "Sofa_spot": "F002",
+        "TV_wall": "F012",
+        "Rug_center": "F011",
+        "Coffee_spot": "F007",
+        "Plant_corner": "F017",
+        "Lamp_corner": "F006",
+        "Side_table": "F009"
+      }
+    },
+    "studio_pass_through": {
+      "sort_order": 6,
+      "display_name": "Studio with Pass-Through Kitchen",
+      "room_type": "studio",
+      "style_ids": ["minimal", "modern"],
+      "vibe": ["rental", "compact"],
+      "light_level": "bright",
+      "blocked": [
+        {
+          "id": "hall_threshold",
+          "label": "Hall threshold",
+          "reason": "free_floor note: keep x from -0.0254 to 0.9398 clear within 0.85 m of Y=1.905. Rectangle is inferred from that note.",
+          "inferred": true,
+          "polygon_xy_m": [
+            [-0.0254, 1.055],
+            [0.9398, 1.055],
+            [0.9398, 1.905],
+            [-0.0254, 1.905]
+          ]
+        }
+      ],
+      "starter_layout": {
+        "Sofa_spot": "F002",
+        "TV_wall": "F012",
+        "Rug_center": "F011",
+        "Coffee_spot": "F007",
+        "Plant_corner": "F015",
+        "Lamp_corner": "F004"
+      }
+    }
+  }
+}
